@@ -1,0 +1,76 @@
+.week-calendar {
+  display: flex;
+  margin-top: 20px;
+}
+
+.day {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+  border: 1px solid #787878;
+  height: 700px;
+}
+
+.header {
+  text-align: center;
+}
+
+.header {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+    .header .active {
+      color: #ffd40a;
+    }
+
+.header .subtitle {
+  font-size: 20px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.appointments {
+  position: relative;
+}
+
+.appointment {
+  position: absolute;
+  height: 60px;
+  /* background-color: rgba(232,72,60, .1); */
+  background-color: rgba(93, 172, 6, .1);
+  width: 100%;
+}
+
+.appointment-line {
+  position: absolute;
+  height: 60px;
+  width: 5px;
+  background-color: rgb(93, 172, 6);
+}
+
+.appointment-in {
+  position: absolute;
+  left: 10px;
+}
+
+.appointment-time {
+  font-size: 14px;
+  color: #838383;
+}
+
+.appointment-name {
+  font-weight: bold;
+  font-size: 14px;
+  color: #838383;
+}
+
+i {
+  font-size: 24px;
+  color: #253c80;
+  padding-top: 12px;
+}
+
+i.fa {
+  font-family: 'Font Awesome 5 Free' !important;
+}

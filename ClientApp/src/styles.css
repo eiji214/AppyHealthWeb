@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+/* please use material-theme.scss to make changes to material theme */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+
+i[_ngcontent-c5] {
+  font-family: 'Material Icons' !important;
+}

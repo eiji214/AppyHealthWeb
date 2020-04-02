@@ -1,0 +1,70 @@
+<h1 mat-dialog-title>Appointment Details</h1>
+<div mat-dialog-content class="flex-container">
+  <div>
+    <h2>Patient</h2>
+    <app-patient-card [patientId]="referral.PatientId" [compact]="true"></app-patient-card>
+<!-- 
+    <h2>Patient Availability</h2>
+    <article *ngFor="let time of referral.PatientAvailability">
+      <header>{{ time.Date | date:'fullDate':'UTC' }}</header>
+      <div>{{ time.IsMorning && time.IsAfternoon ? 'Any Time' : time.IsMorning ? 'Morning' : time.IsAfternoon ? 'Afternoon' :
+        'No Time Selected' }}</div>
+    </article>
+    <aside *ngIf="!referral.PatientAvailability.length">
+      The patient has not set any availability for this appointment.
+    </aside> -->
+  </div>
+  <div>
+    <h2>Provider</h2>
+    <app-practitioner-card [practitionerId]="referral.Practitioner.Id" [compact]="true"></app-practitioner-card>
+
+    <h2>Provider Availability</h2>
+    <article *ngFor="let time of referral.PractitionerAvailability" [ngClass]="{ 'selected': time.SelectedByUser }">
+      <div (click)="selectDate(time.AppointmentDate)">
+          <header>{{ time.AppointmentDate | date:'fullDate' }}</header>
+          <div>{{ time.AppointmentDate | date:'h:mm a' }}</div>
+          <aside>{{ referral.AppointmentDate ? 'Confirmed' : 'Selected by Patient' }}</aside>
+          <i class="material-icons" (click)="removePractitionerAvailability(time, $event)">delete</i>
+      </div>
+    </article>
+    <aside *ngIf="!referral.PractitionerAvailability.length">
+      You have not yet entered provider availability for this appointment.
+    </aside>
+    <aside *ngIf="referral.PractitionerAvailability.length && !selectedAppointmentTime">
+        The patient has not yet selected an appointment date from these options.
+      </aside>
+  
+    <div *ngIf="!selectedAppointmentTime">
+      <h2>Add Appointment</h2>
+      <input style="width: 70%" placeholder="Appointment Date" [matDatepicker]="myDatepicker" [(ngModel)]="newAppointmentDate">
+      <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker #myDatepicker></mat-datepicker>
+      <div class="time">
+        <mat-form-field class="select--white">
+          <mat-select [(value)]="newAppointmentTime">
+            <mat-option *ngFor="let time of availableTimes" [value]="time.value">
+              {{time.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <button class="btn btn-sparse" (click)="setAppointmentDate()">Add</button>
+      </div>
+    </div>
+
+    <div *ngIf="selectedAppointmentTime">
+      <h2>Confirm Appointment</h2>
+      <div *ngIf="!referral.AppointmentDate || selectedAppointmentTime">
+        <button class="btn" (click)="confirmAppointment()">Schedule Appointment</button>
+      </div>
+      <div *ngIf="referral.AppointmentDate || !selectedAppointmentTime">
+          <aside style="margin-bottom: 20px">
+        You have confirmed
+        <b>{{ referral.AppointmentDate| date:'MMMM d, y h:mm a' }}</b> as the appointment time. If you need to cancel, click
+        the button below.
+        </aside>
+        <button class="btn btn-sparse" (click)="confirmAppointment()">Cancel {{ referral.AppointmentDate | date:'MMMM d, y h:mm a' }} </button>
+      </div>
+    </div>
+  </div>
+</div>

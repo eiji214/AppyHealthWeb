@@ -1,0 +1,85 @@
+<h3>Patient Verification</h3>
+
+<div class="line--gray"></div>
+<form #verificationForm="ngForm" *ngIf="patient$ | async as patient">
+  <div class="root">
+      <div class="test">
+          <div class="form-group">
+              <div class="form-input">
+                <div class="recipient-card">
+                  <div class="recipient-photo"></div>
+                  <div class="recipient-info">
+                    <h4>{{patient.FirstName}} {{patient.MiddleName}} {{patient.LastName}}</h4>
+                    <p>DOB: {{ patient.BirthDate | date:'M/d/y' }}</p>
+                    <p *ngIf="patient.Gender == 'M'">Male</p>
+                    <p *ngIf="patient.Gender == 'F'">Female</p>
+                    <p>Phone: <a href="tel:{{patient.PrimaryPhoneNumber}}">{{ patient.PrimaryPhoneNumber | phone }}</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Insurance Plan</label>
+              <div class="form-input">
+                <select class="input--grey" *ngIf="insurancePlan$ | async as insurancePlan" [(ngModel)]="patient.InsurancePlanId" name="InsurancePlanId">
+                  <option *ngFor="let plan of insurancePlan" [value]="plan.Id">{{plan.Name}}</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="control-label">Member ID</label>
+              <div class="form-input">
+                <input class="input--grey" [(ngModel)]="patient.InsuranceIDNumber" name="MemberID" maxlength="100">
+              </div>
+            </div>
+          
+            <div class="form-group">
+              <label class="control-label">Group Number</label>
+              <div class="form-input">
+                <input class="input--grey" [(ngModel)]="patient.InsuranceGroupNumber" name="GroupNumber" maxlength="100">
+              </div>
+            </div>
+      </div>
+      <div class="test">
+          <div class="upload">
+              <div class="upload__file" *ngIf="frontUploaded == false">
+                <div class="upload__file__container">
+                  <span> Upload Front Picture</span>
+                  <input #fileInput type="file">
+                </div>
+                <!-- <div (click)="uploadFront(patient.Id)" class="btn btn--save btn--save--medium">Save Front</div> -->
+              </div>
+              <div class="upload__file" *ngIf="frontUploaded == true">Upload Success!</div>
+              <div class="upload__file" *ngIf="backUploaded == false">
+                <div class="upload__file__container">
+                  <span>Upload Back Picture</span>
+                  <input #fileInput2 type="file">
+                </div>
+                <!-- <div (click)="uploadBack(patient.Id)" class="btn btn--save btn--save--medium">Save Back</div> -->
+              </div>
+              <div class="upload__file" *ngIf="backUploaded == true">Upload Success!</div>
+            </div>
+          
+            <div class="photos">
+              <div *ngIf="patient.InsurancePlanFrontPictureUrl">
+                <img src="{{patient.InsurancePlanFrontPictureUrl}}" style="max-width: 200px; margin-right: 20px;" />
+              </div>
+              <div *ngIf="patient.InsurancePlanBackPictureUrl">
+                <img src="{{patient.InsurancePlanBackPictureUrl}}" style="max-width: 200px;" />
+              </div>
+            </div>
+      </div>
+  </div>
+  
+
+  
+ 
+  <div class="line--gray"></div>
+  <div class="row">
+    <button class="button--yellow" mat-raised-button [disabled]="!verificationForm.form.valid" (click)="verifyPatient(patient)">
+      Verify Patient
+    </button>
+  </div>
+</form>
+

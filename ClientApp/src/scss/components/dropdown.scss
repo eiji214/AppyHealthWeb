@@ -1,0 +1,163 @@
+.dropdown {
+  width: 20%;
+  min-width: 230px;
+
+  .checkbox-container > .checkmark {
+    width: 12px;
+    height: 12px;
+
+    &:after {
+      left: 3px;
+      top: 0px;
+      width: 4px;
+      height: 7px;
+    }
+  }
+
+
+  a, visited {
+    text-decoration: none;
+    color: #0F162D;
+    font-size: 14px;
+    display: block;
+    padding: 15px;
+    width: 200px;
+  }
+
+  > ul {
+    list-style-type: none;
+
+    li:hover, li:focus {
+      background-color: #FFC70A;
+      cursor: pointer;
+    }
+
+    > li {
+      display: inline-block;
+      width: 100%;
+
+      > ul {
+        display: none;
+        position: absolute;
+        list-style-type: none;
+        margin-top: 1px;
+        box-shadow: 0 2px 18px 0 rgba(22,19,65,0.06);
+        z-index: 2;
+
+        > li {
+          background-color: white;
+          position: relative;
+
+          > ul {
+            box-shadow: 0 2px 18px 0 rgba(22,19,65,0.06);
+            display: none;
+            position: absolute;
+            top: 0;
+
+            > li {
+              width: 140px;
+              background-color: white;
+              color: #0F162D;
+              letter-spacing: 0.44px;
+              font-size: 14px;
+
+              > .checkbox-container {
+                margin-top: 11px;
+              }
+
+              > a {
+                padding: 12px 15px;
+              }
+
+              &.select-all {
+                color: #9B9B9B;
+                border-bottom: 1px solid #F3F3F4;
+
+                > .checkbox-container {
+                  margin-top: 15px;
+                }
+
+                > a {
+                  padding: 15px;
+                }
+              }
+
+              > a {
+                display: block;
+              }
+            }
+          }
+
+          &:hover > ul {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  > ul > li:hover > ul {
+    display: block;
+  }
+
+  &.left-side {
+    > ul > li > ul {
+      text-align: right;
+
+      .left-arrow {
+        float: left;
+        margin: 10px;
+      }
+
+      .right-arrow {
+        display: none;
+      }
+
+      > li > ul {
+        margin-left: -330px;
+        width: 330px;
+
+        > li {
+          width: 100%;
+
+          > a {
+            width: 300px;
+          }
+
+          .checkbox-container {
+            float: left;
+            margin-left: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  &.right-side {
+    > ul > li > ul {
+      text-align: right;
+
+      .left-arrow {
+        display: none;
+      }
+
+      .right-arrow {
+        float: right;
+        margin: 10px;
+      }
+
+      > li > ul {
+
+        > li {
+          width: 100%;
+
+          .checkbox-container {
+            float: right;
+            margin-top: 12px;
+            margin-right: 20px;
+          }
+        }
+      }
+    }
+  }
+}

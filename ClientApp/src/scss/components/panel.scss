@@ -1,0 +1,223 @@
+.profile-detail-panel {
+  display: flex;
+
+  .left-panel {
+    min-width: 335px;
+    background-color: white;
+    height: fit-content;
+
+    .profile-picture {
+      border-radius: 4px 4px 0 0;
+      min-height: 158px;
+      position: relative;
+
+      > img {
+        /* width: 100%; */
+        max-width: 335px;
+        height: auto;
+        max-height: 500px;
+        margin: auto;
+        display: block;
+      }
+    }
+
+    .info-panel {
+      padding: 25px;
+
+      h1, h2 {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 22px;
+        color: #161341;
+        letter-spacing: 0.69px;
+      }
+
+      h2 {
+        font-size: 16px;
+        line-height: 16px;
+        color: #9B9B9B;
+        letter-spacing: 0.5px;
+      }
+
+      h3 {
+        font-size: 14px;
+        color: #9B9B9B;
+        letter-spacing: 0.44px;
+      }
+
+      .info-row {
+        display: flex;
+        margin-top: 20px;
+
+        .info {
+          .label--grey {
+            padding-bottom: 8px;
+            display: block;
+            font-size: 12px;
+          }
+
+          > p {
+            font-size: 16px;
+            color: #0F162D;
+            letter-spacing: 0.5px;
+          }
+        }
+
+        .info:nth-child(2) {
+          margin-left: auto;
+        }
+      }
+    }
+
+    ul.left__menu {
+      padding: 20px;
+
+      > li {
+        font-size: 16px;
+        color: #0F162D;
+        letter-spacing: 0.5px;
+        padding: 8px 15px;
+        margin-bottom: 20px;
+        cursor: pointer;
+
+        &.selected {
+          background: #00E2FF;
+          border-radius: 4px;
+          color: #FFFFFF;
+        }
+      }
+    }
+
+    .sub-info-panel {
+    }
+  }
+
+  .right-panel {
+    width: 100%;
+    margin-left: 40px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+
+    h3 {
+      font-size: 20px;
+      color: #0F162D;
+      letter-spacing: 0.62px;
+      margin-bottom: 20px;
+    }
+
+    .info-panel {
+      margin-top: 30px;
+      padding: 25px;
+      background-color: white;
+    }
+
+    form {
+      width: 100%;
+      overflow: hidden;
+
+      .form-group {
+        margin: 10px 0 40px 0;
+        display: flex;
+        align-items: center;
+
+
+        .control-label {
+          flex-basis: 20%;
+        }
+
+        .form-input {
+          flex-basis: 80%;
+
+          select {
+            width: 100%;
+          }
+        }
+      }
+
+      .provider-card {
+        width: 60%;
+        box-shadow: 0 2px 18px 0 rgba(22,19,65,0.06);
+        display: flex;
+        max-width: 375px;
+
+
+        .provider-photo {
+          min-width: 105px;
+          position: relative;
+          height: 125px;
+          background: rgba(80, 227, 194, 0.25);
+
+          > img {
+            max-height: 80%;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+          }
+        }
+
+        .provider-info {
+          padding: 20px 20px;
+          width: 80%;
+
+          h4 {
+            color: #0F162D;
+            margin-top: 8px;
+            margin-bottom: 8px;
+          }
+
+          p {
+            margin-bottom: 8px;
+          }
+
+          .specialties {
+            color: #FFC70A;
+          }
+        }
+      }
+
+      .row {
+        text-align: right;
+      }
+
+      .button--save {
+        background: #F8F9FB;
+        color: #9B9B9B;
+      }
+
+      .button--yellow {
+        margin-left: 10px;
+        margin-top: 20px;
+      }
+    }
+
+    .confirmation {
+      border: 1px solid #D8D8D8;
+      border-radius: 4px;
+      width: 300px;
+      padding: 20px;
+      text-align: center;
+      position: absolute;
+      top: 24px;
+      right: 20px;
+      background-color: #ccf9ff;
+
+      box-shadow: 4px 8px 18px 0px rgba(0, 0, 0, 0.15) h3 {
+        display: block;
+      }
+
+      button {
+        border: 1px solid #D8D8D8;
+        border-radius: 4px;
+        padding: 6px 18px;
+        width: 130px;
+        text-align: center;
+        margin: 20px 10px 10px 10px;
+      }
+    }
+  }
+}

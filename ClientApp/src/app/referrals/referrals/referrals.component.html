@@ -1,0 +1,14 @@
+<h2 class="page-heading">{{title}}</h2>
+<div class="filter-container">
+  <mat-form-field>
+    <mat-label>Filter by Status</mat-label>
+    <mat-select [(ngModel)]="selectedFilter" (valueChange)="_filterReferrals($event)" [formControl]="searchCtrl">
+      <mat-option *ngFor="let option of filters" [value]="option.value">
+        {{ option.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="table-with-filter">
+  <app-referrals-list [referrals]="referrals$"></app-referrals-list>
+</div>

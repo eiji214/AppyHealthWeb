@@ -1,0 +1,138 @@
+h3 {
+  font-size: 20px;
+  line-height: 47px;
+  letter-spacing: 1.3px;
+  font-weight: 400;
+  color: #253A80;
+}
+
+p{
+  font-size:12px;
+  color:#9B9B9B;
+  margin-bottom:20px;
+  width:70%;
+}
+
+form {
+  font-family: 'Rubik';
+  padding-top: 20px;
+  width: 100%;
+  overflow: hidden;
+
+  .form-group {
+    margin: 10px 0 40px 0;
+    display: flex;
+    align-items: center;
+
+
+    .control-label {
+      flex-basis: 20%;
+      font-size: 12px;
+
+      span {
+        font-size: 10px;
+        display: block;
+      }
+    }
+
+    .form-input {
+      flex-basis: 80%;
+
+      select {
+        width: 100%;
+      }
+
+      textarea {
+        width: 100%;
+        background: rgba(37, 58, 128, 0.03);
+        border: 1px solid #F3F3F4;
+        border-radius: 4px;
+        font-family: 'Rubik';
+        height: 150px;
+      }
+    }
+  }
+
+  .recipient-card {
+    border: 1px solid #F3F3F4;
+    border-radius: 4px;
+    width: 60%;
+    display: flex;
+
+    .recipient-photo {
+      width: 30%;
+    }
+
+    .recipient-info {
+      padding: 10px;
+      width: 70%;
+
+      h4 {
+        color: #0F162D;
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
+
+      p {
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  .provider-card {
+    width: 60%;
+    box-shadow: 0 2px 18px 0 rgba(22,19,65,0.06);
+    display: flex;
+    max-width: 375px;
+
+
+    .provider-photo {
+      min-width: 105px;
+      position: relative;
+      height: 125px;
+      background: rgba(80, 227, 194, 0.25);
+
+      > img {
+        max-height: 80%;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+      }
+    }
+
+    .provider-info {
+      padding: 25px 20px;
+      width: 80%;
+
+      h4 {
+        color: #0F162D;
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
+
+      p {
+        margin-bottom: 8px;
+      }
+
+      .specialties {
+        color: #FFC70A;
+      }
+    }
+  }
+
+  .row {
+    text-align: right;
+  }
+
+  .button--save {
+    background: #F8F9FB;
+    color: #9B9B9B;
+  }
+
+  .button--yellow {
+    margin-left: 10px;
+    margin-top: 20px;
+  }
+}

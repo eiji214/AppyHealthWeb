@@ -1,0 +1,35 @@
+<h2 class="page-heading">Providers</h2>
+
+<div class="table-with-filter">
+  <app-practitioners-search (filteredPractitionersChange)="setPractitioners($event)"></app-practitioners-search>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="favorite"></th>
+        <th>Physician Name</th>
+        <th>Practice Name</th>
+        <th>Specialty</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let pract of filteredPractitioners; let i = index" [routerLink]="['/physician/practitioners', pract.Id]">
+        <td class="favorite"><i class="material-icons" *ngIf="pract.IsFavorite === true">star</i></td>
+        <td>
+          {{pract.FullName}}
+          <aside (click)="$event.stopPropagation()">{{ pract.PrimaryPhoneNumber | phone}} <span *ngIf="pract.PrimaryPhoneNumber && pract.PrimaryEmailAddress">/</span> {{ pract.PrimaryEmailAddress }}</aside>
+        </td>
+        <td>
+          {{pract.PracticeName}}
+          <aside>{{pract.PracticeLocation}}</aside>
+        </td>
+        <td>
+          {{pract.Specialty}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="no-results-found" *ngIf="!filteredPractitioners || filteredPractitioners.length == 0">
+    Start Searching For A Provider
+  </div>
+</div>

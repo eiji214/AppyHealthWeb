@@ -1,0 +1,258 @@
+<div class="container auto-height">
+  <ng-template #itemTemplate let-item>
+    <div class="item">
+      <span [innerHTML]="item.Name"></span>
+    </div>
+  </ng-template>
+
+  <ng-template #notFoundTemplate let-notFound>
+    <div [innerHTML]="notFound"></div>
+  </ng-template>
+  <h2 class="claimprof-text1 text-center">The power is now in your hands</h2>
+  <div class="row">
+    <div class="col-sm-4 feature-column">
+      <a (click)="setImage(1)" class="row">
+        <div class="col-sm-10 text-right">
+          <h3 class="{{selected === 1 && 'selected'}}">Search on Your Terms</h3>
+          <p>
+            Browse doctors, dentist, medical professionals or services by whatever is most important to you. Close to Home? Near work? Open late or weekends? Same day availability? Takes my insurance. Or all the above.
+          </p>
+        </div>
+        <img src="./assets/images/svgs/material-search.svg" class="col-sm-2"/>
+      </a>
+      <a (click)="setImage(2)" class="row">
+        <div class="col-sm-10 text-right">
+          <h3 class="{{selected === 2 && 'selected'}}">Discover Hard to Find Specialties</h3>
+          <p>
+            Simplified category searches by specialists, clinics, services and symptoms deliver easy to find results.
+          </p>
+        </div>
+        <img src="./assets/images/svgs/feather-compass.svg" class="col-sm-2" />
+      </a>
+      <a (click)="setImage(3)" class="row">
+        <div class="col-sm-10 text-right">
+          <h3 class="{{selected === 3 && 'selected'}}">Save Your “Favorites”</h3>
+          <p>
+            All your favorite doctors, dentists and medical professionals are a tap away in your Care Team.
+          </p>
+        </div>
+        <img src="./assets/images/svgs/feather-heart.svg" class="col-sm-2" />
+      </a>
+    </div>
+    <div class="col-sm-4" style="text-align: center">
+      <img src="./assets/images/iphones/{{image}}" style="width: 100%;" />
+    </div>
+    <div class="col-sm-4 feature-column">
+      <a (click)="setImage(4)" class="row">
+        <img src="./assets/images/svgs/contact-card.svg" class="col-sm-2" />
+        <div class="col-sm-10">
+          <h3 class="{{selected === 4 && 'selected'}}">Know Your Benefits</h3>
+          <p>
+            Upload a pic of the front and back of your insurance card. Benefits and coverages are clearly displayed and detailed by insurance type.
+          </p>
+        </div>
+      </a>
+      <a (click)="setImage(5)" class="row">
+        <img src="./assets/images/svgs/appointment-request.svg" class="col-sm-2" />
+        <div class="col-sm-10">
+          <h3 class="{{selected === 5 && 'selected'}}">Request Appointments</h3>
+          <p>
+            Request an appointment with any of your medical professionals with just a few simple taps. No telephone, please hold, or instruction to leave a message for a call back.
+          </p>
+        </div>
+      </a>
+      <a (click)="setImage(6)" class="row">
+        <img src="./assets/images/svgs/event-available.svg" class="col-sm-2" />
+        <div class="col-sm-10">
+          <h3 class="{{selected === 6 && 'selected'}}">Set Appointment & Referral Notifications</h3>
+          <p>
+            Take the guesswork and frustration out of appointment confirmations. All appointments and notifications are directly received from your doctor or care team members, including referrals!
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+<app-store-cta-bar></app-store-cta-bar>
+<div class="container auto-height">
+  <div class="search-box">
+    <h2 class="claimprof-text1">Start Searching - on your terms</h2>
+    <mat-tab-group>
+      <mat-tab label="Simple Search">
+        <form method="post">
+
+          <mat-form-field>
+            <input matInput type="text" name="search-text" [(ngModel)]="searchText" placeholder="Search Text (doctors/hospitals/symptoms)" />
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="simpleAddressChange($event)" placeholder="City/State/Zip" [required]="locationRequired" />
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Insurance Carrier" aria-label="Insurance Carrier" [matAutocomplete]="simpleInsurance" [formControl]="myControl">
+            <mat-autocomplete #simpleInsurance="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option.Name">
+                {{ option.Name }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <button class="btn btn-search" name="btn-simple-search" (click)="simpleSearch($event)"><b>Search</b></button>
+        </form>
+      </mat-tab>
+      <mat-tab label="Advanced Search">
+        <form method="post">
+
+          <mat-form-field>
+            <input matInput placeholder="Categories" aria-label="Categories" [matAutocomplete]="categories" [formControl]="categoryInput" required>
+            <mat-autocomplete #categories="matAutocomplete">
+              <mat-option *ngFor="let option of filteredCategories | async" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Sub-categories" aria-label="Sub-categories" [matAutocomplete]="subcategories" [formControl]="subCategoryInput">
+            <mat-autocomplete #subcategories="matAutocomplete" (optionSelected)='changeSubcategory($event.option.value)' [displayWith]="displayFn">
+              <mat-option *ngFor="let option of filteredSubcategories | async" [value]="option">
+                {{ option.Name }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="advancedAddressChange($event)" placeholder="City/State/Zip" [required]="locationRequired" />
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Insurance Carrier" aria-label="Insurance Carrier" [matAutocomplete]="advancedInsuranceOptions" [formControl]="myControl">
+            <mat-autocomplete #advancedInsuranceOptions="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option.Name">
+                {{ option.Name }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <button class="btn btn-search" name="btn-advanced-search" (click)="advancedSearch($event)"><b>Search</b></button>
+        </form>
+      </mat-tab>
+    </mat-tab-group>
+
+    <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
+    <div className="grid-layout">
+      <table *ngIf="searchResult.length > 0" mat-table [dataSource]="searchResult" class="mat-elevation-z8" multiTemplateDataRows>
+
+        <ng-container matColumnDef="SearchTerm">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.SearchTerm}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="SearchType">
+          <th mat-header-cell *matHeaderCellDef> Specialty </th>
+          <td mat-cell *matCellDef="let element"> {{element.SearchType}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Distance">
+          <th mat-header-cell *matHeaderCellDef> Distance </th>
+          <td mat-cell *matCellDef="let element"> <span *ngIf="element.Distance">{{getMiles(element.Distance).toFixed(2)}} mi </span></td>
+        </ng-container>
+
+        <ng-container matColumnDef="expandedDetail">
+          <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+            <div class="example-element-detail"
+                 [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'" *ngIf="extraInfo">
+              <div class="example-element-info">
+                <div class="example-element-diagram" *ngIf="(element.SearchType === 'Physician' || element.Type === 'Physician') && extraInfo.PhotoUrl">
+                  <img src={{extraInfo.PhotoUrl}} />
+                </div>
+                <div class="example-element-diagram" *ngIf="(element.SearchType === 'Physician' || element.Type === 'Physician') && !extraInfo.PhotoUrl && extraInfo.Gender!='F'">
+                  <img src='./assets/images/male.png' />
+                </div>
+                <div class="example-element-diagram" *ngIf="(element.SearchType === 'Physician' || element.Type === 'Physician') && !extraInfo.PhotoUrl && extraInfo.Gender=='F'">
+                  <img src='./assets/images/female.jpg' />
+                </div>
+                <div class="example-element-diagram" *ngIf="!(element.SearchType === 'Physician' || element.Type === 'Physician') && extraInfo.LogoURL">
+                  <img src={{extraInfo.LogoURL}} />
+                </div>
+                <div class="example-element-diagram" *ngIf="!(element.SearchType === 'Physician' || element.Type === 'Physician') && !extraInfo.LogoURL">
+                  <img src='./assets/images/building.png' />
+                </div>
+                <div class="element-info">
+                  <div class="example-element-description" *ngIf="(element.SearchType === 'Physician' || element.Type === 'Physician') && extraInfo.FullName">
+                    <span class="example-element-description-attribution"> Name: </span>
+                    <span> {{ extraInfo.FullName}} </span>
+                  </div>
+                  <div class="example-element-description" *ngIf="!(element.SearchType === 'Physician' || element.Type === 'Physician') && extraInfo.Name">
+                    <span class="example-element-description-attribution"> Name: </span>
+                    <span> {{ extraInfo.Name}} </span>
+                  </div>
+
+                  <div class="example-element-description" *ngIf="extraInfo.Specialty">
+                    <span class="example-element-description-attribution"> Specialty: </span>
+                    <span> {{extraInfo.Specialty}} </span>
+                  </div>
+                  <div class="example-element-description" *ngIf="(element.SearchType === 'Physician' || element.Type === 'Physician') && extraInfo.PractitionerLocation">
+                    <span class="example-element-description-attribution">Location: </span>
+                    <span> {{extraInfo.PractitionerLocation[0].Location.Address1}} {{extraInfo.PractitionerLocation[0].Location.Address2}}, {{extraInfo.PractitionerLocation[0].Location.State}}, {{extraInfo.PractitionerLocation[0].Location.ZipCode}} </span>
+                    &nbsp;&nbsp;<span *ngIf="element.Distance"> {{getMiles(element.Distance).toFixed(2)}} mi </span>
+                  </div>
+                  <div class="example-element-description" *ngIf="!(element.SearchType === 'Physician' || element.Type === 'Physician') && extraInfo.HealthSystemLocation">
+                    <span class="example-element-description-attribution">Location: </span>
+                    <span> {{extraInfo.HealthSystemLocation[0].Location.Address1}} {{extraInfo.HealthSystemLocation[0].Location.Address2}}, {{extraInfo.HealthSystemLocation[0].Location.State}}, {{extraInfo.HealthSystemLocation[0].Location.ZipCode}} </span>
+                    &nbsp;&nbsp;<span *ngIf="element.Distance"> {{getMiles(element.Distance).toFixed(2)}} mi </span>
+                  </div>
+                </div>
+              </div>
+              <div class="extra-section">
+                <a class="btn btn-search" routerLink="coming-soon">Learn more</a>
+              </div>
+            </div>
+
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+            matRipple
+            class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element"
+            (click)="expand(element)">
+        </tr>
+        <tr mat-row *matRowDef="let element; columns: ['expandedDetail']" class="example-detail-row">
+        </tr>
+      </table>
+      <div fxFlex>
+        <!-- <agm-map [latitude]="Latitude" [longitude]="Longitude" [scrollwheel]="false" [zoom]="zoom">
+        <agm-marker [latitude]="Latitude" [longitude]="Longitude"></agm-marker>
+      </agm-map> -->
+      </div>
+    </div>
+  </div>
+  <div class="card-title">FEATURED PROFESSIONALS</div>
+  <swiper [config]="config" [(index)]="index" [useSwiperClass]="true">
+    <div>
+      <card-component name="Jason Kharman D.P.T"
+                      title="Physical Therapist"
+                      specialty="Corpus Performance"
+                      buttonTitle="Request Appointment"
+                      distance="1.5"
+                      avatar="https://appyhealthstorage.blob.core.windows.net/providerphotos/443499/JK1.jpg">
+      </card-component>
+    </div>
+    <div>
+      <card-component name="Donald Hohman M.D."
+                      title="Adult Reconstructive Orthopedic Surgery"
+                      specialty="Texas Orthopaedic Associates"
+                      buttonTitle="Request Appointment"
+                      distance="0.6"
+                      avatar="https://appyhealthstorage.blob.core.windows.net/providerphotos/6574/Hohman1%20-%20Aug%2021%202018%20-%204:12:30.jpg">
+      </card-component>
+    </div>
+    <div>
+      <card-component name="Scott Kutz MD"
+                      title="Neurological Surgery"
+                      specialty="Minimally Invasive Neurosurgery of Texas"
+                      buttonTitle="Request Appointment"
+                      distance="1.48"
+                      avatar="https://appyhealthstorage.blob.core.windows.net/providerphotos/6096201/Kutz_MD-24ceeae6299d0cdcfc9af89f869d2ffd.jpg">
+      </card-component>
+    </div>
+  </swiper>
+</div>

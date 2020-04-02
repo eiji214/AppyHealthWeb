@@ -1,0 +1,64 @@
+
+<div class="card-body mb-3" *ngFor="let h of healthSystemPractitioners">
+  <h3>{{h.healthSystem.Name}}</h3>
+  <div>NPI: {{h.healthSystem.NPI}}</div>
+
+  <div class="mt-2">
+    <div>{{h.healthSystem.HealthSystemLocation[0].Location.Address1}}</div>
+    <div *ngIf="h.healthSystem.HealthSystemLocation[0].Address2">{{h.healthSystem.HealthSystemLocation[0].Location.Address2}}</div>
+    <div>{{h.healthSystem.HealthSystemLocation[0].Location.City}}, {{h.healthSystem.HealthSystemLocation[0].Location.State}} {{h.healthSystem.HealthSystemLocation[0].Location.ZipCode}}</div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col">
+      <h5>Physicians</h5>
+      <div *ngFor="let i of h.physicians">
+        <div class="confirm-item">
+          <div class="user">
+            <i class="fa fa-user fa-border"></i>
+          </div>
+          <div class="name">{{i.FullName}}</div>
+          <div class="ellipsis">
+            <i class="fa fa-pencil-alt fa-border"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <h5>Mid-Levels</h5>
+      <div *ngFor="let i of h.midLevels">
+        <div class="confirm-item">
+          <div class="user">
+            <i class="fa fa-user fa-border"></i>
+          </div>
+          <div class="name">{{i.FullName}}</div>
+          <div class="ellipsis">
+            <i class="fa fa-pencil-alt fa-border"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <h5>Staff</h5>
+      <div *ngFor="let i of h.staff">
+        <div class="confirm-item">
+          <div class="user">
+            <i class="fa fa-user fa-border"></i>
+          </div>
+          <div class="name">{{i.FullName}}</div>
+          <div class="ellipsis">
+            <i class="fa fa-pencil-alt fa-border"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row text-center mt-4">
+  <div class="flex-fill btn-group-btm">
+    <button type="button" class="btn-back" (click)="back()">BACK</button>
+    <button type="button" class="btn-main" (click)="finish()">FINISH</button>
+  </div>
+</div>
+

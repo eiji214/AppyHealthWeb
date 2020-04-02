@@ -1,0 +1,160 @@
+﻿@page
+@model AppyHealthWeb.Pages.PhysicianClaimProfileModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "PhysicianClaimProfile";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+    <body>
+        <div class="container auto-height">
+           
+            <h2 class="claimprof-text1 text-center">Put your practice at your patients’ fingertips</h2>
+            <div class="row">
+                <div class="col-sm-4">
+                    <a (click)="setImage(0)" class="row">
+                        <div class="col-sm-10 text-right ">
+                            <h3 class="mobileheader">The Mobile App You’ve Always Wanted Is Here</h3>
+                            <p class="mobiledetails">
+                                Appy Health is your app. Customizable to your practice, with an intuitive user interface and easy-to-navigate back end,
+                                the Appy platform takes one-to-one patient experiences to the next level.
+                            </p>
+                        </div>
+                        <img src="~/images/svgs/noun_Mobile_2286021.svg" class="col-sm-2" />
+                    </a>
+                    <a (click)="setImage(1)" class="row">
+                        <div class="col-sm-10 text-right">
+                            <h3 class="mobileheader">Relevant. Responsive. Real-time.</h3>
+                            <p class="mobiledetails">
+                                92% of patients would rather use a mobile app than a web interface.
+                                Appy Health puts your practice where your patients are—on their phones—whether requesting an appointment, booking confirmation,
+                                making patient management more efficient for both parties.
+                            </p>
+                        </div>
+                        <img src="~/images/svgs/Icon open-bolt.svg" class="col-sm-2" />
+                    </a>
+                    <a (click)="setImage(2)" class="row">
+                        <div class="col-sm-10 text-right">
+                            <h3 class="mobileheader">Increase New Patient Acquisition</h3>
+                            <p class="mobiledetails">
+                                Organic patient growth is achieved one patient relationship at a time. The Appy platform’s game changing search functionality makes it easy for more people to find your practice. And with 2 subscription tiers, how you dial up new patient acquisition is up to you!
+                            </p>
+                        </div>
+                        <img src="~/images/svgs/feather-heart.svg" class="col-sm-2" />
+                    </a>
+                </div>
+                <div class="col-sm-4" style="text-align: center;">                     
+                    <img src="~/images/physicianLandingDevices.png" style="width: 100%; padding-bottom:50px" />
+                </div>
+
+                <div class="col-sm-4">
+                    <a (click)="setImage(3)" class="row">
+                        <img src="~/images/svgs/Icon feather-smile.svg" class="col-sm-2" />
+                        <div class="col-sm-10 text-left">
+                            <h3 class="mobileheader">Improve Patient Retention</h3>
+                            <p class="mobiledetails">
+                                No surprise…patient retention is far less expensive than acquisition. Providing 24/7 access to your practice and improved 2-way communication creates a more authentic, personalized experience that your patients will appreciate.
+                            </p>
+                        </div>
+                    </a>
+                    <a (click)="setImage(4)" class="row">
+                        <img src="~/images/svgs/Icon material-loop.svg" class="col-sm-2" />
+                        <div class="col-sm-10 text-left">
+                            <h3 class="mobileheader">Close the Referral Loop</h3>
+                            <p class="mobiledetails">
+                                How many of your patient referrals seem to fall into a black hole? Did they schedule the referral? Complete the appointment? Schedule the follow-up? The Appy platform keeps you in the loop through the entire process.
+                            </p>
+                        </div>
+                    </a>
+                    <a (click)="setImage(5)" class="row">
+                        <img src="~/images/svgs/noun_recommendation_2830775.svg" class="col-sm-2" />
+                        <div class="col-sm-10 text-left">
+                            <h3 class="mobileheader">Empower More Patient Recommendations</h3>
+                            <p class="mobiledetails">
+                                The holy grail of healthcare marketing is patient recommendation. The Appy app makes recommending a practice as easy as sharing a contact on a smartphone. Even better, you can track every recommendation from the moment it happens.
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-sm-4 offset-4 ">
+                    <a (click)="setImage(3)" class="row">
+                        <img src="~/images/svgs/noun_recommendation_2830775.svg" class="col-sm-2" />
+                        <div class="col-sm-10 text-center">
+                            <h3 class="mobileheader text-center">Analyze Every Aspect</h3>
+                            <p class="mobiledetails text-center">
+
+                                Not only does the Appy platform track patient recommendations and outbound referrals, it segments inbound referrals by source, specialty, symptom and more, helping you track patient volume like never before.
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card marketinglandingimage border-0">
+            <img class="card-img-top marketinglandingimage" src="~/images/AdobeStock/physiciansBG.jpg" />
+
+            <div class="card-img-overlay ">
+
+                <p class="PhysicianLandingMarketing-text1">
+                    Take the patient experience—and your practice—to a whole new level.
+                </p>
+                <div class="container float-left">
+                    <form method="post">
+                        <a asp-area="" asp-controller="" asp-action="" class="btn  GetAppyButton"><b>Get Appy</b></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid text-center text-md-center divCatchPhrases">
+            <h3 class="claimprof-text1 text-center">Pricing</h3>
+            <p class="PricingDetails">
+                At Appy.Health we believe in transparency so you can focus on what is most important - your patients
+            </p>
+            <div class="row">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="PricingDetails">
+                            <img src="~/images/PRO.png" />                            
+                        </li>
+                    </ul>
+                </div>
+
+                <hr class="clearfix w-100 d-md-none">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="PricingDetails">
+                            <img src="~/images/PLATINUM.png" />
+                        </li>
+
+                    </ul>
+                </div>
+                <hr class="clearfix w-100 d-md-none">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="PricingDetails">
+                            <img src="~/images/PricingClaculator.JPG" />
+                        </li>
+                        <li class="PricingDetails">
+                            <form method="post">
+                                <a asp-area="" asp-controller="" asp-action="" class="btn  GetAppyButton"><b>Get Appy</b></a>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                <hr class="clearfix w-100 d-md-none">
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+    </body>
+

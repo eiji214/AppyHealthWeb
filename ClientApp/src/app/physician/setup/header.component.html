@@ -1,0 +1,32 @@
+<div *ngIf="currentStep < 6">
+  <ol class="header">
+    <li [ngClass]="getClass(1)">
+      <h3>
+        <span class="badge badge-secondary mr-1">1</span>
+        Practice
+      </h3>
+    </li>
+    <li [ngClass]="getClass(2)">
+      <h3>
+        <span class="badge badge-secondary mr-1">2</span> Physicians
+      </h3>
+    </li>
+    <li [ngClass]="getClass(3)">
+      <h3>
+        <span class="badge badge-secondary mr-1">3</span> Mid-Levels
+      </h3>
+    </li>
+    <li [ngClass]="getClass(4)">
+      <h3>
+        <span class="badge badge-secondary mr-1">4</span> Staff
+      </h3>
+    </li>
+    <li [ngClass]="getClass(5)">
+      <h3>
+        <span class="badge badge-secondary mr-1">5</span> Done
+      </h3>
+    </li>
+  </ol>
+  <hr />
+</div>
+

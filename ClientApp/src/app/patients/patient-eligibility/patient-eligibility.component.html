@@ -1,0 +1,121 @@
+<app-header>
+  <title style="display: block;">Patient Eligibility</title>
+</app-header>
+
+<div>
+  <div style="margin-bottom: 20px;">
+    <label style="display: inline-block; width: 150px;">Service Type</label>
+    <select class="input--grey" *ngIf="serviceTypes$ | async as serviceTypes" [(ngModel)]="serviceType">
+      <option *ngFor="let serviceType of serviceTypes" [value]="serviceType.ServiceType">{{serviceType.ServiceType}} ({{serviceType.CodeX12}})</option>
+    </select>
+  </div>
+
+  <div style="margin-bottom: 25px;">
+    <label style="display: inline-block; width: 150px;">Provider</label>
+    <ng-select style="width: 350px;display: inline-block;"
+               class="ng-input--grey"
+               [items]="providers$ | async"
+               bindLabel="FullName"
+               bindValue="Id"
+               [loading]="isLoadingProviders"
+               [typeahead]="providersInput$"
+               [(ngModel)]="providerId">
+    </ng-select>
+  </div>
+
+  <button class="button--yellow" (click)="getEligibility()">
+    Check Eligibility
+  </button>
+</div>
+
+
+<div *ngIf="result$ | async as result">
+  <p style="font-weight: 500; margin-top: 25px;">client_id</p>
+  <p>
+    {{result.data.client_id | json}}
+  </p>
+
+  <p style="font-weight: 500; margin-top: 25px;">correlation_id </p>
+  <p>
+    {{result.data.correlation_id  | json}}
+  </p>
+
+  <p style="font-weight: 500; margin-top: 25px;">coverage </p>
+  <p>
+    {{result.data.coverage  | json}}
+  </p>
+
+  <p style="font-weight: 500; margin-top: 25px;">payer </p>
+  <p>
+    {{result.data.payer  | json}}
+  </p>
+
+  <p style="font-weight: 500; margin-top: 25px;">provider </p>
+  <p>
+    {{result.data.provider  | json}}
+  </p>
+
+  <p style="font-weight: 500; margin-top: 25px;">subscriber </p>
+  <p>
+    {{result.data.subscriber  | json}}
+  </p>
+
+  <p style="font-weight: 500; margin-top: 25px;">valid_request </p>
+  <p>
+    {{result.data.valid_request  | json}}
+  </p>
+
+  <p style="font-weight: 500; margin-top: 25px;">trading_partner_id </p>
+  <p>
+    {{result.data.trading_partner_id  | json}}
+  </p>
+
+  <p style="font-weight: 500; margin-top: 25px;">service_types </p>
+  <p>
+    {{result.data.service_types  | json}}
+  </p>
+
+  <p style="font-weight: 500; margin-top: 25px;">service_type_codes </p>
+  <p>
+    {{result.data.service_type_codes  | json}}
+  </p>
+
+  <p style="font-weight: 500; margin-top: 25px;">summary </p>
+  <p>
+    {{result.data.summary  | json}}
+  </p>
+
+  <p style="font-weight: 500; margin-top: 25px;">pharmacy </p>
+  <p>
+    {{result.data.pharmacy  | json}}
+  </p>
+
+  <p style="font-weight: 500; margin-top: 25px;">originating_company_id  </p>
+  <p>
+    {{result.data.originating_company_id   | json}}
+  </p>
+
+  <p style="font-weight: 500; margin-top: 25px;">trace_number  </p>
+  <p>
+    {{result.data.trace_number   | json}}
+  </p>
+
+  <p style="font-weight: 500; margin-top: 25px;">benefit_related_entities  </p>
+  <p>
+    {{result.data.benefit_related_entities   | json}}
+  </p>
+
+
+
+  <p style="font-weight: 500; margin-top: 25px;">Meta</p>
+  <p>
+    {{result.meta | json}}
+  </p>
+
+  <p style="font-weight: 500; margin-top: 25px;">Error</p>
+  <p>
+    {{result.data.errors | json}}
+  </p>
+
+
+</div>

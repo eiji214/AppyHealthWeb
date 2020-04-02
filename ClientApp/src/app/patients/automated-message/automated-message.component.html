@@ -1,0 +1,58 @@
+<h3>Automated Message</h3>
+<p>
+  These messages are auto populated with a suggested message for individual requirements. Or you can write your own.
+</p>
+<div class="line--gray"></div>
+<form #messageForm="ngForm" *ngIf="patient$ | async as patient">
+  <div class="form-group">
+    <label class="control-label">Recipient*</label>
+    <div class="form-input">
+      <div class="recipient-card">
+        <div class="recipient-photo"></div>
+        <div class="recipient-info">
+          <h4>{{patient.FirstName}} {{patient.MiddleName}} {{patient.LastName}}</h4>
+          <p>DOB: {{ patient.BirthDate | date:'M/d/y' }}</p>
+          <p *ngIf="patient.Gender == 'M'">Male</p>
+          <p *ngIf="patient.Gender == 'F'">Female</p>
+          <p>Phone: <a href="tel:{{patient.PrimaryPhoneNumber}}">{{ patient.PrimaryPhoneNumber | phone }}</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label">Message Template</label>
+    <div class="form-input">
+      <select class="input--grey" *ngIf="templates$ | async as templates" (change)="onTemplateChange($event)">
+        <option *ngFor="let template of templates" [value]="template.Id">{{template.Name}}</option>
+      </select>
+    </div>
+  </div>
+  <!-- <div class="form-group">
+    <label class="control-label"></label>
+    <div class="form-input">
+      <a href="/templates">Manage Templates</a>
+    </div>
+  </div> -->
+  <div class="form-group">
+    <label class="control-label">Subject</label>
+    <div class="form-input">
+      <input class="input--grey" [(ngModel)]="email.Subject" name="Subject" maxlength="100">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label">Message Content <span>(Click to enter your own message)</span></label>
+    <div class="form-input">
+      <textarea [(ngModel)]="email.Message" name="Message">
+
+</textarea>
+    </div>
+  </div>
+  <div class="line--gray"></div>
+  <div class="row">
+    <button class="button--yellow" mat-raised-button [disabled]="!messageForm.form.valid" (click)="sendMessage(emailMessage)">
+      Send Message
+    </button>
+  </div>
+</form>
+

@@ -1,0 +1,180 @@
+<body>
+  <app-nav-menu></app-nav-menu>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+  <footer class="footer font-small align-bottom">
+
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left">
+      <div class="row">
+        <div class="col">
+          <ul class="list-unstyled">
+            <li class="footer-head ">About Us</li>
+            <li>
+              <a href="/Contact">Contact</a>
+            </li>
+            <li>
+              <a href="/OurCompany">Our Company</a>
+            </li>
+            <li>
+              <a href="/FAQs">FAQs</a>
+            </li>
+          </ul>
+
+        </div>
+        <hr class="clearfix w-100 d-md-none">
+        <div class="col">
+          <ul class="list-unstyled">
+            <li class="footer-head ">Patients</li>
+            <li>
+              <a [routerLink]="['coming-soon']">Sign Up or Sign In</a>
+            </li>
+            <li>
+              <a href="/Terms">Terms & Conditions</a>
+            </li>
+            <li>
+              <a href="/Privacy">Privacy Policy</a>
+            </li>
+          </ul>
+
+        </div>
+        <hr class="clearfix w-100 d-md-none">
+        <div class="col">
+          <ul class="list-unstyled">
+            <li class="footer-head ">Employers</li>
+            <li>
+              <a href="/EmployersClaimProfile">Health Plan Management</a>
+            </li>
+            <li>
+              <a href="/Contact">Request a demo</a>
+            </li>
+            <li>
+              <a href="#!">Sign In</a>
+            </li>
+          </ul>
+
+        </div>
+        <hr class="clearfix w-100 d-md-none">
+        <div class="col">
+          <ul class="list-unstyled">
+            <li class="footer-head ">Physicians</li>
+            <li>
+              <a routerLink="physicians-claim">Mobile Platform</a>
+            </li>
+            <li>
+              <button type="button" class="btn btn-link" (click)="checkLogin('/physician')">Sign In</button>
+            </li>
+            <li>
+              <a href="/BAA">BAA</a>
+            </li>
+            <li>
+              <a href="/ProviderTerms">Terms & Conditions</a>
+            </li>
+          </ul>
+
+        </div>
+        <hr class="clearfix w-100 d-md-none">
+        <div class="col">
+          <ul class="list-unstyled">
+            <li class="footer-head ">Medical Services</li>
+            <li>
+              <a routerLink="medical-services-claim">Mobile Platform</a>
+            </li>
+            <li>
+              <a href="#!">Sign In</a>
+            </li>
+            <li>
+              <a href="/BAA">BAA</a>
+            </li>
+            <li>
+              <a href="/ProviderTerms">Terms & Conditions</a>
+            </li>
+          </ul>
+
+        </div>
+        <hr class="clearfix w-100 d-md-none">
+        <div class="col">
+          <ul class="list-unstyled">
+            <li class="footer-head ">Health Systems</li>
+            <li>
+              <a href="/HealthSystemClaimProfile">Mobile Platform</a>
+            </li>
+            <li>
+              <a href="#!">Sign In</a>
+            </li>
+            <li>
+              <a href="/BAA">BAA</a>
+            </li>
+            <li>
+              <a href="/ProviderTerms">Terms & Conditions</a>
+            </li>
+          </ul>
+        </div>
+        <hr class="clearfix w-100 d-md-none">
+        <div class="col">
+          <ul class="list-unstyled">
+
+            <li class="py-1">
+              <a href="https://apps.apple.com/us/app/appy-health/id1464947017?ls=1" target="_blank">
+                <img src="assets/images/appstorebadge.png"
+                     class="AppleStore">
+                </a>
+            </li>
+
+            <li class="py-1">
+              <a href="https://play.google.com/store/apps/details?id=appy.health.mobile&hl=en" target="_blank">
+                <img src="assets/images/googleplaybadge.png"
+                     class="GoogleStore">
+                </a>
+            </li>
+            <li class="py-1">
+              <a href="https://www.facebook.com/getappyhealth/" target="_blank">
+                <img src="assets/images/facebook.png"
+                     srcset="/images/facebook@2x.png 2x,
+             /images/facebook@3x.png 3x">
+              </a>
+              <a href="https://twitter.com/mobilehealth?lang=en" target="_blank">
+                <img src="assets/images/twitter.png"
+                     srcset="/images/twitter@2x.png 2x,
+            /images/twitter@3x.png 3x">
+              </a>
+              <a href="https://www.linkedin.com/company/appy-health" target="_blank">
+                <img src="assets/images/linkedin.png"
+                     srcset="/images/linkedin@2x.png 2x,
+             /images/linkedin@3x.png 3x">
+              </a>
+              <a href="https://www.youtube.com/channel/UCI9VS_DRLElZOIBhhy8ZNzg/featured" target="_blank">
+                <img src="assets/images/youtube.png"
+                     srcset="/images/youtube@2x.png 2x,
+             /images/youtube@3x.png 3x">
+              </a>
+              <a href="https://www.instagram.com/appyhealth/?hl=en" target="_blank">
+                <img src="assets/images/instagram.png"
+                     srcset="assets/images/instagram@2x.png 2x,
+             /images/3244027instagram@3x.png 3x">
+              </a>
+              <a href="https://www.pinterest.com/getappyhealth/" target="_blank">
+                <img src="assets/images/pintrest.png"
+                     srcset="assetes/images/pintrest@2x.png 2x,
+             /images/pintrest@3x.png 3x">
+              </a>
+            </li>
+          </ul>
+        </div>
+        <hr class="clearfix w-100 d-md-none">
+      </div>
+    </div>
+
+    <!-- Footer Links -->
+    <!-- Copyright -->
+    <div class="footer-copyright text-center">
+      <img src="assets/images/logoFooter.png"
+        class="Logo-Footer">
+    </div>
+    <div class="footer-copyright text-center py-2">
+      Copyright © 2019 Appy.Health. All rights reserved. Patent pending.
+    </div>
+    <!-- Copyright -->
+  </footer>
+</body>

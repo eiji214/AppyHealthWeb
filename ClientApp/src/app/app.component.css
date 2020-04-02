@@ -1,0 +1,374 @@
+:root {
+  --dandelion: #ffd40a;
+  --aqua: #1bc1e3;
+  --scarlet: #d0021b;
+  --dusk-blue: #253c80;
+  --night-blue: #06033d;
+  --midnight: #030120;
+  --greyish-brown: #4a4a4a;
+  --pale-blue: #ccf6ff;
+  --brown-grey: #9b9b9b;
+  --very-light-pink: #d8d8d8;
+  --battleship-grey: #787887;
+  --greenish-cyan: #50e3c2;
+  --pale-red: #e8483c;
+  --leaf-green: #5dac06;
+  --white-two: #f4f4f4;
+  --petrol: #006277;
+  --white: #ffffff;
+  --goldenrod: #ffc70a;
+}
+
+
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  /*margin-bottom: 60px;*/
+  background-color: var(--white);
+  min-height: 100vh;
+  position: relative;
+}
+
+.footer {
+  bottom: 0;
+  padding-top: 20px;
+  width: 100%;
+  white-space: nowrap;
+  /* Set the fixed height of the footer here */
+  /*height:60px;*/
+  /*line-height: 20px;*/ /* Vertically center the text there */
+  background-color: #253c80;
+  color: var(--white);
+}
+
+.Logo {
+  width: 246px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.SignInButton {
+  width: 168px;
+  border-radius: 5px;
+  background-color: #253c80;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--white);
+}
+
+.Logo-Footer {
+  width: 206px;
+  height: 43px;
+  object-fit: contain;
+}
+
+li a {
+  font-size: 12px;
+  color: var(--white);
+}
+
+.claimprofileimg {
+  /*width: 1366px;
+    height: 413px;*/
+  object-fit: contain;
+  /*opacity: 0.75*/
+  /*background-color: rgba(37, 60, 128, 0.35);*/
+}
+
+.auto-height {
+  height: auto !important;
+}
+
+.ClaimProfile-box {
+  width: 40%; /*600px;*/
+  height: 300px;
+  border-radius: 10px;
+  box-shadow: 0 2px 9px 0 rgba(120, 120, 135, 0.2);
+  background-color: var(--white);
+  margin-top: -150px;
+  padding-top: 20px;
+  z-index: 3;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.claimprof-text1 {
+  /*width: 410px;
+    height: 38px;*/
+  font-family: Rubik;
+  font-size: 32px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #253c80;
+  /*padding-top:60px;*/
+}
+
+.claimprof-text2 {
+  /*width: 657px;
+    height: 25px;*/
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--battleship-grey);
+}
+
+.divNpiSearch {
+  padding-top: 20px;
+}
+
+.signup-box {
+  margin: 20px;
+}
+
+.claimprof-text3 {
+  /*width: 320px;
+    height: 23px;*/
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--battleship-grey);
+}
+
+/*.claimprof-text3 .text-style-1 {
+        font-weight: 600;
+    }*/
+
+.SignUpButton {
+  width: 200px;
+  height: 50px;
+  border-radius: 4px;
+  background-color: var(--dandelion);
+  color: #253c80;
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+}
+
+.NPISearchButton {
+  width: 200px;
+  height: 50px;
+  border-radius: 4px;
+  background-color: var(--dandelion);
+  color: #253c80;
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+}
+
+.NPISearchTextBox {
+  width: 250px;
+  height: 40px;
+  border-radius: 4px;
+  border: solid 1px var(--battleship-grey);
+  background-color: var(--white);
+}
+
+.TagLine1 {
+  width: 800px;
+  height: 76px;
+  font-family: Rubik;
+  font-size: 32px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: var(--white);
+  margin-top: 50px;
+  margin-left: 30px;
+}
+
+.TagLine2 {
+  font-family: Rubik;
+  font-size: 45px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: var(--white);
+}
+
+card-img-overlay {
+  margin-top: 60px;
+}
+
+landingimage {
+  position: absolute;
+  z-index: -3;
+  width: 100%;
+  top: 0;
+  background-color: var(--white);
+}
+
+.divCatchPhrases {
+  margin-top: 65px;
+}
+
+.PageName {
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--midnight);
+}
+
+.CatchHeaders {
+  width: 274px;
+  height: 39px;
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--midnight);
+}
+
+.CatchPhrases {
+  width: 274px;
+  height: 50px;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--battleship-grey);
+}
+
+
+
+  .user-widget i {
+    display: inline-block;
+    font-size: 28px;
+    color: #253c80;
+    float: left;
+    margin: 17px 15px;
+  }
+
+  .user-widget .avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #787887;
+    float: left;
+    margin-left: 20px;
+  }
+
+  .user-widget .menu {
+    float: left;
+    margin: 6px 20px 0 10px;
+  }
+
+  .user-widget .name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #253c80;
+    white-space: nowrap;
+    margin-top: 10px;
+  }
+
+  .user-widget .title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #787887;
+    white-space: nowrap;
+  }
+
+  .user-widget .arrow {
+    float: right;
+    font-size: 16px;
+    margin-top: 22px;
+  }
+
+
+.list-no-style {
+  list-style: none;
+}
+
+footer .btn-link {
+  color: #fff;
+  padding: 0;
+  font-size: 12px;
+}

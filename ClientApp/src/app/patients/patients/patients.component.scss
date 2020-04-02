@@ -1,0 +1,65 @@
+.patients{
+  &__header{
+   position: relative;
+  }
+}
+
+.action-items {
+  a {
+    margin: 0 15px;
+  }
+
+  i {
+  }
+}
+
+.insurance-plan-shield:hover + .convert-insurance {
+  display: block !important;
+}
+
+.convert-insurance:hover{
+  display: block;
+  }
+
+.convert-insurance {
+  display: none;
+  position: relative;
+
+  > div {
+    position: absolute;
+    background: #FFFFFF;
+    border: 1px solid #D8D8D8;
+    border-radius: 4px;
+    display: flex;
+
+    > div.shield {
+      padding: 20px;
+      font-size: 20px;
+      padding-right: 10px;
+
+      i {
+        margin: 0;
+        font-size: 20px;
+        color: rgb(216,216,216);
+      }
+    }
+
+    > div.info {
+      margin-left: 0px;
+      padding: 20px;
+      width: 200px;
+      padding-left: 0;
+
+      span {
+        font-size: 14px;
+        color: #C6C6C6;
+      }
+
+      p {
+        font-size: 10px;
+        color: #C6C6C6;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

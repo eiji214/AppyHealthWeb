@@ -1,0 +1,82 @@
+<div class="left-panel">
+  <div class="profile-picture">
+    <img src="../../../assets/default.png" />
+  </div>
+  <div class="info-panel">
+    <h1>
+      {{patient.FirstName}} {{patient.LastName}}
+    </h1>
+    <div class="icons action-items">
+<!--       <a class="" href="/patients/edit/{{patient.Id}}">
+        <i class="material-icons">
+          edit
+        </i>
+      </a> -->
+
+      <a class="">
+        <i class="material-icons" (click)="openDeleteDialog(patient.Id)">
+          delete
+        </i>
+      </a>
+
+    </div>
+  </div>
+  <div class="line--gray"></div>
+  <div class="info-panel">
+    <h3>
+      Basic Information
+    </h3>
+    <div class="info-row">
+      <div class="info">
+        <label class="label--grey">Age </label>
+        <p>{{patient.BirthDate | age }}</p>
+      </div>
+      <div class="info">
+        <label class="label--grey">D.O.B </label>
+        <p>
+          {{ patient.BirthDate | date:'M/d/y' }}
+        </p>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info">
+        <label class="label--grey">Gender </label>
+        <p *ngIf="patient.Gender == 'M'">Male</p>
+        <p *ngIf="patient.Gender == 'F'">Female</p>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info">
+        <label class="label--grey">Address</label>
+        <p>{{patient.Address?.Line}}<span *ngIf="patient.Address && patient.Address.Line2">,</span> {{patient.Address?.Line2}} </p>
+        <p *ngIf="patient.Address && patient.Address.City">
+          {{patient.Address?.City}}, {{patient.Address?.State}}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="line--gray"></div>
+  <div class="info-panel">
+    <h3>
+      Contact Information
+    </h3>
+    <div class="info-row">
+      <div class="info">
+        <label class="label--grey">Email Address </label>
+        <p>{{patient.PrimaryEmailAddress }}</p>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info">
+        <label class="label--grey">Phone Number </label>
+        <p><a href="tel:{{patient.PrimaryPhoneNumber}}">{{ patient.PrimaryPhoneNumber | phone }}</a></p>
+      </div>
+    </div>
+    <div class="info-row" *ngIf="patient.SecondaryPhoneNumber">
+      <div class="info">
+        <label class="label--grey">Secondary Phone Number </label>
+        <p>{{patient.SecondaryPhoneNumber }}</p>
+      </div>
+    </div>
+  </div>
+</div>

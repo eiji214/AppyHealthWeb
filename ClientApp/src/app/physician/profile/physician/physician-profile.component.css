@@ -1,0 +1,146 @@
+
+.profile-detail-panel {
+  display: flex;
+  width: 75vw;
+  margin-bottom: 20px;
+}
+
+.profile-detail-panel .left-panel {
+min-width: 350px;
+margin-right: 20px;
+flex: 0 0;
+}
+
+.left-panel img {
+  padding: 10px;
+}
+
+.left-panel-subspecialty {
+  font-weight: bold;
+  color: #E4D00A;
+}
+
+.grey-text {
+  color: #808080;
+}
+
+.profile-detail-pane .left-panel-sub-headings {
+  font-weight: 500;
+  margin-bottom: 0px !important;
+}
+
+
+.action-items {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 12px;
+  vertical-align: middle;
+  color: #c8c8c8;
+}
+
+.cancel-button {
+  margin-right: 7px;
+}
+.certified-radio-button {
+  margin: 5px;
+}
+.gender-radio-button {
+  margin: 5px;
+}
+.profile-detail-panel .right-panel {
+  flex: 1 1 auto
+}
+
+.radio-buttons {
+
+  display: flex;
+  align-items: center;
+
+}
+.radio-buttons label {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+mat-form-field.full-width {
+  width: 100%;
+}
+
+mat-form-field.half-width {
+  width: 60%;
+}
+
+.view-switcher {
+  display: flex;
+  flex-direction: column;
+}
+
+.view-switcher button:nth-of-type(1) {
+  margin-bottom: 15px;
+}
+
+#map {
+  width: 100%;
+  height: 490px;
+  border: 1px solid #d8d8d8;
+  border-radius: 4px;
+}
+
+.map-container {
+  width: 100%;
+  height: 100%;
+}
+
+.map-container agm-map {
+  width: 100%;
+  height: 100%;
+}
+
+.page-heading {
+  font-family: Poppins;
+}
+
+.right-panel, .left-panel {
+  font-family: Poppins;
+}
+
+
+.profile-picture {
+  position: relative;
+  overflow: hidden;
+  background-color: #f8f8f8;
+}
+
+#photo {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.profile-picture label {
+  padding: 10px;
+  color: #444;
+  text-align: center;
+  display: block;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.profile-picture span {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  right: 0;
+  background-color: rgba(255,255,255,0.5);
+  transition: bottom 0.3s ease-in-out;
+}
+
+.profile-picture span:hover span {
+  bottom: 0px;
+}
+
+

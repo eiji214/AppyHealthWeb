@@ -1,0 +1,182 @@
+<h2>Checkout</h2>
+
+<div class="row">
+
+  <div class="col-6" style="text-align: right;border-right:solid 1px #cccccc;">
+
+    <div class="" style="width: 80%;text-align:left; margin: 40px 24px">
+      <h4>Payment Details</h4>
+
+      <div class="">
+        <mat-form-field>
+          <input matInput type="text" name="cardNumber" placeholder="Card Number" [(ngModel)]="cardNumber" />
+        </mat-form-field>
+      </div>
+      <div class="form-group form-row mt-4">
+        <div class="col">
+          <mat-form-field>
+            <input matInput type="text" name="firstName" placeholder="First Name" [(ngModel)]="firstName" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          &nbsp;
+        </div>
+      </div>
+      <div class="form-group form-row mt-4">
+        <div class="col">
+          <mat-form-field>
+            <input matInput type="text" name="lastName" placeholder="Last Name" [(ngModel)]="lastName" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          &nbsp;
+        </div>
+      </div>
+      <div class="form-group form-row mt-4">
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Month</mat-label>
+            <mat-select matNativeControl required [(value)]="cardMonth">
+              <mat-option *ngFor="let month of months" [value]="month.value">
+                {{ month.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Year</mat-label>
+            <mat-select matNativeControl required [(value)]="cardYear">
+              <mat-option *ngFor="let year of years" [value]="year.value">
+                {{ year.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-group form-row mt-4">
+        <div class="col">
+          <mat-form-field>
+            <input matInput type="text" name="cardCode" placeholder="Code" [(ngModel)]="cardCode" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          &nbsp;
+        </div>
+      </div>
+
+      <div class="form-group form-row mt-4">
+        <div class="col">
+          <mat-form-field>
+            <input matInput type="text" name="address" placeholder="Address" [(ngModel)]="address" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-group form-row mt-4">
+        <div class="col">
+          <mat-form-field>
+            <input matInput type="text" name="city" placeholder="City" [(ngModel)]="city" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <input matInput type="text" name="state" placeholder="State" [(ngModel)]="state" />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="form-group form-row mt-4">
+        <div class="col">
+          <mat-form-field>
+            <input matInput type="text" name="zip" placeholder="Zip" [(ngModel)]="zip" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          &nbsp;
+        </div>
+      </div>
+      <div>
+
+        <mat-checkbox [(ngModel)]="accepted">
+          I agree to the BAA and Terms & Conditions
+        </mat-checkbox>
+        <p>
+          <a href="https://appy.health/BAA">BAA</a>&nbsp;
+          <a href="https://appy.health/ProviderTerms">Terms</a>
+        </p>
+      </div>
+      <div class="row text-center mt-4">
+        <div class="flex-fill btn-group-btm">
+          <button type="button" class="btn-back" (click)="back()">BACK</button>
+          <button type="button" class="btn-main" (click)="updatePaymentInfo()" [disabled]="!accepted">Complete</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-6" style="text-align: left;">
+
+    <div class="" style="width: 80%;text-align:left; margin-top: 40px;">
+      <h4>Order Summary</h4>
+
+      <div class="mt-4" *ngFor="let h of healthSystemPrices">
+        <div class="activate-header">
+          <div class="name">
+            <h5>{{h.healthSystem.Name}}</h5>
+            <div class="subtitle">
+              {{h.healthSystem.HealthSystemLocation[0].Location.Address1}} {{h.healthSystem.HealthSystemLocation[0].Location.Address2}} {{h.healthSystem.HealthSystemLocation[0].Location.City}}, {{h.healthSystem.HealthSystemLocation[0].Location.State}} {{h.healthSystem.HealthSystemLocation[0].Location.ZipCode}}
+            </div>
+          </div>
+        </div>
+        <div class="activate-lines">
+          <div class="physicians" *ngIf="h.physicians.length">
+            <div class="item-row item-row-header">
+              <div class="name">
+                <h5>Physicians</h5>
+              </div>
+            </div>
+            <div class="item-row" *ngFor="let p of h.physicians">
+              <div class="name">
+                <h5>{{p.practitioner.FullName}}</h5>
+                <div class="subtitle">
+                  {{h.healthSystem.HealthSystemLocation[0].Location.Address1}} {{h.healthSystem.HealthSystemLocation[0].Location.Address2}} {{h.healthSystem.HealthSystemLocation[0].Location.City}}, {{h.healthSystem.HealthSystemLocation[0].Location.State}} {{h.healthSystem.HealthSystemLocation[0].Location.ZipCode}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="midlevels" *ngIf="h.midLevels.length">
+            <div class="item-row item-row-header">
+              <div class="name">
+                <h5>Mid-Levels</h5>
+              </div>
+            </div>
+            <div class="item-row" *ngFor="let p of h.midLevels">
+              <div class="name">
+                <h5>{{p.practitioner.FullName}}</h5>
+                <div class="subtitle">
+                  {{h.healthSystem.HealthSystemLocation[0].Location.Address1}} {{h.healthSystem.HealthSystemLocation[0].Location.Address2}} {{h.healthSystem.HealthSystemLocation[0].Location.City}}, {{h.healthSystem.HealthSystemLocation[0].Location.State}} {{h.healthSystem.HealthSystemLocation[0].Location.ZipCode}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="activate-subtotal">
+          <div class="subtotal-label">Sub Total:</div>
+          <div class="subtotal">${{getSubtotal(h)}}</div>
+        </div>
+      </div>
+
+      <div class="activate-total">
+        <div class="total-label">Total:</div>
+        <div class="total">${{getTotal()}}</div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>
+

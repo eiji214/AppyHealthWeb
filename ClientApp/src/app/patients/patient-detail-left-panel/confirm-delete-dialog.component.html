@@ -1,0 +1,5 @@
+<h1 mat-dialog-title>Would you like to delete this patient?</h1>
+<div mat-dialog-actions style="float:right;">
+  <button class="button--yellow" mat-button (click)="onNoClick()" style="margin-right: 20px;">No Thanks</button>
+  <button class="button--yellow" mat-button [mat-dialog-close]="patientId">Yes</button>
+</div>

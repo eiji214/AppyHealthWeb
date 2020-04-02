@@ -1,0 +1,48 @@
+<div class="patient-search">
+  <input class="patient-search__searchbar" placeholder="Search Providers" type="search" (keyup)="searchTerm$.next($event.target.value)" />
+
+  <div style="width:50px;" [ngClass]="{'loading':isLoading}"></div>
+
+  <div class="dropdown left-side">
+    <ul>
+      <li>
+        <button class="patient-search__filter">
+          <span>
+            Specialties
+          </span>
+          <i class="material-icons">
+            arrow_drop_down
+          </i>
+        </button>
+        <ul>
+          <li *ngFor="let flt of specialtyFilter.Filters" ng-cloak>
+            <i class="material-icons left-arrow">
+              keyboard_arrow_left
+            </i>
+            <a>{{ flt.ParentCategory }}</a>
+            <i class="material-icons right-arrow">
+              keyboard_arrow_right
+            </i>
+
+            <ul>
+              <li *ngFor="let category of flt.ChildCategories" (click)="filterBySpecialty(category)">
+                <label class="checkbox-container">
+                  <input type="checkbox" [checked]="category.Id == filter.SpecialtyId" />
+                  <span class="checkmark"></span>
+                </label>
+
+                <a>{{category.Name}}</a>
+
+              </li>
+
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="selected-specialties" *ngIf="filter.SpecialtyName">
+  Showing: <b>{{ filter.SpecialtyName }}</b>
+  <a [routerLink]="" (click)="filterBySpecialty(filter.SpecialtyId)">Clear Filter</a>
+</div>

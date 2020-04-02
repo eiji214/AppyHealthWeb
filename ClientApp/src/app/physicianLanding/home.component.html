@@ -1,0 +1,239 @@
+<div class="container auto-height">
+
+  <ng-template #itemTemplate let-item>
+    <div class="item">
+      <span [innerHTML]="item.Name"></span>
+    </div>
+  </ng-template>
+
+  <ng-template #notFoundTemplate let-notFound>
+    <div [innerHTML]="notFound"></div>
+  </ng-template>
+  <h2 class="claimprof-text1 text-center">Put your practice at your patients’ fingertips</h2>
+  <div class="row">
+    <div class="col-sm-4 feature-column">
+      <a class="row">
+        <div class="col-sm-10">
+          <h3 class="feature-header text-right">The Mobile App You’ve Always Wanted Is Here</h3>
+          <p class="feature-description text-right">
+            Appy Health is your app. Customizable to your practice, with an intuitive user interface and
+            easy-to-navigate back end,
+            the Appy platform takes one-to-one patient experiences to the next level.
+          </p>
+        </div>
+        <img src="./assets/images/svgs/mobile-phone.svg" class="col-sm-2"/>
+      </a>
+      <a class="row">
+        <div class="col-sm-10">
+          <h3 class="feature-header text-right">Relevant. Responsive. Real-time.</h3>
+          <p class="feature-description text-right">
+            92% of patients would rather use a mobile app than a web interface.
+            Appy Health puts your practice where your patients are—on their phones—whether requesting an appointment,
+            booking confirmation,
+            making patient management more efficient for both parties.
+          </p>
+        </div>
+        <img src="./assets/images/svgs/open-bolt.svg" class="col-sm-2"/>
+      </a>
+      <a class="row">
+        <div class="col-sm-10">
+          <h3 class="feature-header text-right">Increase New Patient Acquisition</h3>
+          <p class="feature-description text-right">
+            Organic patient growth is achieved one patient relationship at a time. The Appy platform’s game changing
+            search functionality makes it easy for more people to find your practice. And with 2 subscription tiers, how
+            you dial up new patient acquisition is up to you!
+          </p>
+        </div>
+        <img src="./assets/images/svgs/feather-heart.svg" class="col-sm-2"/>
+      </a>
+    </div>
+    <div class="col-sm-4" style="text-align: center;">
+      <img src="./assets/images/physicianLandingDevices.png" style="width: 100%; padding-bottom:50px"/>
+    </div>
+
+    <div class="col-sm-4 feature-column">
+      <a class="row">
+        <img src="./assets/images/svgs/feather-smile.svg" class="col-sm-2"/>
+        <div class="col-sm-10 text-left">
+          <h3 class="feature-header">Improve Patient Retention</h3>
+          <p class="feature-description">
+            No surprise…patient retention is far less expensive than acquisition. Providing 24/7 access to your practice
+            and improved 2-way communication creates a more authentic, personalized experience that your patients will
+            appreciate.
+          </p>
+        </div>
+      </a>
+      <a class="row">
+        <img src="./assets/images/svgs/material-loop.svg" class="col-sm-2"/>
+        <div class="col-sm-10 text-left">
+          <h3 class="feature-header">Close the Referral Loop</h3>
+          <p class="feature-description">
+            How many of your patient referrals seem to fall into a black hole? Did they schedule the referral? Complete
+            the appointment? Schedule the follow-up? The Appy platform keeps you in the loop through the entire process.
+          </p>
+        </div>
+      </a>
+      <a class="row">
+        <img src="./assets/images/svgs/recommendation.svg" class="col-sm-2"/>
+        <div class="col-sm-10 text-left">
+          <h3 class="feature-header">Empower More Patient Recommendations</h3>
+          <p class="feature-description">
+            The holy grail of healthcare marketing is patient recommendation. The Appy app makes recommending a practice
+            as easy as sharing a contact on a smartphone. Even better, you can track every recommendation from the
+            moment it happens.
+          </p>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-sm-4 offset-4 ">
+      <a class="row">
+        <div class="col-sm-12 text-center">
+          <img src="./assets/images/svgs/analytics.svg" style="max-width: 32px"/>
+          <br>
+          <br>
+          <h3 class="feature-header text-center">Analyze Every Aspect</h3>
+          <p class="feature-description text-center">
+
+            Not only does the Appy platform track patient recommendations and outbound referrals, it segments inbound
+            referrals by source, specialty, symptom and more, helping you track patient volume like never before.
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="card marketinglandingimage border-0">
+  <img class="card-img-top marketinglandingimage" src="./assets/images/physiciansBG.jpg"/>
+
+  <div class="card-img-overlay ">
+
+    <div class="container" style="height: 100%;padding-bottom: 0;">
+      <div class="row" style="height: 100%">
+        <div class="col-sm-6 col-md-5 text-left" style="justify-content: center;align-items: flex-start;display: flex;flex-direction: column;">
+          <p class="PhysicianLandingMarketing-text1">
+            Take the patient experience—and your practice—to a whole new level.
+          </p>
+          <a href="https://appy.health/Session/SignIn" class="btn btn-search"><b>Get Appy</b></a>
+        </div>
+        <div class="col-sm-6 col-md-7"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container text-center text-md-center divCatchPhrases">
+  <h3 class="claimprof-text1 text-center">Pricing</h3>
+  <!--<p class="PricingDetails">
+    At Appy.Health we believe in transparency so you can focus on what is most important - your patients
+  </p>-->
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="list-unstyled">
+        <li class="PricingDetails">
+          <img
+            (click)="selectPlan('pro')"
+            class="plan-option {{selectedPlan === 'pro' && 'plan-selected'}}"
+            src="./assets/images/PRO.png"
+          />
+        </li>
+      </ul>
+    </div>
+
+    <hr class="clearfix w-100 d-md-none">
+    <div class="col-md-3">
+      <ul class="list-unstyled">
+        <li class="PricingDetails">
+          <img
+            (click)="selectPlan('platinum')"
+            class="plan-option {{selectedPlan === 'platinum' && 'plan-selected'}}"
+            src="./assets/images/PLATINUM.png"
+          />
+        </li>
+
+      </ul>
+    </div>
+    <hr class="clearfix w-100 d-md-none">
+    <div class="col-md-6">
+      <div class="calculator p-3">
+
+        <div class="slider-group">
+          <div class="row">
+            <div class="col-8">
+              <h6>Practice Locations</h6>
+            </div>
+            <div class="col-4">
+              <div class="price-display">
+                <p class="price-display-text">${{formatCalculatedValue(calculatorValues.locations * planPrices[selectedPlan])}}{{calculatorValues.locations === 10 ? '+' : null}}</p>
+              </div>
+            </div>
+          </div>
+          <mat-slider min="1" [max]="locationSliderMax" step="1" [(ngModel)]="calculatorValues.locations"
+                      thumbLabel tickInterval="1" [displayWith]="formatLocationLabel"></mat-slider>
+          <div class="row labels">
+            <div class="col text-left">
+              <span class="slider-min-label">1</span>
+            </div>
+            <div class="col text-right">
+              <span class="slider-max-label">10+</span>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="slider-group">
+          <div class="row">
+            <div class="col-8">
+              <h6>Physicians</h6>
+            </div>
+            <div class="col-4">
+              <div class="price-display">
+                <p class="price-display-text">${{formatCalculatedValue(calculatorValues.physicians * 50)}}{{calculatorValues.physicians === 20 ? '+' : null}}</p>
+              </div>
+            </div>
+          </div>
+          <mat-slider min="1" [max]="sliderMax" step="1" [(ngModel)]="calculatorValues.physicians"
+                      thumbLabel tickInterval="1" [displayWith]="formatLabel"></mat-slider>
+          <div class="row labels">
+            <div class="col text-left">
+              <span class="slider-min-label">1</span>
+            </div>
+            <div class="col text-right">
+              <span class="slider-max-label">20+</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-group">
+          <div class="row">
+            <div class="col-8">
+              <h6>Mid-Levels</h6>
+            </div>
+            <div class="col-4">
+              <div class="price-display">
+                <p class="price-display-text">${{formatCalculatedValue(calculatorValues.midlevels * 25)}}{{calculatorValues.midlevels === 20 ? '+' : null}}</p>
+              </div>
+            </div>
+          </div>
+          <mat-slider min="1" [max]="sliderMax" step="1" [(ngModel)]="calculatorValues.midlevels"
+                      thumbLabel tickInterval="1" [displayWith]="formatLabel"></mat-slider>
+          <div class="row labels">
+            <div class="col text-left">
+              <span class="slider-min-label">1</span>
+            </div>
+            <div class="col text-right">
+              <span class="slider-max-label">20+</span>
+            </div>
+          </div>
+        </div>
+        <h5 class="total-label">TOTAL</h5>
+        <p class="total-value">
+          ${{formatCalculatedValue( calculatorValues.locations * planPrices[selectedPlan] + calculatorValues.physicians * 50 + calculatorValues.midlevels * 25)}}{{ calculatorValues.locations === 10 || calculatorValues.physicians === 20 || calculatorValues.midlevels === 20 ? '+' : ''}}<span class="total-value-span">/mon</span>
+        </p>
+        <a href="https://appy.health/Session/SignIn" class="btn btn-search" ><b>Get Appy</b></a>
+      </div>
+
+    </div>
+    <hr class="clearfix w-100 d-md-none">
+  </div>
+</div>

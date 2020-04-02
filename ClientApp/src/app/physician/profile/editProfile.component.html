@@ -1,0 +1,93 @@
+<a (click)="save()" class="btn btn-outline-primary float-right m-4">Save</a>
+
+<h2>Edit Profile</h2>
+
+<div class="row">
+  <section class="col">
+    <div class="card">
+      <div class="card-header">Practice</div>
+      <div class="card-body">
+        <fieldset>
+          <div class="form-group form-row">
+            <div class="col">
+              <label for="name">Name:</label>
+              <input type="text" name="name" class="form-control" [(ngModel)]="provider.FullName" />
+            </div>
+            <div class="col">
+              <label for="name">Practice Name:</label>
+              <input type="text" name="name" class="form-control" [(ngModel)]="provider.PracticeName" />
+            </div>
+          </div>
+          <div class="form-group form-row">
+            <div class="col">
+              <label for="name">Specialty:</label>
+              <input type="text" name="name" class="form-control" [(ngModel)]="provider.Specialty" />
+            </div>
+            <!--<div class="col">
+              <label for="name">Sub-Specialty:</label>
+              <input type="text" name="name" class="form-control" [(ngModel)]="provider.Specialty" />
+            </div>-->
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+
+    <div class="card buffer-top">
+      <div class="card-header">Locations</div>
+      <div class="card-body">
+        <div class="" *ngFor="let l of provider.PractitionerLocation">
+          <div class="form-group form-row">
+            <label for="name">Name:</label>
+            <input type="text" name="name" class="form-control" [(ngModel)]="l.Location.Name" />
+          </div>
+          <div class="form-group form-row">
+            <label for="name">Address:</label>
+            <input type="text" name="address" class="form-control" [(ngModel)]="l.Location.Address1" />
+          </div>
+          <div class="form-group form-row">
+            <label for="name">Address Line 2:</label>
+            <input type="text" name="address" class="form-control" [(ngModel)]="l.Location.Address2" />
+          </div>
+          <div class="form-group form-row">
+            <div class="col">
+              <label for="name">City:</label>
+              <input type="text" name="address" class="form-control" [(ngModel)]="l.Location.City" />
+            </div>
+            <div class="col">
+              <label for="name">State:</label>
+              <input type="text" name="name" class="form-control" [(ngModel)]="l.Location.State" />
+            </div>
+            <div class="col">
+              <label for="name">Zip:</label>
+              <input type="text" name="name" class="form-control" [(ngModel)]="l.Location.ZipCode" />
+            </div>
+          </div>
+          <div class="form-group form-row">
+            <label for="name">Phone:</label>
+            <input type="text" name="address" class="form-control" [(ngModel)]="l.Location.PrimaryPhoneNumber" />
+          </div>
+        </div>
+        <button type="button" class="btn btn-outline-primary" (click)="addLocation()">Add Location</button>
+      </div>
+    </div>
+  </section>
+  <section class="col">
+    <div class="card">
+      <div class="card-header">Staff</div>
+      <div class="card-body">
+        <div class="row" *ngFor="let s of staff">
+          <div class="col">
+            <label>Name:</label>
+            <input type="text" class="form-control" [(ngModel)]="s.name" />
+          </div>
+          <div class="col">
+            <label>Occupation:</label>
+            <input type="text" class="form-control" [(ngModel)]="s.type" />
+          </div>
+        </div>
+        <button type="button" class="btn mt-4 btn-outline-primary" (click)="addStaff()">Add Staff</button>
+      </div>
+    </div>
+  </section>
+</div>

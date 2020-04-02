@@ -1,0 +1,56 @@
+<app-header>
+  <title style="display: block;">Create Patient Appointment</title>
+</app-header>
+
+<div class="refer-patient-page" *ngIf="patient$ | async as patient">
+  <div class="referral-box">
+    <h3>
+      Create New Appointment
+    </h3>
+    <div class="line--gray"></div>
+    <div class="patient-info">
+      <h3>
+        Patient Information
+      </h3>
+      <p>
+        Patient
+      </p>
+      <div class="patient-card">
+        <div class="patient-card__picture">
+
+        </div>
+        <div class="patient-card__info">
+          <h1 class="name">
+            {{patient.FirstName}} {{patient.LastName}}
+          </h1>
+          <p>
+            DOB: <span>{{patient.BirthDate | date:'M/d/y' }}</span>
+          </p>
+          <p>
+            Gender:
+            <span *ngIf="patient.Gender == 'M'">Male</span>
+            <span *ngIf="patient.Gender == 'F'">Female</span>
+          </p>
+          <p>
+            Phone: <span><a href="tel:{{patient.PrimaryPhoneNumber}}">{{ patient.PrimaryPhoneNumber | phone }}</a></span>
+          </p>
+        </div>
+      </div>
+
+      <p>
+        Symptom
+      </p>
+      <input class="input--grey" [(ngModel)]="referral.Symptom" required maxlength="100" />
+    </div>
+
+    <div class="line--gray"></div>
+    <div class="selected-practitioners">
+      <h3>
+        Physician: <span *ngIf="user.Practitioner.FullName">{{user.Practitioner.FullName}}</span>
+      </h3>
+
+      <button class="button--yellow" [disabled]="!canCreateReferral()" (click)="createReferral(patient.Id)">Make Appointment</button>
+    </div>
+  </div>
+</div>
+

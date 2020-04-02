@@ -1,0 +1,33 @@
+.profile-list-specialty {
+  font-family: Poppins;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.profile-list-heading a {
+  font-family: Poppins;
+  font-weight: bold;
+  font-size: 16px;
+  color: #253C80;
+}
+
+.profile-page-heading {
+  font: Bold 28px/44px Poppins;
+  color: rgba(0, 193, 229, 1);
+}
+
+.profile-list-location {
+  font-family: Poppins;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+mat-list-item {
+  padding-right: 10px;
+}
+
+.mat-list-avatar {
+  object-fit: fill !important;
+  width: 60px;
+  height: 60px;
+}

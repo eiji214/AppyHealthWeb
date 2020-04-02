@@ -1,0 +1,79 @@
+<div mat-dialog-title>
+  <i class="float-right fa fa-times" (click)="close()"></i>
+  {{headerText}} Practice Location
+</div>
+<div mat-dialog-content>
+  <div *ngIf="showError" class="alert alert-danger">An error occurred while searching for your NPI. Please try again.</div>
+  <div *ngIf="showWarning" class="alert alert-warning">Your NPI could not be found. Please try again.</div>
+  
+  <div class="search">
+    <div class="search-text">
+      <h4>Enter your practice NPI number</h4>
+      <input type="text" name="npi" id="npi" class="form-control" [(ngModel)]="npi" />
+    </div>
+    <div class="search-button">
+      <div>
+        <mat-checkbox (click)="enterManually()">Enter Manually</mat-checkbox>
+      </div>
+      <button type="button" class="btn btn-search" (click)="search()">Search</button>
+    </div>
+  </div>
+
+  <div class="mt-5" *ngIf="healthSystem">
+    <h4 class="form-header">Practice Information <span *ngIf="healthSystem.NPI">- NPI: {{healthSystem.NPI}}</span></h4>
+    <div class="mt-4">
+      <div class="form-group">
+
+        <mat-form-field>
+          <input matInput type="text" name="name" [(ngModel)]="healthSystem.Name" placeholder="Name" />
+        </mat-form-field>
+      </div>
+      <div class="">
+        <mat-form-field>
+          <input matInput type="text" name="search-text" [(ngModel)]="healthSystem.HealthSystemLocation[0].Location.Address1" placeholder="Address" />
+        </mat-form-field>
+      </div>
+      <div class="">
+        <mat-form-field>
+          <input matInput type="text" name="search-text" [(ngModel)]="healthSystem.HealthSystemLocation[0].Location.Address2" placeholder="Address Line 2" />
+        </mat-form-field>
+      </div>
+      <div class="form-group form-row">
+        <div class="col">
+          <mat-form-field>
+            <input matInput type="text" name="search-text" [(ngModel)]="healthSystem.HealthSystemLocation[0].Location.City" placeholder="City" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <input matInput type="text" name="search-text" [(ngModel)]="healthSystem.HealthSystemLocation[0].Location.State" placeholder="State" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <input matInput type="text" name="search-text" [(ngModel)]="healthSystem.HealthSystemLocation[0].Location.ZipCode" placeholder="Zip" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-group form-row">
+        <div class="col">
+          <mat-form-field>
+            <input matInput type="text" name="name" [(ngModel)]="healthSystem.PrimaryPhoneNumber" placeholder="Phone" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <input matInput type="text" name="name" [(ngModel)]="healthSystem.FaxNumber" placeholder="Fax" />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div mat-dialog-actions *ngIf="healthSystem">
+  <!--<button *ngIf="isPrimary" class="btn-main" type="button" (click)="savePrimary()">Confirm Primary Practice</button>-->
+  <button class="btn-main" type="button" (click)="add()">{{buttonText}}</button>
+</div>

@@ -1,0 +1,96 @@
+<div mat-dialog-title>{{ actionName }} Staff Member</div>
+<div mat-dialog-content>
+  <h4 class="form-header">Admin Staff Member Information</h4>
+  <!--<h6>Confirmed: {{ data.user.ConfirmedDate | date:'M/d/y'}}</h6>-->
+
+  <div class="form-group form-row mt-4">
+    <div class="col">
+      <mat-form-field>
+        <input matInput type="text" name="name" [(ngModel)]="data.user.Name" placeholder="Name" />
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field *ngIf="!isEdit">
+        <input matInput type="text" name="name" [(ngModel)]="data.user.Email" placeholder="Email Address" [attr.disabled]="isEdit ? 'disabled' : null" />
+      </mat-form-field>
+      <mat-form-field *ngIf="isEdit">
+        <input matInput type="text" name="name" [(ngModel)]="data.user.Email" placeholder="Email Address" disabled="disabled" />
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field>
+        <input matInput type="text" name="name" [(ngModel)]="data.user.PhoneNumber" placeholder="Direct Phone #" />
+      </mat-form-field>
+    </div>
+  </div>
+
+</div>
+
+<!--<h4 class="mt-2">Locations</h4>
+<div *ngIf="healthSystemDropdownItems">
+  <ul>
+    <li *ngFor="let l of provider.healthSystems">{{l.Name}}</li>
+  </ul>
+</div>-->
+
+
+<div class="form-group form-row">
+  <!--<div class="col">
+    <mat-form-field>
+      <mat-select placeholder="Select Staff Member's Locations" [(ngModel)]="selectedHealthSystem" (selectionChange)="locationSelected($event)">
+        <mat-option *ngFor="let l of healthSystemDropdownItems" value="{{l.Id}}">
+          <h3>{{l.Name}}</h3>
+          <div>{{l.HealthSystemLocation[0].Location.Address1}} {{l.HealthSystemLocation[0].Location.Address2}} {{l.HealthSystemLocation[0].Location.City}}, {{l.HealthSystemLocation[0].Location.State}} {{l.HealthSystemLocation[0].Location.ZipCode}}</div>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col">
+    <mat-form-field>
+      <mat-select placeholder="Which Physicians do they support?">
+        <mat-option value="">All Physicians</mat-option>
+        <mat-option *ngFor="let l of physicians" value="{{l.practitioner.Id}}">{{l.practitioner.FullName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>-->
+  <div class="col">
+    <mat-form-field>
+      <mat-select placeholder="Staff Position" [(ngModel)]="data.user.Role">
+        <mat-option *ngFor="let r of roles" [value]="r">{{r}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="col">
+    <mat-form-field>
+      <mat-select placeholder="Preferred Communication Method" [(ngModel)]="data.user.PreferredCommunicationMethod">
+        <mat-option value="email">Email</mat-option>
+        <mat-option value="phone">Phone Call</mat-option>
+        <mat-option value="text">Text Message</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="col">
+    &nbsp;
+    <!--<mat-form-field class="mat-input-reset">
+      <input type="hidden" [matDatepicker]="myDatepicker" [(ngModel)]="data.user.ConfirmedDate">
+      <input matInput [textMask]="mask" [ngModel]="data.user.ConfirmedDate | date:'MM/dd/yyyy'" (blur)="onBlur()" />
+      <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker (selectedChanged)="onChange($event)" #myDatepicker></mat-datepicker>
+    </mat-form-field>-->
+  </div>
+</div>
+
+
+<div class="appy-material-theme" align="end" mat-dialog-actions>
+  <button mat-stroked-button (click)="onNoClick()" color="accent">Cancel</button>
+  <button mat-raised-button (click)="onOkClick()" cdkFocusInitial color="accent">Save Changes</button>
+</div>
+
+
+
+
+<!--<div mat-dialog-actions>
+  <button type="button" class="btn-main mt-4" *ngIf="provider.healthSystems.length" (click)="add()">Save</button>
+</div>-->

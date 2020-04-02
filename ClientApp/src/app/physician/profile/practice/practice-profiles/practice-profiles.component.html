@@ -1,0 +1,30 @@
+<h2 class="profile-page-heading">Practice Profiles</h2>
+<div *ngIf="healthSystems.length > 0">
+
+  <mat-list>
+    <mat-list-item class="list-container" *ngFor="let system of healthSystems; let i = index;">
+      <!--<img matListAvatar src="{{ photoUrl || doctor.PhotoUrl }}" alt="..." />-->
+      <img *ngIf="!system.LogoUrl" class="list-image" src="assets/images/ellipse.png">
+      <img *ngIf="system.LogoUrl" class="list-image"  [src]="system.LogoUrl">
+
+      <div class="list-row">
+        <div class="list-column">
+          <a [routerLink]="['/practice/profile/edit']" [queryParams]="{id: system.Id}" class="profile-list-heading">{{ system.Name }}</a>
+
+          <p class="profile-list-specialty" *ngIf="system.HealthSystemLocation && system.HealthSystemLocation.length">
+            {{system.HealthSystemLocation[0].Location.Address1}}
+            {{system.HealthSystemLocation[0].Location.Address2}}
+            {{system.HealthSystemLocation[0].Location.City}}, {{system.HealthSystemLocation[0].Location.State}} {{system.HealthSystemLocation[0].Location.ZipCode.substring(0,5)}}
+          </p>
+        </div>
+
+      </div>
+
+
+
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+
+
+</div>

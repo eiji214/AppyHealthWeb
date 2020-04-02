@@ -1,0 +1,183 @@
+
+.practice-profile-page {
+  font-family: Poppins;
+}
+.practice-detail-panel {
+  display: flex;
+  width: 75vw;
+  margin-bottom: 20px;
+}
+
+  .practice-detail-panel .main-panel {
+    min-width: 350px;
+    margin-right: 20px;
+    flex: 0 0;
+  }
+
+.box-practice-info {
+  border: solid 1px #cccccc;
+  background-color: #fafafa;
+  padding:20px;
+  margin-top: 120px;
+  width:95%;
+  display: flex;
+  position: relative;
+}
+.box-practice-info-img {
+  margin-top: -100px;
+
+}
+.edit-pencil {
+  border-radius: 50%;
+}
+
+.box-practice-panel {
+  border: solid 1px #cccccc;
+  background-color: #fafafa;
+  padding: 20px;
+  margin-top: 40px;
+  width: 95%;
+  display: flex;
+  position: relative;
+}
+
+.specialty-box-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.specialty-box {
+  width: 50%;
+  text-align: left;
+  padding: 16px;
+}
+
+
+.action-items {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 12px;
+  vertical-align: middle;
+  color: #c8c8c8;
+}
+
+
+.box-practice-info-img img {
+  width: 200px;
+}
+.left-panel img {
+  padding: 10px;
+}
+
+.practice-overview-row {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.practice-address {
+  padding-left: 8px;
+}
+
+
+
+h2 {
+  margin: 0;
+  padding: 30px 0 20px;
+  color: #253c80;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #253c80;
+}
+
+h4 {
+  color: #787887;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+
+.buffer-top-large {
+  margin-top: 40px;
+}
+
+.clear-right {
+  clear: right;
+}
+
+.speciality-badge {
+  background-color: #253c80;
+  color:white;
+}
+
+.profile-list-title {
+  font-family: Poppins;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+table {
+  width: 100%;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  right: 0;
+  left: auto;
+}
+
+.dropdown-menu {
+  right: 0;
+}
+
+
+
+.profile-picture {
+    position: relative;
+    overflow: hidden;
+    background-color: #f8f8f8;
+    width: 200px;
+  margin-right: 20px;
+}
+
+.profile-picture img {
+  width: 200px;
+}
+
+#logo {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.profile-picture label {
+    padding: 10px;
+    color: #444;
+    text-align: center;
+    display: block;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.profile-picture span {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    background-color: rgba(255,255,255,0.5);
+    transition: bottom 0.3s ease-in-out;
+}
+
+    .profile-picture:hover span {
+        bottom: 0px;
+    }

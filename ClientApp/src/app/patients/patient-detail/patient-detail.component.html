@@ -1,0 +1,374 @@
+<div *ngIf="patient$ | async as patient" class="header">
+  <h2 class="profile-page-heading">Patient Overview</h2>
+  <a header-button class="btn" href="/app/physician/referrals/{{patient.Id}}">Refer This Patient</a>
+</div>
+
+<div *ngIf="patient$ | async as patient">
+  <div class="profile-detail-panel patient-details">
+    <div class="left-panel">
+      <div class="profile-picture">
+        <img src="{{patient.PhotoUrl}}" *ngIf="patient.PhotoUrl" />
+
+      </div>
+      <div class="info-panel">
+        <h1>
+          {{patient.FirstName}} {{patient.LastName}}
+        </h1>
+        <p *ngIf="patient.Address && patient.Address.City" class="location">
+          {{patient.Address?.City}}, {{patient.Address?.State}}
+        </p>
+        <div class="icons action-items">
+          <a (click)="startChat(patient.UserId);" *ngIf="patient.UserId">
+            <i class="material-icons">chat_bubble_outline</i>
+          </a>
+
+          <a href="tel:{{patient.PrimaryPhoneNumber}}" *ngIf="patient.PrimaryPhoneNumber">
+            <i class="material-icons" style="margin: 0;">phone</i>
+          </a>
+
+          <a>
+            <i class="material-icons" (click)="openAutomatedMessageDialog($event, patient.Id)">mail_outline</i>
+          </a>
+
+          <a>
+            <i class="material-icons" (click)="openFaxMessageDialog($event, patient.Id)">
+              attachment
+            </i>
+          </a>
+        </div>
+      </div>
+      <div class="line--gray"></div>
+
+      <div class="info-panel">
+        <h3 (click)="selectedTab = 1" [ngClass]="{'selected': selectedTab == 1}">
+          General Information
+        </h3>
+        <h3 (click)="selectedTab = 2" [ngClass]="{'selected': selectedTab == 2}">
+          Insurance Details
+        </h3>
+        <h3 (click)="selectedTab = 3" [ngClass]="{'selected': selectedTab == 3}">
+          Medical Record
+        </h3>
+        <h3 (click)="selectedTab = 4" [ngClass]="{'selected': selectedTab == 4}">
+          Appointment History
+        </h3>
+        <h3 (click)="selectedTab = 5" [ngClass]="{'selected': selectedTab == 5}">
+          Connected Accounts
+        </h3>
+        <h3 (click)="selectedTab = 6; scrollChat();" [ngClass]="{'selected': selectedTab == 6}">
+          Patient Notes
+        </h3>
+      </div>
+    </div>
+
+    <div *ngIf="selectedTab == 1">
+      <div class="right-panel" [ngClass]="{'editing': isEditing }">
+        <div class="right-panel__header">
+          <div class="title">General Information</div>
+          <div class="icons action-items">
+            <a *ngIf="canEdit && !isEditing" class="" (click)="toggleEdit(patient.Id)">
+              <i class="material-icons">edit</i>
+            </a>
+            <a *ngIf="canEdit && isEditing" class="" (click)="saveChanges(patient)">
+              <i class="material-icons">check</i>
+            </a>
+            <a *ngIf="canEdit && isEditing" class="" (click)="toggleEdit(patient.Id)">
+              <i class="material-icons">close</i>
+            </a>
+          </div>
+        </div>
+
+        <div class="right-panel__content">
+          <div class="info-row">
+            <div class="info">
+              <label>First Name</label>
+              <p>{{patient.FirstName}}</p>
+              <input [(ngModel)]="patient.FirstName" class="form-control input--grey" />
+            </div>
+            <div class="info">
+              <label>Last Name</label>
+              <p>{{patient.LastName}}</p>
+              <input [(ngModel)]="patient.LastName" class="form-control input--grey" />
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info" *ngIf="isEditing == false">
+              <label>Age</label>
+              <p>{{patient.BirthDate | age }}</p>
+            </div>
+            <div class="info">
+              <label>D.O.B <span *ngIf="isEditing == true">(mm/dd/yyyy)</span></label>
+              <p>
+                {{ patient.BirthDate | date:'M/d/y' }}
+              </p>
+              <mat-form-field *ngIf="isEditing == true" class="mat-input-reset">
+                <input type="hidden" [matDatepicker]="myDatepicker" [(ngModel)]="patient.BirthDate">
+                <input matInput [textMask]="mask" [ngModel]="patient.BirthDate | date:'MM/dd/yyyy'" (blur)="onBlur()"/>
+                <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+                <mat-datepicker (selectedChanged)="onChange($event)" #myDatepicker></mat-datepicker>
+              </mat-form-field>
+
+            </div>
+            <div class="info">
+              <label>Gender</label>
+              <p *ngIf="patient.Gender == 'M'">Male</p>
+              <p *ngIf="patient.Gender == 'F'">Female</p>
+              <div class="radio-group">
+                <input type="radio" name="Gender" [(ngModel)]="patient.Gender" value="M" /> Male
+                <input type="radio" name="Gender" [(ngModel)]="patient.Gender" value="F" /> Female
+              </div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info">
+              <label>Address</label>
+              <p>{{patient.Address?.Line}}<span *ngIf="patient.Address && patient.Address.Line2">,</span> {{patient.Address?.Line2}} </p>
+              <p *ngIf="patient.Address && patient.Address.City">
+                {{patient.Address?.City}}, {{patient.Address?.State}} {{patient.Address?.ZipCode}}
+              </p>
+              <div style="display: flex;">
+                <input [(ngModel)]="patient.Address.Line" placeholder="Ex. 456 Main St." class="form-control input--grey" style="margin-right: 20px;" />
+                <input [(ngModel)]="patient.Address.Line2" placeholder="Ex. #123" class="form-control input--grey" />
+              </div>
+              <div style="display: flex;">
+                <input [(ngModel)]="patient.Address.City" placeholder="Ex. Fort Worth" class="form-control input--grey" style="margin-right: 20px;" />
+                <input [(ngModel)]="patient.Address.State" placeholder="Ex. TX" maxlength="2" class="form-control input--grey" style="margin-right: 20px;" />
+                <input [(ngModel)]="patient.Address.ZipCode" placeholder="Ex. 12345" class="form-control input--grey" />
+              </div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info" *ngIf="isEditing || patient.PrimaryEmailAddress">
+              <label>Email Address </label>
+              <p><a href="mailto:{{patient.PrimaryEmailAddress}}">{{patient.PrimaryEmailAddress }}</a></p>
+              <input [(ngModel)]="patient.PrimaryEmailAddress" placeholder="Ex. patient@email.com" class="form-control input--grey" />
+            </div>
+            <div class="info">
+              <label>Phone Number </label>
+              <p><a href="tel:{{patient.PrimaryPhoneNumber}}">{{ patient.PrimaryPhoneNumber | phone }}</a></p>
+              <input [(ngModel)]="patient.PrimaryPhoneNumber" placeholder="Ex. (000) 000-0000" class="form-control input--grey" mask="(000) 000-0000" />
+            </div>
+            <div class="info" *ngIf="isEditing || patient.SecondaryPhoneNumber">
+              <label>Secondary Phone Number </label>
+              <p>{{patient.SecondaryPhoneNumber }}</p>
+              <input [(ngModel)]="patient.SecondaryPhoneNumber" placeholder="Ex. (000) 000-0000" class="form-control input--grey" mask="(000) 000-0000" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-panel" *ngIf="selectedTab == 1">
+        <div class="right-panel__header">
+          <div class="title">Active Appointments</div>
+          <div class="icons action-items">
+            <a href="/app/physician/referrals/{{patient.Id}}">
+              <img src="assets/icons/add@2x.png" />
+            </a>
+          </div>
+
+        </div>
+
+        <app-referrals-list [referrals]="referrals$"></app-referrals-list>
+      </div>
+    </div>
+
+    <div class="right-panel" *ngIf="selectedTab == 2">
+      <div class="right-panel__content">
+        <p *ngIf="!patient.InsurancePlanFrontPictureUrl || !patient.InsurancePlanBackPictureUrl">
+          The insurance plan picture wasn't uploaded for this patient.
+        </p>
+        <div (click)="showInsuranceUpload = !showInsuranceUpload" class="btn btn--insurance"
+             *ngIf="!patient.InsurancePlanFrontPictureUrl && !patient.InsurancePlanBackPictureUrl">
+          Upload photos?
+        </div>
+
+        <div class="upload" *ngIf="showInsuranceUpload">
+          <div class="upload__file" *ngIf="frontUploaded == false">
+            <div class="upload__file__container">
+              <span> Upload Front Picture</span>
+              <input #fileInput type="file">
+            </div>
+            <div (click)="uploadFront(patient.Id)" class="btn btn--save btn--save--medium">Save Front</div>
+          </div>
+          <div class="upload__file" *ngIf="frontUploaded == true">Upload Success!</div>
+          <div class="upload__file" *ngIf="backUploaded == false">
+            <div class="upload__file__container">
+              <span>Upload Back Picture</span>
+              <input #fileInput2 type="file">
+            </div>
+            <div (click)="uploadBack(patient.Id)" class="btn btn--save btn--save--medium">Save Back</div>
+          </div>
+          <div class="upload__file" *ngIf="backUploaded == true">Upload Success!</div>
+        </div>
+
+
+        <div *ngIf="patient.InsuranceIDNumber && !showInsuranceForm">
+          <div class="info-row">
+            <div class="info">
+              <label>Network</label>
+              <div class="item">{{patient.InsurancePlan?.Name}}</div>
+            </div>
+            <div class="info">
+              <label>Member ID</label>
+              <div class="item">{{patient.InsuranceIDNumber}}</div>
+            </div>
+
+
+          </div>
+
+          <div *ngIf="insurancePlanEligibility$ | async as insurancePlanEligibility">
+            <div class="info-row">
+              <div class="info">
+                <label>Insurance Cover Data Range</label>
+                <div class="item">{{insurancePlanEligibility.data.coverage.eligibility_begin_date}} - {{insurancePlanEligibility.data.coverage.plan_begin_date}}</div>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <div class="info">
+                <label>Insurance Verified</label>
+                <div class="item">{{ insurancePlanEligibility.data.valid_request ? "Verified" : "Not Verified" }}</div>
+              </div>
+
+              <div class="info" *ngIf="insurancePlanEligibility.data.valid_request">
+                <label>Date of Verification</label>
+                <div class="item">{{ insurancePlanEligibility.data.subscriber.last_update_date | date }}</div>
+              </div>
+            </div>
+
+            <div *ngIf="!insurancePlanEligibility.data.valid_request">
+              <p style="font: 400 16px Poppins;color: #787887;margin-top: 5px;">
+                Unable to Verify Insurance
+              </p>
+              {{ insurancePlanEligibility.data.reject_reason }}
+            </div>
+
+            <div *ngIf="insurancePlanEligibility.data.valid_request">
+            <p style="font: 400 16px Poppins;color: #787887;margin-top: 5px;">
+              Insurance Plan Information
+            </p>
+            <div class="info-row">
+
+              <div class="info">
+                <label>Copay Amount</label>
+                <div class="item">TBD</div>
+              </div>
+
+              <div class="info">
+                <label>Coinsurance %</label>
+                <div class="item">{{insurancePlanEligibility.data.coverage.coinsurance[0]?.benefit_percent * 100 }}% </div>
+              </div>
+            </div>
+
+            <div class="info-row" *ngIf="insurancePlanEligibility$ | async as insurancePlanEligibility">
+              <div class="info">
+                <label>Individual Deductible</label>
+                <div class="item">{{insurancePlanEligibility.data.summary.deductible.individual.in_network.limit.amount | currency }} </div>
+              </div>
+
+              <div class="info">
+                <label>Family Deductible</label>
+                <div class="item">{{insurancePlanEligibility.data.summary.deductible.family.in_network.limit.amount | currency}} </div>
+              </div>
+
+              <div class="info">
+                <label>Out of Pocket Max</label>
+                <div class="item">{{insurancePlanEligibility.data.summary.out_of_pocket.individual.in_network.limit.amount | currency}} </div>
+              </div>
+            </div>
+
+            <p style="font: 400 16px Poppins;color: #787887;margin-top: 5px;">
+              Insurance Plan Usage
+            </p>
+
+            <div class="info-row" *ngIf="insurancePlanEligibility$ | async as insurancePlanEligibility">
+              <div class="info">
+                <label>Individual Deductible</label>
+                <div class="item">{{insurancePlanEligibility.data.summary.deductible.individual.in_network.applied.amount | currency}} </div>
+              </div>
+
+              <div class="info">
+                <label>Family Deductible</label>
+                <div class="item">{{insurancePlanEligibility.data.summary.deductible.family.in_network.applied.amount | currency}} </div>
+              </div>
+
+              <div class="info">
+                <label>Out of Pocket</label>
+                <div class="item">{{insurancePlanEligibility.data.summary.out_of_pocket.individual.in_network.applied.amount | currency}} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+
+
+        </div>
+        <div (click)="showInsuranceForm = !showInsuranceForm" class="btn btn--insurance" *ngIf="!showInsuranceForm && !patient.InsuranceNetwork">
+          Add information manually?
+        </div>
+        <div *ngIf="showInsuranceForm" class="show-insurance">
+          <div class="info-row">
+            <div class="info">
+              <label>Network</label>
+              <select class="input--grey" *ngIf="insurancePlans$ | async as insurancePlans" [(ngModel)]="patient.InsurancePlanID">
+                <option *ngFor="let plan of insurancePlans" [value]="plan.Id">{{ plan.Name }}</option>
+              </select>
+            </div>
+            <div class="info">
+              <label>ID Number</label>
+              <input [(ngModel)]="patient.InsuranceIDNumber" class="item" />
+            </div>
+          </div>
+          <div (click)="saveInsuranceInfo(patient)" class="btn btn--save">Save</div>
+        </div>
+        <div class="photos" *ngIf="!patient.InsuranceNetwork">
+          <div *ngIf="patient.InsurancePlanFrontPictureUrl">
+            <img src="{{patient.InsurancePlanFrontPictureUrl}}" style="max-width: 350px; margin-right: 20px;" />
+          </div>
+          <div *ngIf="patient.InsurancePlanBackPictureUrl">
+            <img src="{{patient.InsurancePlanBackPictureUrl}}" style="max-width: 350px;" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="selectedTab == 4">
+      <div class="right-panel">
+        <div class="right-panel__header">
+          <div class="title">Appointment History</div>
+        </div>
+        <app-referrals-list [referrals]="referralsHistory$"></app-referrals-list>
+      </div>
+    </div>
+
+    <div *ngIf="selectedTab == 6">
+      <div class="right-panel">
+        <div class="right-panel__header">
+          <div class="title">Patient Notes</div>
+        </div>
+        <div class="chat-container">
+          <div *ngFor="let message of patientNotes" [ngClass]="{ 'right-side': message.UserId === currentUserId,'left-side': message.UserId != currentUserId  }">
+
+            <!--<div class="message-header">
+              <span class="from">{{message.FromUserName}}</span>
+              <span class="date">{{message.Date | date: 'MM/dd hh:mm'}}</span>
+            </div>-->
+            <div class="message">
+              <span class="user" *ngIf="message.UserId != currentUserId">{{message.User.Name}}</span>
+              {{message.Message}}
+            </div>
+            <span class="date">{{message.Date | date: 'MM/dd hh:mm'}}</span>
+
+          </div>
+          <div class="send-message" *ngIf="patientNotes">
+            <textarea class="input--grey" [(ngModel)]="newMessage"></textarea>
+            <button (click)="sendMessage(newMessage)" class="button--yellow">Send Message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

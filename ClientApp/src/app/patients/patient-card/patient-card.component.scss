@@ -1,0 +1,64 @@
+div {
+  height: 350px;
+  width: 100%;
+  max-width: 350px;
+  text-align: left;
+  position: relative;
+  border: 1px solid #d8d8d8;
+  border-radius: 4px;
+
+    figure {
+      margin: 0;
+      background-color: #ccc;
+    }
+
+    h1 {
+      font-size: 14px;
+      line-height: 23px;
+      font-weight: Medium;
+      color: #06033d;
+      letter-spacing: 0.56px;
+    }
+
+    h2 {
+      font-size: 11px;
+      color: #002685;
+      line-height: 15px;
+      letter-spacing: 0;
+      font-weight: 400;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    h3 {
+      font-size: 12px;
+      color: #9B9B9B;
+      margin-bottom: 3px;
+    }
+
+    h4 {
+      font-size: 12px;
+      color: #FFC70A;
+      letter-spacing: 0.44px;
+      font-weight: 600;
+    }
+
+    &.compact {
+      height: 111px;
+      box-sizing: border-box;
+      width: auto;
+      min-width: 300px;
+      padding: 14px 20px 14px 35%;
+      figure {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        min-height: 0;
+        width: 25%;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+    }
+  }

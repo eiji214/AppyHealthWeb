@@ -1,0 +1,145 @@
+.sidebar {
+  width: 240px;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  padding-top: 20px;
+  z-index: 11000;
+  box-shadow: 7px 3px 36px -10px rgba(0,0,0,0.14);
+  text-align: center;
+
+  &__menu-label {
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 13px;
+    color: #C6C6C6;
+    letter-spacing: 0.65px;
+    text-align: left;
+    padding-left: 42px;
+    padding-bottom: 8px;
+  }
+
+  .logo {
+    width: 80%;
+    display: inline-block;
+    margin-bottom: 80px;
+  }
+
+  .menu-item {
+    padding: 0 32px;
+    display: flex;
+    cursor: pointer;
+    outline: none;
+    margin: 20px 10px;
+    border-radius: 4px;
+    
+    &.first {
+      margin-top: 6px;
+    }
+
+    i {
+      margin-right: 16px;
+      padding-top: 7px;
+    }
+
+    span {
+      vertical-align: super;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      font-size: 16px;
+      line-height: 40px;
+    }
+
+    i, span {
+      color: #9b9b9b;
+      text-decoration: none;
+      opacity: 0.75;
+    }
+
+    &.selected {
+      background-color: #00E2FF;
+
+      i, span {
+        color: #FFFFFF;
+        opacity: 1;
+      }
+    }
+  }
+
+  .menu--profile {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    background-color: lighten(#00E2FF, 40%);
+    padding: 0 0 30px;
+    header {
+      margin: 30px 30px 15px 30px;
+      font-weight: 500;
+    }
+    aside, a {
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+  }
+
+  .menu--footer {
+    position: absolute;
+    bottom: 10px;
+    left: 32px;
+    text-align: left;
+
+    &--sub {
+      padding-bottom: 30px;
+    }
+    
+    .sidebar__menu-label {
+      padding-left: 0;
+    }
+
+    .menu--subitem {
+      font-family: 'Rubik';
+      font-size: 14px;
+      color: #9B9B9B;
+      letter-spacing: 0.35px;
+      padding: 8px 0;
+    }
+  }
+
+  ul, .sub-menu {
+
+    li {
+      list-style-type: disc;
+      list-style-position: inside;
+      padding-left: 50px;
+    }
+
+    &-item {
+      font-family: 'Rubik';
+      font-size: 14px;
+      color: #C6C6C6;
+      letter-spacing: 0.35px;
+      text-align: left;
+      padding: 10px 20px 10px 72px;
+
+      a {
+        color: #C6C6C6;
+        margin-left: 15px;
+
+        &.selected {
+          color: #00E2FF;
+        }
+      }
+    }
+  }
+}
+
+
+.anchor-button {
+  background: none !important;
+  color: -webkit-link;
+  border: none;
+  padding: 0 !important;
+  cursor: pointer;
+}

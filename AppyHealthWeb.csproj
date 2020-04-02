@@ -1,0 +1,158 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <UserSecretsId>aspnet-AppyHealthWeb-6C7B4E29-CF16-48E7-83EA-FDD5E07A9EFD</UserSecretsId>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <TypeScriptExperimentalDecorators>True</TypeScriptExperimentalDecorators>
+    <IsPackable>false</IsPackable>
+    <SpaRoot>ClientApp\</SpaRoot>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+
+    <!-- Set this to true if you enable server-side prerendering -->
+    <BuildServerSideRenderer>false</BuildServerSideRenderer>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\common\user.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Remove="ClientApp\src\app\common\models\user.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\common\pipes\phone.pipe.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\physician\profile\models\healthSystemPractitioner.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\physician\profile\models\practitioner.ts" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="3.0.3-preview" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.6.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="ClientApp\dist\" />
+    <Folder Include="ClientApp\e2e\src\" />
+    <Folder Include="ClientApp\src\app\home\" />
+    <Folder Include="ClientApp\src\app\practice\" />
+    <Folder Include="ClientApp\src\app\physician\dashboard\" />
+    <Folder Include="ClientApp\src\app\physician\layout\" />
+    <Folder Include="ClientApp\src\assets\" />
+    <Folder Include="ClientApp\src\environments\" />
+    <Folder Include="Pages\HealthSystem\" />
+    <Folder Include="Pages\Session\" />
+  </ItemGroup>
+
+    <ItemGroup>
+    <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Content Remove="$(SpaRoot)**" />
+    <None Remove="$(SpaRoot)**" />
+    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="ClientApp\src\app\auth\auth.service.ts" />
+      <None Remove="ClientApp\src\app\auth\loginGuard.ts" />
+      <None Remove="ClientApp\src\app\core\model\role.ts" />
+      <None Remove="ClientApp\src\app\home - Copy\home.component.ts" />
+      <None Remove="ClientApp\src\app\home - Copy\insurance.service.ts" />
+      <None Remove="ClientApp\src\app\home - Copy\models\insurance.ts" />
+      <None Remove="ClientApp\src\app\home - Copy\models\searchrecord.ts" />
+      <None Remove="ClientApp\src\app\home - Copy\models\specialty.ts" />
+      <None Remove="ClientApp\src\app\home - Copy\search.service.ts" />
+      <None Remove="ClientApp\src\app\nav-menu\login.component.ts" />
+      <None Remove="ClientApp\src\app\physician\appointments\appointments-routing.module.ts" />
+      <None Remove="ClientApp\src\app\physician\appointments\appointments.module.ts" />
+      <None Remove="ClientApp\src\app\physician\appointments\dialog\appointment-dialog.component.ts" />
+      <None Remove="ClientApp\src\app\physician\appointments\appointments.service.ts" />
+      <None Remove="ClientApp\src\app\physician\appointments\calendar.component.ts" />
+      <None Remove="ClientApp\src\app\physician\appointments\main\main.component.ts" />
+      <None Remove="ClientApp\src\app\physician\appointments\models\appointment.ts" />
+      <None Remove="ClientApp\src\app\physician\appointments\models\associate.ts" />
+      <None Remove="ClientApp\src\app\physician\appointments\models\day.ts" />
+      <None Remove="ClientApp\src\app\physician\appointments\week\week.component.ts" />
+      <None Remove="ClientApp\src\app\physician\home\home.component.ts" />
+      <None Remove="ClientApp\src\app\physician\home\insurance.service.ts" />
+      <None Remove="ClientApp\src\app\physician\home\models\insurance.ts" />
+      <None Remove="ClientApp\src\app\physician\home\models\searchrecord.ts" />
+      <None Remove="ClientApp\src\app\physician\home\models\specialty.ts" />
+      <None Remove="ClientApp\src\app\physician\home\search.service.ts" />
+      <None Remove="ClientApp\src\app\physician\models\healthSystemCreate.ts" />
+      <None Remove="ClientApp\src\app\physician\models\healthSystemPractitioners.ts" />
+      <None Remove="ClientApp\src\app\physician\models\healthSystemPrice.ts" />
+      <None Remove="ClientApp\src\app\physician\models\healthSystemSetup.ts" />
+      <None Remove="ClientApp\src\app\physician\models\healthSystemTier.ts" />
+      <None Remove="ClientApp\src\app\physician\models\locationDropdownItem.ts" />
+      <None Remove="ClientApp\src\app\physician\models\practitionerHealthSystems.ts" />
+      <None Remove="ClientApp\src\app\physician\models\practitionerPrice.ts" />
+      <None Remove="ClientApp\src\app\physician\models\staff.ts" />
+      <None Remove="ClientApp\src\app\physician\models\user.ts" />
+      <None Remove="ClientApp\src\app\physician\profile\mid-level\mid-level-profile.component.ts" />
+      <None Remove="ClientApp\src\app\physician\profile\models\hoursOfOperation.ts" />
+      <None Remove="ClientApp\src\app\physician\profile\physician\physician-profile.component.ts" />
+      <None Remove="ClientApp\src\app\physician\profile\practice\practice-admin-staff-edit\practice-admin-staff-edit.component.ts" />
+      <None Remove="ClientApp\src\app\physician\profile\staff\staff-profile.component.ts" />
+      <None Remove="ClientApp\src\app\physician\profile\staff\staff-profiles\staff-profiles.component.ts" />
+      <None Remove="ClientApp\src\app\physician\setup\activate.component.ts" />
+      <None Remove="ClientApp\src\app\physician\setup\checkout.component.ts" />
+      <None Remove="ClientApp\src\app\physician\setup\confirm.component.ts" />
+      <None Remove="ClientApp\src\app\physician\setup\header.component.ts" />
+      <None Remove="ClientApp\src\app\physician\setup\midlevel-setup.component.ts" />
+      <None Remove="ClientApp\src\app\physician\setup\physician-setup.component.ts" />
+      <None Remove="ClientApp\src\app\physician\setup\practice-dialog.component.ts" />
+      <None Remove="ClientApp\src\app\physician\setup\practice-setup.component.ts" />
+      <None Remove="ClientApp\src\app\physician\models\address.model.ts" />
+      <None Remove="ClientApp\src\app\physician\profile\physician\physician-profile.component.ts" />
+      <None Remove="ClientApp\src\app\physician\setup\doctors.component.ts" />
+      <None Remove="ClientApp\src\app\physician\setup\locations.component.ts" />
+      <None Remove="ClientApp\src\app\physician\setup\npi.component.ts" />
+      <None Remove="ClientApp\src\app\physician\setup\setup.component.ts" />
+      <None Remove="ClientApp\src\app\physician\setup\staff-setup.component.ts" />
+      <None Remove="ClientApp\src\app\practitioners\layout\patients-layout.component.ts" />
+      <None Remove="ClientApp\src\app\register\register.component.ts" />
+      <None Remove="ClientApp\src\app\shared\enums\practice-panel.enum.ts" />
+    </ItemGroup>
+
+  <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+    <!-- Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+  </Target>
+
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build --prod" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr -- --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
+
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
+      <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+
+  <ProjectExtensions><VisualStudio><UserProperties clientapp_4package_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
+</Project>

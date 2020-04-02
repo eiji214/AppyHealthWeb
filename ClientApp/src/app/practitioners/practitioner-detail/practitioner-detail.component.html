@@ -1,0 +1,418 @@
+
+<div *ngIf="practitioner$ | async as practitioner" class="header">
+  <h2 class="profile-page-heading">Provider Overview</h2>
+  <a header-button class="btn" href="/app/physician/referrals">Refer a Patient</a>
+</div>
+
+<div *ngIf="practitioner$ | async as doctor">
+  <div class="profile-detail-panel practitioner-details">
+    <div class="left-panel">
+      <div class="profile-picture">
+        <img src="{{ photoUrl || doctor.PhotoUrl }}" *ngIf="photoUrl || doctor.PhotoUrl" />
+        <img src="../../../assets/images/female.jpg" *ngIf="!doctor.PhotoUrl && doctor.Gender === 'F'" />
+        <img src="../../../assets/images/male.png" *ngIf="!doctor.PhotoUrl && doctor.Gender !== 'F'" />
+        <span *ngIf="doctor.CanEdit">
+          <input type="file" id="photo" #photo (change)="uploadPhoto(doctor)" />
+          <label for="photo">Upload a Photo...</label>
+        </span>
+      </div>
+      <div class="info-panel">
+        <h1>
+          {{doctor.FullName}}
+        </h1>
+        <h2 *ngIf="doctor.PracticeName">
+          {{doctor.PracticeName}}
+        </h2>
+        <h3 *ngIf="doctor.SubSpecialty">
+          {{ doctor.SubSpecialty }}
+        </h3>
+        <div class="icons action-items" *ngIf="doctor.CanEdit">
+          <i class="material-icons" (click)="toggleFavorite(doctor)" [ngClass]="{'starred': doctor.IsFavorite === true}" style="position: absolute; top: 10px; right: 10px">
+            star_border
+          </i>
+
+          <i class="material-icons" *ngIf="doctor.CanEdit" (click)="impersonatePractitioner(doctor)">
+            supervised_user_circle
+          </i>
+        </div>
+      </div>
+      <div class="line--gray"></div>
+      <ul class="left__menu">
+        <li (click)="selectMenu('Physician Information')" [ngClass]="{'selected': selectedMenu === 'Physician Information'}">
+          Physician Information
+        </li>
+        <li (click)="selectMenu('Practice Information')" [ngClass]="{'selected': selectedMenu === 'Practice Information'}">
+          Practice Information
+        </li>
+      </ul>
+    </div>
+
+    <div class="right-panel" *ngIf="selectedMenu == 'Physician Information'" [ngClass]="{'editing': isEditing }">
+      <div class="icons action-items">
+        <a *ngIf="doctor.CanEdit && !isEditing" class="" (click)="toggleEdit(doctor)">
+          Edit
+          <i class="material-icons">edit</i>
+        </a>
+        <a *ngIf="doctor.CanEdit && isEditing" class="" (click)="saveChanges(doctor)">
+          Save Changes
+          <i class="material-icons">check</i>
+        </a>
+        <a *ngIf="doctor.CanEdit && isEditing" class="" (click)="toggleEdit(doctor)">
+          Cancel
+          <i class="material-icons">close</i>
+        </a>
+      </div>
+      <div *ngIf="doctor.CanEdit">
+        <label>Phone Number</label>
+        <p>
+          <a href="tel:{{doctor.PrimaryPhoneNumber}}">{{doctor.PrimaryPhoneNumber | phone}}</a>
+        </p>
+        <input type="text" [(ngModel)]="doctor.PrimaryPhoneNumber" />
+      </div>
+      <div *ngIf="doctor.CanEdit">
+        <label>Email Address</label>
+        <p>
+          <a href="mailto:{{doctor.PrimaryEmailAddress}}">{{doctor.PrimaryEmailAddress}}</a>
+        </p>
+        <input type="text" [(ngModel)]="doctor.PrimaryEmailAddress" />
+      </div>
+      <div *ngIf="doctor.CanEdit || doctor.PracticeName">
+        <label>Practice Name</label>
+        <p>{{doctor.PracticeName}}</p>
+        <input type="text" [(ngModel)]="doctor.PracticeName" />
+      </div>
+
+      <div *ngIf="doctor.CanEdit || doctor.Specialty">
+        <label>Specialty</label>
+        <p>{{doctor.Specialty}}</p>
+        <input type="text" [(ngModel)]="doctor.Specialty" />
+        <!--<p>
+          <span *ngFor="let specialty of doctor.Specialties; let i = index; let isLast=last">
+            {{ specialty.Name }}{{isLast ? '' : ', '}}
+          </span>
+        </p>-->
+      </div>
+
+      <div *ngIf="doctor.CanEdit || doctor.SubSpecialty">
+        <label>Sub-Specialty</label>
+        <p>{{doctor.SubSpecialty}}</p>
+        <input type="text" [(ngModel)]="doctor.SubSpecialty" />
+      </div>
+
+      <div *ngIf="doctor.CanEdit || doctor.Symptoms">
+        <label>Symptoms Treated</label>
+        <p>{{doctor.Symptoms}}</p>
+        <input type="text" [(ngModel)]="doctor.Symptoms" />
+      </div>
+
+      <div *ngIf="doctor.CanEdit || doctor.HospitalAffiliations">
+        <label>Hospital Affiliations</label>
+        <p>{{doctor.HospitalAffiliations}}</p>
+        <input type="text" [(ngModel)]="doctor.HospitalAffiliations" />
+      </div>
+
+      <div *ngIf="doctor.CanEdit || doctor.BoardCertified">
+        <label>Board Certified</label>
+        <p>{{doctor.BoardCertified ? 'Yes' : 'No'}}</p>
+        <div class="radio-group">
+          <input type="radio" name="BoardCertified" [(ngModel)]="doctor.BoardCertified" value="true" /> Yes
+          <input type="radio" name="BoardCertified" [(ngModel)]="doctor.BoardCertified" value="false" /> No
+        </div>
+      </div>
+
+      <div *ngIf="doctor.CanEdit || doctor.Gender">
+        <label>Gender</label>
+        <p>{{doctor.Gender}}</p>
+        <div class="radio-group">
+          <input type="radio" name="Gender" [(ngModel)]="doctor.Gender" value="M" /> Male
+          <input type="radio" name="Gender" [(ngModel)]="doctor.Gender" value="F" /> Female
+        </div>
+      </div>
+
+      <div *ngIf="doctor.CanEdit">
+        <label>National Provider Identifier (NPI)</label>
+        <p>{{doctor.NPI}}</p>
+        <input type="text" [(ngModel)]="doctor.NPI" />
+      </div>
+
+      <div *ngIf="doctor.CanEdit || doctor.Bio">
+        <label>Bio </label>
+        <p class="form__item--large">
+          {{doctor.Bio}}
+        </p>
+        <textarea [(ngModel)]="doctor.Bio"></textarea>
+      </div>
+
+      <div *ngIf="doctor.CanEdit || doctor.Education">
+        <label>Education </label>
+        <p class="form__item--large">
+          {{doctor.Education}}
+        </p>
+        <textarea [(ngModel)]="doctor.Education"></textarea>
+      </div>
+
+      <div *ngIf="doctor.CanEdit || doctor.HumanTouch">
+        <label>Human Touch</label>
+        <p>{{doctor.HumanTouch}}</p>
+        <input type="text" [(ngModel)]="doctor.HumanTouch" />
+      </div>
+
+      <div *ngIf="doctor.CanEdit || doctor.InsuranceTypes">
+        <label>Insurance Carriers</label>
+        <p *ngFor="let insurancePlan of insurance">
+          <span *ngFor="let doctorInsurance of doctor.PractitionerInsurancePlan">
+              <span *ngIf="insurancePlan.Id == doctorInsurance.InsuranceId">{{insurancePlan.Name}}</span>
+          </span>
+        </p>
+        <div class="hidden" *ngFor="let insurancePlan of insurance">
+          <div *ngFor="let doctorInsurance of doctor.PractitionerInsurancePlan">
+            <div *ngIf="insurancePlan.Id == doctorInsurance.InsuranceId">{{insurancePlan.Name}}</div>
+          </div>
+        </div>
+        <mat-form-field style="width: 35%">
+          <mat-select placeholder="Select Insurance Plan" [(ngModel)]="insurancePlanSelected">
+            <mat-option *ngFor="let insurancePlan of insurance" [value]="insurancePlan">
+              {{insurancePlan.Name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="button--save" (click)="saveProviderInsuranceOption(doctor, insurancePlanSelected)">Save Plan</div>
+      </div>
+    </div>
+
+    <div class="right-panel right-panel-plain" *ngIf="selectedMenu == 'Practice Information'">
+      <div id="map" #mapref></div>
+
+      <div *ngFor="let practice of doctor.PractitionerLocation; let i = index;" class="practice-card" [ngClass]="{'editing': practice.IsEditing }">
+        <header>
+          <span class="number">{{ i + 1 }}</span>
+          <h1>{{ practice.Location.Name }}</h1>
+          <div class="icons action-items">
+            <a *ngIf="doctor.CanEdit && !practice.IsEditing" class="" (click)="togglePracticeEdit(practice)">
+              <i class="material-icons">edit</i>
+            </a>
+            <a *ngIf="doctor.CanEdit && practice.IsEditing" class="" (click)="togglePracticeEdit(practice)">
+              <i class="material-icons">close</i>
+            </a>
+            <a *ngIf="doctor.CanEdit && practice.IsEditing" class="" (click)="saveChanges(doctor, practice)">
+              <i class="material-icons">check</i>
+            </a>
+            <a *ngIf="doctor.CanEdit && practice.IsEditing" class="" (click)="confirmDelete(practice)">
+              <i class="material-icons">delete</i>
+            </a>
+          </div>
+          <div *ngIf="practice.ShouldDelete == true" class="confirmation">
+            <h3>Are you sure you want to delete this location?</h3>
+            <button (click)="deleteLocation(doctor, practice.Location)">Confirm Delete</button>
+            <button (click)="practice.ShouldDelete = false">Cancel</button>
+          </div>
+        </header>
+        <section class="flex" *ngIf="!practice.IsExpanded">
+          <div>
+            <h2>Location</h2>
+            <p>
+              {{practice.Location.Address1}}
+              <br /> {{practice.Location.Address2}}
+              <br *ngIf="practice.Location.Address2" /> {{practice.Location.City}} {{practice.Location.State}} {{practice.Location.ZipCode}}
+              <br />
+              <a href="{{practice.Location.WebAddress}}" target="_blank">{{practice.Location.WebAddress}}</a>
+            </p>
+            <a style="display: inline-block; margin-top: 15px" [routerLink]="" (click)="expand(practice)">Expand</a>
+          </div>
+          <div>
+            <h2>Practice Days & Hours</h2>
+            <p>{{practice.Location.Hours}}</p>
+          </div>
+        </section>
+
+        <section *ngIf="practice.IsExpanded">
+          <div *ngIf="doctor.CanEdit || practice.Location.Name">
+            <label>Practice Location</label>
+            <p>{{practice.Location.Name}}</p>
+            <input type="text" placeholder="Location Name" [(ngModel)]="practice.Location.Name" />
+            <aside>
+              {{practice.Location.Address1}}
+              <br /> {{practice.Location.Address2}}
+              <br *ngIf="practice.Location.Address2" /> {{practice.Location.City}} {{practice.Location.State}} {{practice.Location.ZipCode}}
+              <br />
+              <a href="{{practice.Location.WebAddress}}" target="_blank">{{practice.Location.WebAddress}}</a>
+            </aside>
+            <input type="text" placeholder="Address 1" [(ngModel)]="practice.Location.Address1" />
+            <input type="text" placeholder="Address 2" [(ngModel)]="practice.Location.Address2" />
+            <input type="text" placeholder="City" [(ngModel)]="practice.Location.City" />
+            <input type="text" placeholder="State" [(ngModel)]="practice.Location.State" />
+            <input type="text" placeholder="Zip Code" [(ngModel)]="practice.Location.ZipCode" />
+            <input type="text" placeholder="Web Address" [(ngModel)]="practice.Location.WebAddress" />
+          </div>
+
+          <div *ngIf="doctor.CanEdit || practice.Location.HelpfulTips">
+            <label>Helpful Tips</label>
+            <p class="form__item--large">{{practice.Location.HelpfulTips}}</p>
+            <textarea [(ngModel)]="practice.Location.HelpfulTips"></textarea>
+          </div>
+
+          <!-- <div *ngIf="doctor.CanEdit || practice.Location.Hours">
+            <label>Practice Days and Hours Testing</label>
+            <p>{{practice.Location.Hours}}</p>
+            <input type="text" [(ngModel)]="practice.Location.Hours" />
+          </div> -->
+
+          <div *ngIf="doctor.CanEdit">
+            <label>Monday Start</label>
+            <p>{{practice.Availability.MondayStart}}</p>
+            <input type="text" [(ngModel)]="practice.Availability.MondayStart" />
+            <label>Monday End</label>
+            <p>{{practice.Availability.MondayEnd}}</p>
+            <input type="text" [(ngModel)]="practice.Availability.MondayEnd" />
+          </div>
+
+          <div class="availability-wrapper" *ngIf="doctor.CanEdit">
+            <label>Practice Available Hours</label>
+            <span id="startlabel">Start</span><span id="endlabel">End</span>
+            <div>
+              <span class="label">Monday</span>  
+              <select [(ngModel)]="practice.Availability.MondayStart">
+                <option *ngFor="let item of availableHours">{{item}}</option>
+              </select>
+              <select [(ngModel)]="practice.Availability.MondayEnd">
+                <option *ngFor="let item of availableHours">{{item}}</option>
+              </select>
+            </div>
+            <div>
+              <span class="label">Tuesday</span>  
+              <select [(ngModel)]="practice.Availability.TuesdayStart">
+                <option *ngFor="let item of availableHours">{{item}}</option>
+              </select>
+              <select [(ngModel)]="practice.Availability.TuesdayEnd">
+                <option *ngFor="let item of availableHours">{{item}}</option>
+              </select>
+              <!-- <input type="checkbox" [(ngModel)]="tuesdayChecked" /><span>Same as previous day?</span> -->
+            </div>
+            <div>
+              <span class="label">Wednesday</span>  
+              <select [(ngModel)]="practice.Availability.WednesdayStart">
+                <option *ngFor="let item of availableHours">{{item}}</option>
+              </select>
+              <select [(ngModel)]="practice.Availability.WednesdayEnd">
+                <option *ngFor="let item of availableHours">{{item}}</option>
+              </select>
+            </div>
+            <div>
+              <span class="label">Thursday</span>  
+              <select [(ngModel)]="practice.Availability.ThursdayStart">
+                <option *ngFor="let item of availableHours">{{item}}</option>
+              </select>
+              <select [(ngModel)]="practice.Availability.ThursdayEnd">
+                <option *ngFor="let item of availableHours">{{item}}</option>
+              </select>
+            </div>
+            <div>
+              <span class="label">Friday</span>  
+              <select [(ngModel)]="practice.Availability.FridayStart">
+                <option *ngFor="let item of availableHours">{{item}}</option>
+              </select>
+              <select [(ngModel)]="practice.Availability.FridayEnd">
+                <option *ngFor="let item of availableHours">{{item}}</option>
+              </select>
+            </div>
+            <div>
+              <span class="label">Saturday</span>  
+              <select [(ngModel)]="practice.Availability.SaturdayStart">
+                <option *ngFor="let item of availableHours">{{item}}</option>
+              </select>
+              <select [(ngModel)]="practice.Availability.SaturdayEnd">
+                <option *ngFor="let item of availableHours">{{item}}</option>
+              </select>
+            </div>
+            <div>
+              <span class="label">Sunday</span>  
+              <select [(ngModel)]="practice.Availability.SundayStart">
+                <option *ngFor="let item of availableHours">{{item}}</option>
+              </select>
+              <select [(ngModel)]="practice.Availability.SundayEnd">
+                <option *ngFor="let item of availableHours">{{item}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div *ngIf="doctor.CanEdit">
+            <label>Practice Main Telephone</label>
+            <p>{{practice.Location.PrimaryPhoneNumber}}</p>
+            <input type="text" [(ngModel)]="practice.Location.PrimaryPhoneNumber" />
+          </div>
+
+          <div *ngIf="doctor.CanEdit">
+            <label>Practice Fax</label>
+            <p>{{ practice.Location.Fax }}</p>
+            <input type="text" [(ngModel)]="practice.Location.Fax" />
+          </div>
+
+          <div *ngIf="doctor.CanEdit">
+            <label>Practice Manager/Administrator</label>
+            <p>{{practice.Location.ManagerName}}</p>
+            <aside>{{practice.Location.ManagerNumber}}</aside>
+            <aside>{{practice.Location.ManagerEmail}}</aside>
+            <input type="text" placeholder="Name" [(ngModel)]="practice.Location.ManagerName" />
+            <input type="text" placeholder="Phone Number" [(ngModel)]="practice.Location.ManagerNumber" />
+            <input type="text" placeholder="Email" [(ngModel)]="practice.Location.ManagerEmail" />
+          </div>
+
+          <div *ngIf="doctor.CanEdit">
+            <label>Clinical Scheduler</label>
+            <p>{{practice.Location.ClinicalSchedulerName}}</p>
+            <aside>{{practice.Location.ClinicalSchedulerNumber}}</aside>
+            <aside>{{practice.Location.ClinicalSchedulerEmail}}</aside>
+            <input type="text" placeholder="Name" [(ngModel)]="practice.Location.ClinicalSchedulerName" />
+            <input type="text" placeholder="Phone Number" [(ngModel)]="practice.Location.ClinicalSchedulerNumber" />
+            <input type="text" placeholder="Email" [(ngModel)]="practice.Location.ClinicalSchedulerEmail" />
+          </div>
+
+          <div *ngIf="doctor.CanEdit">
+            <label>Surgery Scheduler</label>
+            <p>{{practice.Location.SurgicalSchedulerName}}</p>
+            <aside>{{practice.Location.SurgicalSchedulerNumber}}</aside>
+            <aside>{{practice.Location.SurgicalSchedulerEmail}}</aside>
+            <input type="text" placeholder="Name" [(ngModel)]="practice.Location.SurgicalSchedulerName" />
+            <input type="text" placeholder="Phone Number" [(ngModel)]="practice.Location.SurgicalSchedulerNumber" />
+            <input type="text" placeholder="Email" [(ngModel)]="practice.Location.SurgicalSchedulerEmail" />
+          </div>
+
+          <div *ngIf="doctor.CanEdit">
+            <label>Front Desk</label>
+            <p>{{practice.Location.FrontDeskName}}</p>
+            <aside>{{practice.Location.FrontDeskNumber}}</aside>
+            <aside>{{practice.Location.FrontDeskEmail}}</aside>
+            <input type="text" placeholder="Name" [(ngModel)]="practice.Location.FrontDeskName" />
+            <input type="text" placeholder="Phone Number" [(ngModel)]="practice.Location.FrontDeskNumber" />
+            <input type="text" placeholder="Email" [(ngModel)]="practice.Location.FrontDeskEmail" />
+          </div>
+
+          <div *ngIf="doctor.CanEdit">
+            <label>Medical Records</label>
+            <p>{{practice.Location.MedicalRecordsName}}</p>
+            <aside>{{practice.Location.MedicalRecordsNumber}}</aside>
+            <aside>{{practice.Location.MedicalRecordsEmail}}</aside>
+            <input type="text" placeholder="Name" [(ngModel)]="practice.Location.MedicalRecordsName" />
+            <input type="text" placeholder="Phone Number" [(ngModel)]="practice.Location.MedicalRecordsNumber" />
+            <input type="text" placeholder="Email" [(ngModel)]="practice.Location.MedicalRecordsEmail" />
+          </div>
+
+          <div *ngIf="doctor.CanEdit">
+            <label>Notes</label>
+            <p>{{practice.Location.Notes}}</p>
+            <input type="text" [(ngModel)]="practice.Location.Notes" />
+          </div>
+        </section>
+      </div>
+
+      <div *ngIf="doctor.CanEdit">
+          <a class="add-location" (click)="createLocation(doctor)">
+            <i class="material-icons">add</i>
+            Add a Location
+          </a>
+        </div>
+    </div>
+
+    
+  </div>
+</div>

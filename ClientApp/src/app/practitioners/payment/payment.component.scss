@@ -1,0 +1,87 @@
+@font-face {
+    font-family: 'Poppins-SemiBold';
+    font-style: normal;
+    src: url('../../../assets/fonts/Poppins-SemiBold.ttf') format('truetype');
+}
+
+form.checkout {
+    max-width: 380px;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    padding: 20px;
+    background: white;
+    color: #525252;
+    font-size: 1.1rem;
+  }
+
+#card-info{
+    margin: 30px 10px;
+}
+
+button{
+    display: inline-block;
+    background: #FEC613;
+    border: none;
+    box-shadow: 1px 2px 16px 0 rgba(254, 198, 19, 0.15);
+    border-radius: 4px;
+    height: 34px;
+    padding: 5px 25px;
+    text-align: center;
+    color: #253C7F;
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: 500;
+    color: #002685;
+    font-family: Poppins-SemiBold;
+    line-height: 59px;
+    margin-top: 200px;
+    text-align: center;
+  }
+
+.landing{
+    position: relative;
+    background-color: #fafbfd;
+    
+    .flex {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    &__menu {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 90vw;
+        background-color: #ffffff;
+        box-shadow: 0 0 17px 0 rgba(0, 0, 0, 0.05);
+        height: auto;
+        display: flex;
+        padding-left: 5vw;
+        padding-right: 5vw;
+        align-items: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        justify-content: space-between !important;
+
+        > div {
+            display: flex;
+            justify-content: space-between;
+            margin-right: 10px;
+            margin-left: 20px;
+        }
+        
+        .nav_buttons * {
+            margin: 10px;
+        }
+    }
+}

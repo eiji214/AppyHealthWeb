@@ -1,0 +1,5 @@
+<h1 mat-dialog-title>{{confirmTitle}}</h1>
+<div mat-dialog-actions style="float:right;">
+  <button class="button--yellow" mat-button (click)="onNoClick()" style="margin-right: 20px;">{{noButtonTitle}}</button>
+  <button class="button--yellow" mat-button [mat-dialog-close]="entryId">{{yesButtonTitle}}</button>
+</div>

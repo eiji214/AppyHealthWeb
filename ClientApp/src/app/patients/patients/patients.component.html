@@ -1,0 +1,87 @@
+<div class="table-with-filter">
+  <app-patients-search [filter]="filter" [(filteredPatients)]="filteredPatients" [patients]="patients"></app-patients-search>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Patient Name</th>
+        <th>DOB</th>
+        <th>Gender</th>
+        <th>Contact #</th>
+        <th>Next Appt.</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let patient of filteredPatients; let i = index" [routerLink]="['/physician/patients', patient.Id]">
+        <!--[hidden]="patient.FirstName != search"-->
+        <td></td>
+
+        <td>
+          <a href="/physician/patients/eligibility/{{patient.Id}}" (click)="$event.stopPropagation()" *ngIf="patient.InsuranceIdnumber">
+            <i class="material-icons" style="margin: 0;font-size: 14px;color: rgb(27,123,227);">security</i>
+          </a>
+          <a class="insurance-plan-shield" (click)="$event.stopPropagation()" *ngIf="!patient.InsuranceIdnumber && patient.InsurancePlanFrontPictureUrl">
+            <i class="material-icons" style="margin: 0;font-size: 16px;color: rgb(216,216,216);">security</i>
+          </a>
+          <div class="convert-insurance">
+            <div>
+              <div class="shield">
+                <i class="material-icons" style="margin: 0;font-size: 16px;color: rgb(216,216,216);">security</i>
+              </div>
+              <div class="info">
+                <span>
+                  Images Uploaded
+                </span>
+                <p>
+                  Awaiting Information Transfer
+                </p>
+                <button class="button--yellow" (click)="openPatientVerificationDialog($event,patient.Id)">
+                  Convert Insurance
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {{patient.FirstName}} {{patient.LastName}}
+        </td>
+        <td>{{ patient.BirthDate | date }}</td>
+        <td>
+          <span *ngIf="patient.Gender == 'M'">Male</span>
+          <span *ngIf="patient.Gender == 'F'">Female</span>
+        </td>
+        <td>{{ patient.PrimaryPhoneNumber | phone }}</td>
+
+        <td *ngIf="!patient.NextAppointment || !patient.NextAppointment.AppointmentDate"></td>
+        <td *ngIf="patient.NextAppointment && patient.NextAppointment.AppointmentDate">
+          {{ patient.NextAppointment.AppointmentDate | date}}
+          <aside>{{ patient.NextAppointment.AppointmentDate | date:'shortTime' }}</aside>
+        </td>
+        <td class="action-items">
+          <a (click)="startChat(patient.UserId);$event.stopPropagation()" *ngIf="patient.UserId">
+            <i class="material-icons">chat_bubble_outline</i>
+          </a>
+
+          <a href="tel:{{patient.PrimaryPhoneNumber}}" (click)="$event.stopPropagation()" *ngIf="patient.PrimaryPhoneNumber">
+            <i class="material-icons" style="margin: 0;">phone</i>
+          </a>
+
+          <a href="/referrals/{{patient.Id}}" (click)="$event.stopPropagation()">
+            <i class="material-icons" style="margin: 0;">add</i>
+          </a>
+          <a>
+            <i class="material-icons" (click)="openAutomatedMessageDialog($event, patient.Id)">mail_outline</i>
+          </a>
+          <a *ngIf="user.Practitioner" href="/referrals/{{patient.Id}}/{{user.PractitionerID}}">Next Visit</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="add-entry" *ngIf="!filteredPatients || filteredPatients.length == 0">
+    Search for a Patient
+  </p>
+  <button class="button--yellow add-entry" mat-raised-button (click)="openNewPatientDialog()">
+    Create New Patient
+  </button>
+</div>

@@ -1,0 +1,21 @@
+
+.landing{
+    position: relative;
+    background-color: #fafbfd;
+    
+    .flex {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: 500;
+    color: #002685;
+    font-family: Poppins-SemiBold;
+    line-height: 59px;
+    margin-top: 200px;
+    text-align: center;
+  }

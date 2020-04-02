@@ -1,0 +1,23 @@
+<div class="text-center">
+  <div class="float-left"><i class="fa fa-arrow-left" (click)="back()"></i></div>
+  <div class="float-right"><i class="fa fa-arrow-right" (click)="forward()"></i></div>
+  <h3>{{date.toLocaleString('default', { month: 'long' })}} {{date.getFullYear()}}</h3>
+</div>
+
+<div class="week-calendar">
+  <div class="day" *ngFor="let d of days" (click)="addAppointment(d)">
+    <div class="header">
+      <div class="" [className]="isActive(d.date) ? 'active' : ''">{{d.date.getDate()}}</div>
+      <div class="subtitle">{{getDayOfWeek(d.date)}}</div>
+    </div>
+    <div class="appointments">
+      <div *ngFor="let a of d.appointments" class="appointment" [style.top.px]="getTimeClass(a.AppointmentDate)">
+        <div class="appointment-line"></div>
+        <div class="appointment-in">
+          <div class="appointment-time">{{getTime(a.AppointmentDate)}}</div>
+          <div class="appointment-name">{{a.PatientFullName}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

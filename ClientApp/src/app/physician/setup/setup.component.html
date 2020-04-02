@@ -1,0 +1,13 @@
+
+  <div class="p-4">
+    <header [step]="step"></header>
+
+
+    <practice-setup (setHealthSystem)="setHealthSystem($event)" [hs]="healthSystem" *ngIf="step===1"></practice-setup>
+    <physician-setup (navigate)="navigate($event)" (setHealthSystem)="setHealthSystem($event)" [hs]="healthSystem" *ngIf="step===2"></physician-setup>
+    <midlevel-setup (navigate)="navigate($event)" (setHealthSystem)="setHealthSystem($event)" [hs]="healthSystem" *ngIf="step===3"></midlevel-setup>
+    <staff-setup (navigate)="navigate($event)" (setHealthSystem)="setHealthSystem($event)" [hs]="healthSystem" *ngIf="step===4"></staff-setup>
+    <confirm-setup (navigate)="navigate($event)" [hs]="healthSystem" *ngIf="step===5"></confirm-setup>
+    <activate (navigate)="navigate($event)" [hs]="healthSystem" (setSelectedTier)="setSelectedTier($event)" [tier]="selectedTier" *ngIf="step===6"></activate>
+    <checkout (navigate)="navigate($event)" [hs]="healthSystem" [tier]="selectedTier" *ngIf="step===7"></checkout>
+  </div>

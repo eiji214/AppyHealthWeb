@@ -1,0 +1,26 @@
+<div class="text-center">
+  <div class="float-left"><i class="fa fa-arrow-left" (click)="back()"></i></div>
+  <div class="float-right"><i class="fa fa-arrow-right" (click)="forward()"></i></div>
+  <h3>{{date.toLocaleString('default', { month: 'long' })}} {{date.getFullYear()}}</h3>
+</div>
+<div class="calendar">
+  <!--<div class="days-of-week">
+    <span class="day">Sunday</span>
+    <span class="day">Monday</span>
+    <span class="day">Tuesday</span>
+    <span class="day">Wednesday</span>
+    <span class="day">Thursday</span>
+    <span class="day">Friday</span>
+    <span class="day">Saturday</span>
+  </div>-->
+  <div class="day" *ngFor="let d of days">
+    {{d.date.getDate()}}
+      <div *ngFor="let a of d.appointments" class="appointment">
+        <!--<div class="appointment-line"></div>-->
+        <div class="appointment-in">
+          <div class="appointment-time">{{getTime(a.AppointmentDate)}}</div>
+          <div class="appointment-name">{{a.PatientFullName}}</div>
+        </div>
+      </div>
+</div>
+</div>

@@ -1,0 +1,31 @@
+.tab--white {
+  font-size: 14px;
+  color: #9B9B9B;
+  letter-spacing: 0.6px;
+
+  .mat-tab-label-active {
+    .mat-tab-label-content {
+      font-size: 14px;
+      color: #0F162D;
+      letter-spacing: 0.6px;
+    }
+  }
+
+  mat-ink-bar {
+    background: rgb(255, 199, 10) !important;
+    width: 60px !important;
+    margin-left: 50px !important;
+  }
+}
+
+.tab--white-background {
+  background: white;
+  position: absolute;
+  left: 240px;
+  right: 0;
+  top: 65px;
+  z-index: 1;
+  height: 88px;
+  border-top: 1px solid #F3F3F4;
+  box-shadow: 0 9px 17px 0 rgba(0,0,0,0.05);
+}

@@ -1,0 +1,291 @@
+<div class="practice-profile-page appy-material-theme">
+  <div class="main-panel">
+    <div *ngIf="healthSystem" class="box-practice-info">
+
+      <div class="icons action-items">
+        <button (click)="editOverview(practicePanelEnum.main)" *ngIf="healthSystem.CanEdit" mat-icon-button mat-stroked-button color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+
+      <div class="">
+        <div class="profile-picture">
+          
+          <img *ngIf="healthSystem.LogoUrl" mat-card-image (mouseover)="uploadPhotoButton=true" (mouseout)="uploadPhotoButton=false" [src]="healthSystem.LogoUrl"/>
+          <img *ngIf="!healthSystem.LogoUrl" mat-card-image (mouseover)="uploadPhotoButton=true" (mouseout)="uploadPhotoButton=false" src="assets/images/ellipse.png"/>
+          <span *ngIf="healthSystem.CanEdit">
+
+            <input type="file" id="logo" #logo (change)="uploadPhoto()" />
+            <label for="logo">
+              <mat-icon>add_a_photo</mat-icon>
+            </label>
+          </span>
+
+        </div>
+      </div>
+      <div>
+        <h2>{{healthSystem.Name}} </h2>
+        <h4>{{healthSystem.Specialty}}</h4>
+        <h4>NPI: {{healthSystem.NPI}}</h4>
+        <!-- this scetion needs id -->
+        <div class="practice-overview-row" *ngIf="healthSystem?.HealthSystemLocation?.length > 0">
+          <img src="./assets/images/icons/Icon awesome-map-marker-alt.svg" />
+          <div class="practice-address">
+            <div>
+              {{healthSystem?.HealthSystemLocation[0]?.Location.Address1}},
+              {{healthSystem?.HealthSystemLocation[0]?.Location.Address2}}
+            </div>
+            <div>
+              {{healthSystem?.HealthSystemLocation[0]?.Location.City}},
+              {{healthSystem?.HealthSystemLocation[0]?.Location.State}}
+              {{healthSystem?.HealthSystemLocation[0]?.Location.ZipCode.substring(0, 5)}}
+
+            </div>
+          </div>
+        </div>
+
+        <div class="practice-overview-row" *ngIf="healthSystem?.HealthSystemLocation?.length > 0">
+          <img src="./assets/images/icons/Icon material-contacts.svg" />
+          <div class="practice-address">
+            <div>
+              {{healthSystem.PrimaryPhoneNumber | phone}}
+            </div>
+            <div>
+              {{healthSystem.PracticeWebsite}}
+            </div>
+          </div>
+        </div>
+
+        <div class="practice-overview-row" *ngIf="healthSystem?.HealthSystemLocation?.length > 0">
+          <img src="./assets/images/icons/Icon ionic-ios-time.svg" />
+          <div class="practice-address">
+            <div>
+              <p>PRACTICE DAYS AND HOURS</p>
+            </div>
+            <div [innerHtml]="displayHours()">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="box-practice-panel">
+      <div class="icons action-items">
+        <button (click)="editOverview(practicePanelEnum.about)" *ngIf="healthSystem.CanEdit" mat-icon-button mat-stroked-button color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+
+      <div style="float: left;">
+        <h2>About</h2>
+        {{healthSystem?.Bio}}
+      </div>
+    </div>
+
+    <div class="box-practice-panel">
+      <div class="icons action-items">
+        <button (click)="editOverview(practicePanelEnum.specialtyServices)" *ngIf="healthSystem.CanEdit" mat-icon-button mat-stroked-button color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+
+      <div style="width:100%;">
+        <h2>Speciality Services</h2>
+
+        <div class="specialty-box-wrapper">
+          <div *ngFor="let s of healthSystem.HealthSystemSpecialty" class="specialty-box">
+            <span class="badge badge-pill speciality-badge">{{s.Specialty.Name}}</span>
+            <!--<div>
+              {{s.Specialty.Category}}
+            </div>-->
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="box-practice-panel">
+      <div class="icons action-items">
+        <button (click)="editOverview(practicePanelEnum.symptoms)" *ngIf="healthSystem.CanEdit" mat-icon-button mat-stroked-button color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+
+
+      <div style="float: left;">
+        <h2>Symptoms</h2>
+        {{healthSystem?.Symptoms}}
+      </div>
+    </div>
+
+    <div class="box-practice-panel">
+      <div class="icons action-items">
+        <button (click)="editOverview(practicePanelEnum.conditions)" *ngIf="healthSystem.CanEdit" mat-icon-button mat-stroked-button color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+
+      <div style="float: left;">
+        <h2>Conditions</h2>
+        {{healthSystem?.Conditions}}
+      </div>
+    </div>
+
+
+  <div class="box-practice-panel">
+    <div class="icons action-items" style="float:right;">
+      <button (click)="editAdminStaff(-1, -1)" *ngIf="healthSystem.CanEdit" mat-icon-button mat-stroked-button color="primary">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    <div style="width:100%;">
+      <h2>Administrative Staff</h2>
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="Title">
+          <th mat-header-cell *matHeaderCellDef> Title </th>
+          <td mat-cell *matCellDef="let element"> {{element.Role}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="FullName">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="PrimaryPhoneNumber">
+          <th mat-header-cell *matHeaderCellDef> Phone# </th>
+          <td mat-cell *matCellDef="let element"> {{element.PhoneNumber | phone}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="PrimaryEmail">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let element"> {{element.Email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let element; index as i">
+            <div class="dropdown" *ngIf="healthSystem.CanEdit">
+              <i class="fa fa-pencil-alt fa-border edit-pencil" data-toggle="dropdown"></i>
+              <div class="dropdown-menu">
+                <div class="dropdown-item" (click)="editAdminStaff(element.Id, i)">Edit</div>
+                <div class="dropdown-item" (click)="remove(element.Id)">Delete</div>
+              </div>
+            </div>
+            <!--<input-button-icon (onClick)="confirmDelete(element.id, element.siteName)" class="action-button"
+                               color="primary" icon="fas:trash-alt">
+            </input-button-icon>-->
+          </td>
+        </ng-container>
+
+
+
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+<!--<a [routerLink]="['/physician/profile/edit']" class="btn btn-outline-primary float-right m-4">Edit</a>
+<h2>{{healthSystem.Name}} <span>{{healthSystem.NPI}}</span> xxxx</h2>
+<div class="clear-right"></div>
+
+<div class="p-2">
+  <div class="row">
+    <section class="col">
+      <div *ngIf="healthSystem.LogoUrl" class="float-right">
+        <img [src]="healthSystem.LogoUrl" />
+      </div>
+      <h4>{{healthSystem.Specialty}}</h4>
+
+      <div class="physician">
+        Phone: {{healthSystem.PrimaryPhoneNumber | phone}}
+        <div *ngIf="healthSystem.PracticeFax">Facsimile: {{healthSystem.PracticeFax | phone}}</div>
+      </div>
+
+      <h4>Specialties</h4>
+      <ul *ngIf="healthSystem.HealthSystemSpecialty">
+        <li *ngFor="let s of healthSystem.HealthSystemSpecialty">{{s.Specialty.Name}}</li>
+      </ul>
+
+      <div class="bio">
+        <h4>Bio</h4>
+        {{healthSystem.Bio}}
+      </div>
+
+      <div class="bio">
+        <h4>Human Touch</h4>
+        {{healthSystem.HumanTouch}}
+      </div>
+
+      <div class="bio">
+        <h4>Helpful Tips</h4>
+        {{healthSystem.HumanTouch}}
+      </div>
+
+      <div class="bio">
+        <h4>Hospital Affiliations</h4>
+        {{healthSystem.HospitalAffiliations}}
+      </div>
+
+      <div class="staff buffer-top-large mb-4">
+        <h3>Staff Information</h3>
+        <h4>Doctors</h4>
+        <div class="card mt-3" *ngFor="let d of doctors | slice:0:4">
+          <h4>{{d.Practitioner.FullName}}</h4>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h4>{{d.Practitioner.Specialty}}</h4>
+              </div>
+              <div class="col">
+                <div><b>Phone:</b> {{d.Practitioner.PrimaryPhoneNumber | phone}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="col">
+      <h4>Locations</h4>
+      <div class="practice card" *ngFor="let loc of healthSystem.HealthSystemLocation">
+        <h3>{{loc.Location.Name}}</h3>
+        <div class="card-body row">
+          <div class="address col">
+            {{loc.Location.Address1}} <br />
+            <div *ngIf="loc.Location.Address2">{{loc.Location.Address2}}</div>
+            {{loc.Location.City}}, {{loc.Location.State}} {{loc.Location.ZipCode}} <br />
+            <br />
+            <h4 class="buffer-top">Phone</h4>
+            {{loc.Location.PrimaryPhoneNumber | phone}}
+
+          </div>
+          <div class="hours col">
+            <h4>Days and Hours</h4>
+            <div>{{loc.Location.Hours}}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>-->

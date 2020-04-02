@@ -1,0 +1,179 @@
+
+<div class="layout row">
+  <div id="sidebar-container" class="sidebar-expanded d-none d-md-block"><!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
+    <!-- Bootstrap List Group -->
+    <ul class="list-group">
+      <a [routerLink]="['/physician']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+          <mat-icon class="mr-3">home</mat-icon>
+          <span class="menu-collapsed">Dashboard</span>
+        </div>
+      </a>
+      <a [routerLink]="['/physician/appointments']" routerLinkActive="active" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+          <mat-icon class="mr-3">calendar_today</mat-icon>
+          <span class="menu-collapsed">Appointments</span>
+        </div>
+      </a>
+
+      <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+        <mat-icon class="mr-3">contacts</mat-icon>
+        <small>Referrals</small>
+<!--        <mat-icon class="align-ri">arrow_drop_down</mat-icon>-->
+      </li>
+      <a [routerLink]="['/physician/referrals']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+          <span class="ml-3 menu-collapsed">Received</span>
+        </div>
+      </a>
+      <a [routerLink]="['/physician/referrals']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" [queryParams]="{page: 'outgoing'}" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+          <span class="ml-3 menu-collapsed">Referrals</span>
+        </div>
+      </a>
+      <a [routerLink]="['/physician/referrals']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" [queryParams]="{page: 'recommendations'}" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+          <span class="ml-3 menu-collapsed">Patient Recommendations</span>
+        </div>
+      </a>
+      <li class="list-group-item sidebar-separator menu-collapsed" style="height: 5px;padding: 0;"></li>
+      <!--<a (click)="sidebar.settingsCollapsed = !sidebar.settingsCollapsed"
+         [attr.aria-expanded]="!sidebar.settingsCollapsed"
+         aria-controls="settingsCollapsed"
+         class="bg-duskBlue list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+          <span class="fa fa-user fa-fw mr-3"></span>
+          <span class="menu-collapsed">Profiles</span>
+          <span class="submenu-icon ml-auto"></span>
+        </div>
+      </a>
+      <div [ngbCollapse]="sidebar.settingsCollapsed" class="collapse sidebar-submenu">
+      <a [routerLink]="['/practice/profiles']" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+&lt;!&ndash;          <mat-icon class="mr-3">group</mat-icon>&ndash;&gt;
+          <span class="menu-collapsed">Practice Profiles</span>
+        </div>
+      </a>
+      <a [routerLink]="['/physician/profile/physicianprofiles']" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+&lt;!&ndash;          <mat-icon class="mr-3">group</mat-icon>&ndash;&gt;
+          <span class="menu-collapsed">Physician Profiles</span>
+        </div>
+      </a>
+      <a [routerLink]="['/physician/profile/midlevelprofiles']" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+&lt;!&ndash;          <mat-icon class="mr-3">group</mat-icon>&ndash;&gt;
+          <span class="menu-collapsed">Mid-level Profiles</span>
+        </div>
+      </a>
+      <a [routerLink]="['/physician/profile/midlevelprofiles']" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+&lt;!&ndash;          <mat-icon class="mr-3">group</mat-icon>&ndash;&gt;
+          <span class="menu-collapsed">Medical Staff Profiles</span>
+        </div>
+      </a>
+      </div>-->
+
+      <a [routerLink]="['/physician/patients']" routerLinkActive="active" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+          <mat-icon class="mr-3">person_outline</mat-icon>
+          <span class="menu-collapsed">Patients</span>
+        </div>
+      </a>
+      <a [routerLink]="['/physician/practitioners']" routerLinkActive="active" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+          <mat-icon class="mr-3">healing</mat-icon>
+          <span class="menu-collapsed">Providers</span>
+        </div>
+      </a>
+
+      <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+        <mat-icon class="mr-3">group</mat-icon>
+        <small>Profiles</small>
+      </li>
+      <a [routerLink]="['/practice/profiles']" routerLinkActive="active" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+          <span class="ml-3 menu-collapsed">Practice Profiles</span>
+        </div>
+      </a>
+      <a [routerLink]="['/physician/profile/physicianprofiles']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+          <span class="ml-3 menu-collapsed">Physician Profiles</span>
+        </div>
+      </a>
+      <a [routerLink]="['/physician/profile/midlevelprofiles']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+          <span class="ml-3 menu-collapsed">Mid-level Profiles</span>
+        </div>
+      </a>
+      <a [routerLink]="['/physician/profile/staffprofiles']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+          <span class="ml-3 menu-collapsed">Medical Staff Profiles</span>
+        </div>
+      </a>
+      <li class="list-group-item sidebar-separator menu-collapsed" style="height: 5px;padding: 0;"></li>
+      <!--<a (click)="sidebar.settingsCollapsed = !sidebar.settingsCollapsed"
+         [attr.aria-expanded]="!sidebar.settingsCollapsed"
+         aria-controls="settingsCollapsed"
+         class="bg-duskBlue list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+          <span class="fa fa-user fa-fw mr-3"></span>
+          <span class="menu-collapsed">Profiles</span>
+          <span class="submenu-icon ml-auto"></span>
+        </div>
+      </a>
+      <div [ngbCollapse]="sidebar.settingsCollapsed" class="collapse sidebar-submenu">
+      <a [routerLink]="['/practice/profiles']" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+&lt;!&ndash;          <mat-icon class="mr-3">group</mat-icon>&ndash;&gt;
+          <span class="menu-collapsed">Practice Profiles</span>
+        </div>
+      </a>
+      <a [routerLink]="['/physician/profile/physicianprofiles']" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+&lt;!&ndash;          <mat-icon class="mr-3">group</mat-icon>&ndash;&gt;
+          <span class="menu-collapsed">Physician Profiles</span>
+        </div>
+      </a>
+      <a [routerLink]="['/physician/profile/midlevelprofiles']" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+&lt;!&ndash;          <mat-icon class="mr-3">group</mat-icon>&ndash;&gt;
+          <span class="menu-collapsed">Mid-level Profiles</span>
+        </div>
+      </a>
+      <a [routerLink]="['/physician/profile/midlevelprofiles']" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+&lt;!&ndash;          <mat-icon class="mr-3">group</mat-icon>&ndash;&gt;
+          <span class="menu-collapsed">Medical Staff Profiles</span>
+        </div>
+      </a>
+      </div>-->
+
+      <a routerLinkActive="active" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+          <mat-icon class="mr-3">help</mat-icon>
+          <span class="menu-collapsed">Help Center</span>
+        </div>
+      </a>
+      <a routerLinkActive="active" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+          <mat-icon class="mr-3">bar_chart</mat-icon>
+          <span class="menu-collapsed">Analytics</span>
+        </div>
+      </a>
+      <a routerLinkActive="active" [class.disabled]="hasAccess ? null : true" class="bg-duskBlue list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+          <mat-icon class="mr-3">volume_up</mat-icon>
+          <span class="menu-collapsed">Promote</span>
+        </div>
+      </a>
+      <!-- Logo -->
+      <!--<li class="list-group-item logo-separator d-flex justify-content-center">
+        <img src='https://v4-alpha.getbootstrap.com/assets/brand/bootstrap-solid.svg' width="30" height="30" />
+      </li>-->
+    </ul><!-- List Group END-->
+  </div>
+  <div class="col content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

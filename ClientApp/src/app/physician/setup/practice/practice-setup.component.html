@@ -1,0 +1,66 @@
+
+<div class="row">
+  <div class="col">
+    <button type="button" class="btn-blue" (click)="openDialog()">Add Practice Locations</button>
+  </div>
+  <div class="col text-right">
+    <button *ngIf="healthSystemSetup.primary" type="button" class="btn-main" (click)="confirm()">CONTINUE</button>
+  </div>
+</div>
+
+<hr />
+<div class="row" *ngIf="healthSystemSetup.primary">
+  <div class="col">
+    <h5>{{healthSystemSetup.primary.Name}}</h5>
+    <div class="subtitle" *ngIf="healthSystemSetup.primary.NPI">NPI: {{healthSystemSetup.primary.NPI}}</div>
+  </div>
+  <div class="col">
+    <div *ngIf="healthSystemSetup.primary.HealthSystemLocation">
+      {{healthSystemSetup.primary.HealthSystemLocation[0].Location.Address1}}
+      {{healthSystemSetup.primary.HealthSystemLocation[0].Location.Address2}}
+      {{healthSystemSetup.primary.HealthSystemLocation[0].Location.City}}, {{healthSystemSetup.primary.HealthSystemLocation[0].Location.State}} {{healthSystemSetup.primary.HealthSystemLocation[0].Location.ZipCode}}
+    </div>
+    <div>
+      {{healthSystemSetup.primary.PrimaryPhoneNumber}}
+    </div>
+  </div>
+  <div class="col text-right">
+    <div class="dropdown">
+      <i class="fa fa-pencil-alt fa-border" data-toggle="dropdown"></i>
+      <div class="dropdown-menu">
+        <div class="dropdown-item" (click)="editPrimary()">Edit</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="healthSystemSetup.primary">
+  <div class="row mt-4 mb-4" *ngFor="let h of healthSystemSetup.children; index as i">
+    <div class="col">
+      <h5>{{h.Name}}</h5>
+      <div class="subtitle">NPI: {{h.NPI}}</div>
+    </div>
+    <div class="col">
+      <div *ngIf="healthSystemSetup.primary.HealthSystemLocation">
+        {{h.HealthSystemLocation[0].Location.Address1}}
+        {{h.HealthSystemLocation[0].Location.Address2}}
+        {{h.HealthSystemLocation[0].Location.City}}, {{h.HealthSystemLocation[0].Location.State}} {{h.HealthSystemLocation[0].Location.ZipCode}}
+      </div>
+      <div>
+        {{h.PrimaryPhoneNumber}}
+      </div>
+    </div>
+    <div class="col text-right">
+      <div class="dropdown">
+        <i class="fa fa-pencil-alt fa-border" data-toggle="dropdown"></i>
+        <div class="dropdown-menu">
+          <div class="dropdown-item" (click)="edit(h)">Edit</div>
+          <div class="dropdown-item" (click)="remove(h,i)">Delete</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

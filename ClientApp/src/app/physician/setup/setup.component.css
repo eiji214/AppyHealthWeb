@@ -1,0 +1,302 @@
+.content {
+  flex-grow: 1;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-option {
+  height: auto !important;
+  line-height: initial !important;
+}
+
+.mat-option-text.mat-option-text {
+  white-space: normal;
+}
+
+.mat-option h3 {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 1.25em !important;
+}
+
+.mat-checkbox-background {
+  background-color: #80CBC4 !important;
+}
+
+.mat-dialog-content {
+  max-height: 75vh;
+}
+
+  .mat-dialog-content .form-group {
+    margin-bottom: 5px;
+  }
+
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 1em;
+}
+
+.dropdown-indent {
+  margin-left: 15px;
+}
+
+h2 {
+  margin: 0;
+  padding: 30px 0 20px;
+  color: #1bc1e3;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #253c80;
+  text-transform: uppercase;
+}
+
+h4 {
+  color: #787887;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+h4.form-header {
+  font-weight: normal;
+}
+
+h5 {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 0;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+}
+
+.search-text {
+  flex-grow: 1;
+}
+
+.search-button {
+  margin-left: 10px;
+  color: #838383;
+  text-transform: uppercase;
+}
+
+.btn-search {
+  color: #333;
+  text-transform: uppercase;
+  padding: 6px 40px;
+  border: 1px solid #333;
+  border-radius: 6px;
+}
+
+.btn-main {
+  border-radius: 4px;
+  background-color: #ffd40a;
+  color: #253c80;
+  font-size: 18px;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  border-color: transparent;
+  padding: .375em 1em;
+}
+
+.btn-blue {
+  border-radius: 4px;
+  color: #ffd40a;
+  background-color: #253c80;
+  font-size: 18px;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  border-color: transparent;
+  padding: .375em 1em;
+  text-transform: uppercase;
+}
+
+.btn-back {
+  border-radius: 4px;
+  background-color: transparent;
+  color: #253c80;
+  font-size: 18px;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  border-color: transparent;
+  padding: .375em 1em;
+}
+
+.btn-group-btm {
+  margin-top: 50px;
+}
+
+.btn-group-btm button {
+  margin: 0 20px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  right: 0;
+  left: auto;
+}
+
+.dropdown-menu {
+  right: 0;
+}
+
+i.fa-border {
+  border-radius: 50%;
+  padding: 7px;
+  color: #253c80;
+  border-color: #253c80;
+}
+
+
+.card-body {
+  box-shadow: none;
+  border: 2px solid #707070;
+  border-radius: 10px;
+  color: #838383;
+}
+
+.card-body h3 {
+  margin: 0;
+  color: #333;
+  font-size: 18px;
+}
+
+  .card-body h5 {
+    color: #253c80;
+    text-transform: uppercase;
+    text-align: center;
+    border-bottom: 1px solid #333;
+  }
+
+.text-black {
+  color: #333;
+  font-weight: bold;
+}
+
+.confirm-item {
+  display: flex;
+  flex-flow: row;
+  margin: 10px 0;
+}
+
+.confirm-item .user i {
+  padding: 4px 6px;
+}
+
+.confirm-item .user, .confirm-item .ellipsis {
+  width: 40px;
+}
+
+.confirm-item .name {
+  flex: 1;
+  color: #333;
+}
+
+.activate-checkbox {
+  color: #333;
+}
+
+.activate-header {
+  display: flex;
+  flex-flow: row;
+}
+
+.activate-header .name {
+  flex: 1;
+}
+
+  .item-row-header .name h5 {
+    margin-top: 10px;
+  }
+
+.activate-header .pricing {
+  width: 300px;
+}
+
+.activate-header .activate {
+  width: 130px;
+}
+
+.activate-subtotal {
+  border-top: 1px solid #707070;
+  display: flex;
+  padding: 20px 0;
+}
+
+  .activate-subtotal .subtotal {
+    width: 130px;
+    color: #707070;
+    text-align: center;
+  }
+
+  .activate-subtotal .subtotal-label {
+    flex: 1;
+    text-align: right;
+    color: #707070;
+  }
+
+.activate-total {
+  border-top: 1px solid #707070;
+  background: #F8F8F8;
+  display: flex;
+  padding: 20px 0;
+}
+
+.activate-total .total {
+  width: 130px;
+  color: #333;
+  text-align: center;
+}
+
+.activate-total .total-label {
+  flex: 1;
+  text-align: right;
+  color: #333;
+}
+
+.item-row {
+  display: flex;
+  border-top: 1px solid #333;
+  margin-left: 30px;
+  color: #333;
+  padding: 5px 0;
+}
+
+.item-row .name {
+  flex: 1;
+}
+
+  .item-row .cost {
+    width: 130px;
+    text-align: center;
+    margin-top: 10px;
+    color: #838383
+  }
+
+
+.activate-header .subtitle, .item-row .subtitle {
+  text-transform: uppercase;
+  color: #838383;
+}
+
+
+.checkout-panel {
+  width: 485px;
+}

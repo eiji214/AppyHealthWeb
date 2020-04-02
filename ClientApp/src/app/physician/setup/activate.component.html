@@ -1,0 +1,106 @@
+<h2>Activate Practice</h2>
+
+<div class="mt-4" *ngFor="let h of healthSystemPrices">
+  <div class="activate-header">
+    <div class="name">
+      <h5>{{h.healthSystem.Name}}</h5>
+      <div class="subtitle">
+        {{h.healthSystem.HealthSystemLocation[0].Location.Address1}} {{h.healthSystem.HealthSystemLocation[0].Location.Address2}} {{h.healthSystem.HealthSystemLocation[0].Location.City}}, {{h.healthSystem.HealthSystemLocation[0].Location.State}} {{h.healthSystem.HealthSystemLocation[0].Location.ZipCode}}
+      </div>
+    </div>
+    <div class="pricing">
+      <mat-form-field *ngIf="tiers.length > 0">
+        <mat-select placeholder="Select Tier" [(ngModel)]="selectedTier" (selectionChange)="tierChanged($event, h)">
+          <mat-select-trigger>
+            {{getDesc(selectedTier)}}
+          </mat-select-trigger>
+          <mat-option *ngFor="let t of tiers" [value]="t.TierId">
+            <div class="mt-2">{{t.TierDesc}}</div>
+            <div *ngIf="t.TierId !== 0" class="dropdown-indent mb-2">
+              <div>Location: ${{t.TierPrice}}</div>
+              <div>Physicians/month: $50</div>
+              <div>Mid-Levels/month: $25</div>
+              <div>Staff/month: FREE</div>
+            </div>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="activate p-2">
+      <button type="button" (click)="finish()" class="btn-main">Activate</button>
+    </div>
+  </div>
+  <div class="activate-lines">
+    <div class="physicians" *ngIf="h.physicians.length">
+      <div class="item-row item-row-header">
+        <div class="name">
+          <h5>Physicians</h5>
+        </div>
+        <div class="cost">
+          <mat-checkbox class="activate-checkbox"
+          (change)="$event ? masterPhysicianToggle() : null"
+                    [checked]="h.physiciansSelection.hasValue() && isAllPhysiciansSelected()"
+                    [indeterminate]="h.physiciansSelection.hasValue() && !isAllPhysiciansSelected()">Select All</mat-checkbox>
+        </div>
+      </div>
+      <div class="item-row" *ngFor="let p of h.physicians">
+        <div class="name">
+          <h5>{{p.practitioner.FullName}}</h5>
+          <div class="subtitle">
+            {{h.healthSystem.HealthSystemLocation[0].Location.Address1}} {{h.healthSystem.HealthSystemLocation[0].Location.Address2}} {{h.healthSystem.HealthSystemLocation[0].Location.City}}, {{h.healthSystem.HealthSystemLocation[0].Location.State}} {{h.healthSystem.HealthSystemLocation[0].Location.ZipCode}}
+          </div>
+        </div>
+        <div class="cost">
+          <div *ngIf="p.isFree" class="">FREE</div>
+          <div *ngIf="!p.isFree">
+            <mat-checkbox class="activate-checkbox" [checked]="h.physiciansSelection.isSelected(p.practitioner)"
+            (change)="$event ? togglePhysician(p.practitioner) : null" ></mat-checkbox>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="midlevels" *ngIf="h.midLevels.length">
+      <div class="item-row item-row-header">
+          <div class="name">
+            <h5>Mid-Levels</h5>
+          </div>
+          <div class="cost">
+            <mat-checkbox class="activate-checkbox" 
+            (change)="$event ? masterMidLevelToggle() : null"
+            [checked]="h.midLevelssSelection.hasValue() && isAllMidLevelsSelected()"
+            [indeterminate]="h.midLevelssSelection.hasValue() && !isAllMidLevelsSelected()">Select All</mat-checkbox>
+          </div>
+        </div>
+        <div class="item-row" *ngFor="let p of h.midLevels">
+          <div class="name">
+            <h5>{{p.practitioner.FullName}}</h5>
+            <div class="subtitle">
+              {{h.healthSystem.HealthSystemLocation[0].Location.Address1}} {{h.healthSystem.HealthSystemLocation[0].Location.Address2}} {{h.healthSystem.HealthSystemLocation[0].Location.City}}, {{h.healthSystem.HealthSystemLocation[0].Location.State}} {{h.healthSystem.HealthSystemLocation[0].Location.ZipCode}}
+            </div>
+          </div>
+          <div class="cost">
+            <div *ngIf="p.isFree" class="">FREE</div>
+            <div *ngIf="!p.isFree">
+              <mat-checkbox class="activate-checkbox" 
+              [checked]="h.midLevelssSelection.isSelected(p.practitioner)"
+              (change)="$event ? toggleMidLevel(p.practitioner) : null"
+              ></mat-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="activate-subtotal">
+    <div class="subtotal-label">Sub Total:</div>
+    <div class="subtotal">${{getSubtotal(h)}}</div>
+  </div>
+</div>
+
+<div class="activate-total">
+  <div class="total-label">Total:</div>
+  <div class="total">${{getTotal()}}</div>
+</div>
+
+<div class="text-right mt-2">
+  <button type="button" class="btn-main" (click)="checkout()"><i class="fa fa-shopping-cart"></i> Checkout</button>
+</div>

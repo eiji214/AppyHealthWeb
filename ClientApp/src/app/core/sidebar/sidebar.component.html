@@ -1,0 +1,80 @@
+<div class="sidebar">
+  <img src="/assets/images/Footer%20Logo.png" class="logo" />
+  <div class="sidebar__menu-label">Menu</div>
+  <ng-content select="[sidebar-menu-item]"></ng-content>
+  <!--<a class="menu-item first" routerLink="/calendar" routerLinkActive="selected">
+    <div class="blue-bar"></div>
+    <i class="material-icons">
+      calendar_today
+    </i>
+    <span>Schedule</span>
+  </a>-->
+
+  <a class="menu-item" routerLink="/referrals" routerLinkActive="selected">
+    <div class="blue-bar"></div>
+    <i class="material-icons">
+      schedule
+    </i>
+    <span>Referrals</span>
+  </a>
+
+  <a class="menu-item" routerLink="/patients" routerLinkActive="selected">
+    <div class="blue-bar"></div>
+    <i class="material-icons">
+      face
+    </i>
+    <span>Patients</span>
+  </a>
+
+  <a class="menu-item" routerLink="/practitioners" routerLinkActive="selected">
+    <div class="blue-bar"></div>
+    <i class="material-icons">
+      healing
+    </i>
+    <span>Providers</span>
+  </a>
+
+  <a class="menu-item" routerLink="/chats" routerLinkActive="selected">
+    <div class="blue-bar"></div>
+    <i class="material-icons">
+      chat_bubble
+    </i>
+    <span>Conversations</span>
+  </a>
+
+  <a *ngIf="user && (user.Role == 'CallCenter' || user.Role == 'Admin')" class="menu-item" routerLink="/admin/users" routerLinkActive="selected">
+    <div class="blue-bar"></div>
+    <i class="material-icons">
+      people
+    </i>
+    <span>Users</span>
+  </a>
+  <ul class="sub-menu" *ngIf="user && (user.Role == 'CallCenter' || user.Role == 'Admin')">
+    <li class="sub-menu-item"><a routerLink="/admin/users/adminusers" [class]="appyHealthUserActive()">Appy Health</a></li>
+    <li class="sub-menu-item"><a routerLink="/admin/users/providers/new" routerLinkActive="selected">New Providers</a></li>
+    <li class="sub-menu-item"><a routerLink="/admin/users/providers/active" routerLinkActive="selected">Active Providers</a></li>
+    <li class="sub-menu-item"><a routerLink="/admin/users/patients" routerLinkActive="selected">Patient Signups</a></li>
+  </ul>
+
+  <!--<ul class="sub-menu" *ngIf="subPatients == true">
+    <li class="sub-menu-item"><a routerLink="/patients" routerLinkActive="selected">All Patients</a></li>
+    <li class="sub-menu-item"><a routerLink="/referrals" routerLinkActive="selected">Referrals</a></li>
+  </ul>-->
+  <!--<div class="menu--footer--sub">
+      <div class="sidebar__menu-label">Account</div>
+      <div class="menu--subitem">Account Info</div>
+      <div class="menu--subitem">Notifications</div>
+      <div class="menu--subitem">Settings</div>
+    </div>-->
+  <div class="menu--profile" *ngIf="user">
+    <header>{{ user.Practitioner?.FullName || 'Appy.Health' }}</header>
+    <aside>Logged in as {{ user.Name }}</aside>
+    <p *ngIf="user.IsImpersonating">
+      <button class="anchor-button" (click)="stopImpersonating()">Stop Impersonating</button>
+    </p>
+    <span *ngIf="user.Practitioner != null">
+      <a href="/practitioners/{{ user.Practitioner?.Id }}">Provider Profile</a> |
+    </span>
+    <a href="/api/authorize/signout" class="btn--logout">Sign Out</a>
+  </div>
+</div>

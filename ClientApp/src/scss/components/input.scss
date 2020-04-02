@@ -1,0 +1,33 @@
+.input--grey, .ng-input--grey > div.ng-select-container {
+  background: rgba(37, 58, 128, 0.03);
+  border: 1px solid #F3F3F4;
+  border-radius: 4px;
+  height: 32px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  &:focus {
+    box-shadow: (0 0 2px #FFC70A) !important;
+    border: 1px solid #FFC70A !important;
+    outline: none !important;
+  }
+}
+
+
+
+ 
+
+.mat-input-reset {
+  .mat-form-field-infix {
+    border: none;
+    padding: 0;
+
+    > input {
+      margin: 0;
+    }
+  }
+
+  .mat-form-field-underline {
+    display: none !important;
+  }
+}

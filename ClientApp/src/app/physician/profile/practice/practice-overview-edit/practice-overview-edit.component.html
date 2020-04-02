@@ -1,0 +1,178 @@
+<h1 class="title" mat-dialog-title>Edit {{ panelTitle }} </h1>
+<div class="appy-material-theme" mat-dialog-content>
+
+  <div class="practice-modal-form">
+
+    <div *ngIf="data.panelType === practicePanelEnum.main" class="form-container">
+
+      <div class="overview-image-container">
+        <img *ngIf="data.healthSystem.LogoUrl" [src]="data.healthSystem.LogoUrl" class="overview-image" />
+        <img *ngIf="!data.healthSystem.LogoUrl" src="assets/images/ellipse.png" class="overview-image" />
+      </div>
+
+      <h5>Practice Info</h5>
+
+      <div class="practice-modal-row">
+        <mat-form-field class="" appearance="outline">
+          <mat-label>Practice Name</mat-label>
+          <input [(ngModel)]="data.healthSystem.Name" matInput placeholder="Practice Name">
+        </mat-form-field>
+      </div>
+
+      <div class="practice-modal-row">
+        <mat-form-field class="margin-right half-width-practice-child" appearance="outline">
+          <mat-label>Specialty</mat-label>
+          <input [(ngModel)]="data.healthSystem.Specialty" matInput placeholder="Specialty">
+        </mat-form-field>
+        <mat-form-field class=" half-width-practice-child" appearance="outline">
+          <mat-label>Web Address</mat-label>
+          <input [(ngModel)]="data.healthSystem.PracticeWebsite" matInput placeholder="Web Address">
+        </mat-form-field>
+      </div>
+
+      <div class="practice-modal-row">
+        <mat-form-field class="margin-right half-width-practice-child" appearance="outline">
+          <mat-label>Main Phone#</mat-label>
+          <input [(ngModel)]="data.healthSystem.PracticeMainPhone" matInput placeholder="Main Phone#">
+        </mat-form-field>
+        <mat-form-field class=" half-width-practice-child" appearance="outline">
+          <mat-label>Fax #</mat-label>
+          <input [(ngModel)]="data.healthSystem.PracticeFax" matInput placeholder="Fax #">
+        </mat-form-field>
+      </div>
+
+
+      <h5>Practice Address</h5>
+
+      <div class="practice-modal-row">
+        <mat-form-field class="margin-right half-width-practice-child" appearance="outline">
+          <mat-label>Address 1</mat-label>
+          <input [(ngModel)]="data.healthSystem?.HealthSystemLocation[0]?.Location.Address1" matInput placeholder="Address 1">
+        </mat-form-field>
+        <mat-form-field class="half-width-practice-child" appearance="outline">
+          <mat-label>Address 2</mat-label>
+          <input [(ngModel)]="data.healthSystem?.HealthSystemLocation[0]?.Location.Address2" matInput placeholder="Address 2">
+        </mat-form-field>
+      </div>
+      <div class="practice-modal-row">
+        <mat-form-field class="margin-right third-width-practice-child" appearance="outline">
+          <mat-label>City</mat-label>
+          <input [(ngModel)]="data.healthSystem?.HealthSystemLocation[0]?.Location.City" matInput placeholder="City">
+        </mat-form-field>
+        <mat-form-field class="margin-right third-width-practice-child" appearance="outline">
+          <mat-label>State</mat-label>
+          <input [(ngModel)]="data.healthSystem?.HealthSystemLocation[0]?.Location.State" matInput placeholder="State">
+        </mat-form-field>
+        <mat-form-field class="third-width-practice-child" appearance="outline">
+          <mat-label>Zip</mat-label>
+          <input [(ngModel)]="data.healthSystem?.HealthSystemLocation[0]?.Location.ZipCode" matInput placeholder="Zip">
+        </mat-form-field>
+      </div>
+
+      <h5>Practice Availability and Hours</h5>
+
+      <div class="practice-modal-row">
+        <mat-form-field class="margin-right third-width-practice-child" appearance="outline">
+          <mat-label>Day</mat-label>
+          <mat-select placeholder="Day" [(ngModel)]="day">
+            <mat-option *ngFor="let d of days" value="{{d}}">{{d}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="margin-right third-width-practice-child" appearance="outline">
+          <mat-label>Open</mat-label>
+          <input [(ngModel)]="open" matInput placeholder="Open Time">
+        </mat-form-field>
+        <mat-form-field class="third-width-practice-child" appearance="outline">
+          <mat-label>Closed</mat-label>
+          <input [(ngModel)]="close" matInput placeholder="Close Time">
+        </mat-form-field>
+        <div style="margin: 15px 0 0 15px">
+          <button mat-raised-button (click)="addHours()" cdkFocusInitial color="accent">Add</button>
+        </div>
+      </div>
+
+      <!-- Hours ? -->
+      <div class="hours-list">
+        <ul class="no-style">
+          <li *ngFor="let h of hours">
+            <i class="fa fa-times text-danger" (click)="removeHours(h)"></i>
+            {{h.day}} - {{h.open}} to {{h.close}}
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div *ngIf="data.panelType === practicePanelEnum.about" class="form-container">
+      <mat-form-field class="half-width" appearance="outline">
+        <mat-label>About</mat-label>
+        <textarea [(ngModel)]="data.healthSystem.Bio" matInput placeholder="About/Bio"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="data.panelType === practicePanelEnum.symptoms" class="form-container">
+      <mat-form-field class="half-width" appearance="outline">
+        <mat-label>Symptoms</mat-label>
+        <textarea [(ngModel)]="data.healthSystem.Symptoms" matInput placeholder="Symptoms"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="data.panelType === practicePanelEnum.conditions" class="form-container">
+      <mat-form-field class="half-width" appearance="outline">
+        <mat-label>Conditions</mat-label>
+        <textarea [(ngModel)]="data.healthSystem.Conditions" matInput placeholder="Conditions"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="data.panelType === practicePanelEnum.specialtyServices" class="form-container">
+
+      <div *ngIf="data.healthSystem.HealthSystemSpecialty.length > 0">
+
+        <div *ngFor="let s of data.healthSystem?.HealthSystemSpecialty; let i = index;">
+
+          <div class="practice-modal-row">
+            <mat-form-field class="margin-right half-width-practice-child" appearance="outline">
+              <mat-label>Speciality Name</mat-label>
+              <input [(ngModel)]="data.healthSystem?.HealthSystemSpecialty[i]?.Specialty.Name" matInput placeholder="Speciality Name">
+            </mat-form-field>
+            <div class="half-width-practice-child">
+              &nbsp;
+            </div>
+          </div>
+          <div class="practice-modal-row">
+            <mat-form-field class="full-width-practice-child" appearance="outline">
+              <mat-label>Speciality Category</mat-label>
+              <textarea [(ngModel)]="data.healthSystem?.HealthSystemSpecialty[i]?.Specialty.Category" matInput placeholder="Speciality Category"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div *ngIf="data.panelType === practicePanelEnum.adminStaff" class="form-container">
+
+    </div>
+
+  </div>
+</div>
+
+<div class="appy-material-theme" align="end" mat-dialog-actions>
+  <button mat-stroked-button (click)="onNoClick()" color="accent">Cancel</button>
+  <button mat-raised-button (click)="onOkClick()" cdkFocusInitial color="accent">Save Changes</button>
+</div>
+
+<!--
+
+
+
+<div *ngFor="let item of ValueItem; let i=index">
+   <label> {{item.name}}</label>
+   <input name="city" [(ngModel)]="address[i].state"/>
+</div>
+
+<div *ngFor="let item of ValueItem">
+   <label> {{item.city}}</label>
+   <input name="city" [(ngModel)]="item.state"/>
+</div>
+ -->

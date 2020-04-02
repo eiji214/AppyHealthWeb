@@ -1,0 +1,81 @@
+﻿@page
+@model AppyHealthWeb.Pages.Physician.ProfileModel
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "Layout/_PhysicianLayout";
+}
+
+    <a asp-page="/Physician/Profile/EditProfile" class="btn btn-outline-primary float-right m-4">Edit</a>
+
+<h2>Profile</h2>
+
+<div class="row">
+    <section class="col">
+        <h3>@Model.Name</h3>
+        <h3>@Model.PracticeName</h3>
+        <h4>@Model.Specialty</h4>
+
+        <div class="physician">
+            Phone: (555) 555-5555
+        </div>
+
+        <div class="staff buffer-top">
+            <h3>Staff Information</h3>
+            <h4>Doctors</h4>
+            <ul>
+                <li>Dr. Fred Johnson</li>
+                <li>Dr. Frank Johnson</li>
+            </ul>
+            <h4>Staff</h4>
+            <ul>
+                <li>Fred Johnson - Nurse</li>
+                <li>Frank Johnson - Nurse</li>
+            </ul>
+        </div>
+    </section>
+    <section class="col">
+        <h4>Practice Information</h4>
+        <div class="practice card">
+            <div class="card-header">Practice #1</div>
+            <div class="card-body row">
+                <div class="address col">
+                    123 Fake St. <br />
+                    Suite 100 <br />
+                    City, ST 55555 <br />
+                    <h4 class="buffer-top">Phone</h4>
+                    (555) 555-5555
+
+                </div>
+                <div class="hours col">
+                    <h4>Days and Hours</h4>
+                    <ul>
+                        <li>Monday 10am - 10pm</li>
+                        <li>Wednesday 10am - 10pm</li>
+                        <li>Friday 10am - 10pm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="practice card buffer-top">
+            <div class="card-header">Practice #2</div>
+            <div class="card-body row">
+                <div class="address col">
+                    123 Fake St. <br/>
+                    Suite 100 <br/>
+                    City, ST 55555 <br />
+                    <h4 class="buffer-top">Phone</h4>
+                    (555) 555-5555
+
+                </div>
+                <div class="hours col">
+                    <h4>Days and Hours</h4>
+                    <ul>
+                        <li>Tuesday 10am - 10pm</li>
+                        <li>Thursday 10am - 10pm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

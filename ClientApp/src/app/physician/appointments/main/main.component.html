@@ -1,0 +1,26 @@
+<!--<div class="schedule-slider">
+  <div class="slider-header">
+    Schedule <i class="fa fa-info-circle"></i>
+  </div>
+  <div class="slider-calendar">
+
+  </div>
+</div>-->
+
+<div class="mt-4 text-center">
+  <div class="float-left">
+    <select [(ngModel)]="controlType">
+      <option>Week</option>
+      <option>Month</option>
+    </select>
+  </div>
+
+  <select [(ngModel)]="selected" (change)="associateChanged()">
+    <option *ngFor="let a of associates" [value]="a.Id">{{a.FullName}}</option>
+  </select>
+</div>
+
+<div class="mt-4"></div>
+
+<week *ngIf="controlType==='Week'" [id]="selected" [appointments]="filteredAppointments"></week>
+<calendar *ngIf="controlType==='Month'" [id]="selected" [appointments]="filteredAppointments"></calendar>

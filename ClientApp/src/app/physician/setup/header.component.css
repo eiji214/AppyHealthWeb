@@ -1,0 +1,42 @@
+.header {
+  list-style: none;
+  overflow: hidden;
+  font: 14px Helvetica;
+  font-weight: 600;
+  display: flex;
+  padding-left: 0;
+}
+
+    .header li {
+      color: #787887;
+      width: 100%;
+        position: relative;
+        cursor: default;
+        list-style-image: none;
+        list-style-type: none;
+        padding: 10px 0 10px 20px;
+        text-align: left;
+    }
+
+        .header li.active h3 {
+          color: #1bc1e3;
+        }
+
+  .header h3 {
+    font-size: 18px;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 5px;
+    color: #787887;
+  }
+
+.badge {
+  background: #253c80;
+  border-radius: 50%;
+  padding: 6px 8px;
+  text-align: center;
+}
+
+.active .badge {
+  color: #ffd40a;
+}

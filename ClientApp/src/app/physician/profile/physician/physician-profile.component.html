@@ -1,0 +1,285 @@
+<!--<a *ngIf="practitioner$" [routerLink]="['/physician/profile/edit']" class="btn btn-outline-primary float-right m-4">Edit</a>-->
+
+<h2 class="page-heading">Physician Profile</h2>
+
+
+<div class="appy-material-theme" *ngIf="practitioner$ | async as doctor">
+  <div class="profile-detail-panel practitioner-details">
+
+
+    <mat-card class="left-panel">
+
+
+
+      <img mat-card-image (mouseover)="uploadPhotoButton=true" (mouseout)="uploadPhotoButton=false" src="{{ photoUrl || doctor.PhotoUrl }}" *ngIf="photoUrl || doctor.PhotoUrl" />
+      <img mat-card-image src="assets/images/female.jpg" *ngIf="!doctor.PhotoUrl && doctor.Gender === 'F'" />
+      <img mat-card-image src="assets/images/male.png" *ngIf="!doctor.PhotoUrl && doctor.Gender !== 'F'" />
+      <span *ngIf="doctor.CanEdit">
+
+        <input type="file" id="photo" #photo (change)="uploadPhoto(doctor)" />
+        <label for="photo">
+          <mat-icon>add_a_photo</mat-icon>
+        </label>
+      </span>
+
+      <mat-card-content>
+        <h3>
+          {{doctor.FullName}}
+        </h3>
+        <p class="left-panel-practice-name grey-text" *ngIf="doctor.PracticeName">
+          {{doctor.PracticeName}}
+        </p>
+        <p class="left-panel-subspecialty" *ngIf="doctor.SubSpecialty">
+          {{ doctor.SubSpecialty }}
+        </p>
+
+        <i class="material-icons" *ngIf="doctor.CanEdit" (click)="impersonatePractitioner(doctor)">
+          supervised_user_circle
+        </i>
+
+        <div class="view-switcher">
+          <button mat-raised-button (click)="switchToPhysician()"
+                  [color]="viewSwitch === 'physician'? 'primary': ''">
+            Physician Information
+          </button>
+          <button mat-raised-button (click)="switchToPractice()"
+                  [color]="viewSwitch === 'practice'? 'primary': ''">
+            Practice Information
+          </button>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+
+
+    <mat-card class="right-panel" *ngIf="viewSwitch === 'physician'">
+
+      <mat-card-content>
+        <div class="icons action-items">
+
+          <button *ngIf="doctor.CanEdit && !isEditing" mat-icon-button mat-stroked-button color="primary"
+            (click)="toggleEdit()">
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button class="cancel-button" mat-stroked-button *ngIf="doctor.CanEdit && isEditing" color="accent"
+            (click)="toggleEdit()">Cancel</button>
+          <button mat-raised-button *ngIf="doctor.CanEdit && isEditing" color="accent"
+            (click)="saveChanges(doctor)">Save
+            Changes</button>
+        </div>
+
+
+        <div *ngIf="doctor.CanEdit || doctor.PracticeName">
+          <span *ngIf="!isEditing">
+            <label class="left-panel-sub-headings">Phone Number</label>
+            <p>
+              <a href="tel:{{doctor.PrimaryPhoneNumber}}">{{doctor.PrimaryPhoneNumber | phone}}</a>
+            </p>
+          </span>
+
+          <mat-form-field class="half-width" *ngIf="isEditing" appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input [(ngModel)]="doctor.PrimaryPhoneNumber" matInput placeholder="Phone Number">
+          </mat-form-field>
+        </div>
+        <div *ngIf="doctor.CanEdit || doctor.PracticeName">
+
+          <span *ngIf="!isEditing">
+            <label class="left-panel-sub-headings">Email Address</label>
+            <p>
+              <a href="mailto:{{doctor.PrimaryEmailAddress}}">{{doctor.PrimaryEmailAddress}}</a>
+            </p>
+          </span>
+
+          <mat-form-field class="half-width" *ngIf="isEditing" appearance="outline">
+            <mat-label>Email Address</mat-label>
+            <input [(ngModel)]="doctor.PrimaryEmailAddress" matInput placeholder="Email Address">
+          </mat-form-field>
+        </div>
+        <div *ngIf="doctor.CanEdit || doctor.PracticeName">
+          <span *ngIf="!isEditing">
+            <label class="left-panel-sub-headings">Practice Name</label>
+            <p class="grey-text">{{doctor.PracticeName}}</p>
+          </span>
+          <mat-form-field class="half-width" *ngIf="isEditing" appearance="outline">
+            <mat-label>Practice Name</mat-label>
+            <input [(ngModel)]="doctor.PracticeName" matInput placeholder="Practice Name">
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="doctor.CanEdit || doctor.Specialty">
+          <span *ngIf="!isEditing">
+            <label class="left-panel-sub-headings">Specialty</label>
+            <p class="grey-text">{{doctor.Specialty}}</p>
+          </span>
+          <mat-form-field class="half-width" *ngIf="isEditing" appearance="outline">
+            <mat-label>Specialty</mat-label>
+            <input [(ngModel)]="doctor.Specialty" matInput placeholder="Specialty">
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="doctor.CanEdit || doctor.SubSpecialty">
+          <span *ngIf="!isEditing">
+            <label class="left-panel-sub-headings">Sub-Specialty</label>
+            <p class="grey-text">{{doctor.SubSpecialty}}</p>
+          </span>
+          <mat-form-field class="half-width" *ngIf="isEditing" appearance="outline">
+            <mat-label>Sub-Specialty</mat-label>
+            <input [(ngModel)]="doctor.SubSpecialty" matInput placeholder="Sub-Specialty">
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="doctor.CanEdit || doctor.Symptoms">
+          <span *ngIf="!isEditing">
+            <label class="left-panel-sub-headings">Symptoms Treated</label>
+            <p class="grey-text">{{doctor.Symptoms}}</p>
+          </span>
+          <mat-form-field class="half-width" *ngIf="isEditing" appearance="outline">
+            <mat-label>Symptoms Treated</mat-label>
+            <input [(ngModel)]="doctor.Symptoms" matInput placeholder="Symptoms Treated">
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="doctor.CanEdit || doctor.HospitalAffiliations">
+          <span *ngIf="!isEditing">
+            <label class="left-panel-sub-headings">Hospital Affiliations</label>
+            <p class="grey-text">{{doctor.HospitalAffiliations}}</p>
+          </span>
+          <mat-form-field class="half-width" *ngIf="isEditing" appearance="outline">
+            <mat-label>Hospital Affiliations</mat-label>
+            <input [(ngModel)]="doctor.HospitalAffiliations" matInput placeholder="Hospital Affiliations">
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="doctor.CanEdit || doctor.BoardCertified">
+          <span *ngIf="!isEditing">
+            <label class="left-panel-sub-headings">Board Certified</label>
+            <p class="grey-text">{{doctor.BoardCertified ? 'Yes' : 'No'}}</p>
+          </span>
+          <div class="radio-buttons" *ngIf="isEditing">
+            <label id="gender-radio-group-label">Board Certified</label>
+            <mat-radio-group *ngIf="isEditing" class="certified-radio-group" [(ngModel)]="doctor.BoardCertified">
+              <mat-radio-button class="certified-radio-button" [value]="true">
+                Yes
+              </mat-radio-button>
+              <mat-radio-button class="certified-radio-button" [value]="false">
+                No
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+
+        </div>
+
+        <div *ngIf="doctor.CanEdit || doctor.Gender">
+          <span *ngIf="!isEditing">
+            <label class="left-panel-sub-headings">Gender</label>
+            <p class="grey-text">{{doctor.Gender}}</p>
+          </span>
+
+          <div class="radio-buttons" *ngIf="isEditing">
+            <label id="gender-radio-group-label">Gender</label>
+            <mat-radio-group class="gender-radio-group" [(ngModel)]="doctor.Gender">
+              <mat-radio-button class="gender-radio-button" [value]="'M'">
+                Male
+              </mat-radio-button>
+              <mat-radio-button class="gender-radio-button" [value]="'F'">
+                Female
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+
+        </div>
+
+        <div *ngIf="doctor.CanEdit">
+          <span>
+            <label class="left-panel-sub-headings">National Provider Identifier (NPI)</label>
+            <p class="grey-text">{{doctor.NPI}}</p>
+          </span>
+          <!--<mat-form-field class="half-width" *ngIf="isEditing" appearance="outline">
+            <mat-label>National Provider Identifier (NPI)</mat-label>
+            <input [(ngModel)]="doctor.NPI" matInput placeholder="NPI">
+          </mat-form-field>-->
+
+        </div>
+
+        <div *ngIf="doctor.CanEdit || doctor.Bio">
+          <span *ngIf="!isEditing">
+            <label class="left-panel-sub-headings">Bio </label>
+            <p class="form__item--large grey-text">
+              {{doctor.Bio}}
+            </p>
+          </span>
+
+          <mat-form-field class="full-width" *ngIf="isEditing" appearance="outline">
+            <mat-label>Bio</mat-label>
+            <textarea matInput [(ngModel)]="doctor.Bio" matTextareaAutosize matAutosizeMinRows="7"
+              placeholder="Bio"></textarea>
+          </mat-form-field>
+
+        </div>
+
+        <div *ngIf="doctor.CanEdit || doctor.Education">
+          <span *ngIf="!isEditing">
+            <label class="left-panel-sub-headings">Education </label>
+            <p class="form__item--large grey-text">
+              {{doctor.Education}}
+            </p>
+          </span>
+
+          <mat-form-field class="full-width" *ngIf="isEditing" appearance="outline">
+            <mat-label>Education</mat-label>
+            <textarea matInput [(ngModel)]="doctor.Education" matTextareaAutosize matAutosizeMinRows="7"
+              placeholder="Education"></textarea>
+          </mat-form-field>
+
+        </div>
+
+        <div *ngIf="doctor.CanEdit || doctor.HumanTouch">
+          <span *ngIf="!isEditing">
+            <label class="left-panel-sub-headings">Human Touch</label>
+            <p>{{doctor.HumanTouch}}</p>
+          </span>
+          <mat-form-field class="half-width" *ngIf="isEditing" appearance="outline">
+            <mat-label>Human Touch</mat-label>
+            <input [(ngModel)]="doctor.NHumanTouchPI" matInput placeholder="Human Touch">
+          </mat-form-field>
+
+        </div>
+
+        <!-- <div *ngIf="doctor.CanEdit || doctor.InsuranceTypes as insurance">
+          <label class="left-panel-sub-headings">Insurance Carriers</label>
+          <p *ngFor="let insurancePlan of insurance">
+            <span *ngFor="let doctorInsurance of doctor.PractitionerInsurancePlan">
+              <span *ngIf="insurancePlan.Id == doctorInsurance.InsuranceId">{{insurancePlan.Name}}</span>
+            </span>
+          </p>
+          <div class="hidden" *ngFor="let insurancePlan of insurance">
+            <div *ngFor="let doctorInsurance of doctor.PractitionerInsurancePlan">
+              <div *ngIf="insurancePlan.Id == doctorInsurance.InsuranceId">{{insurancePlan.Name}}</div>
+            </div>
+          </div>
+        </div> -->
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="right-panel" *ngIf="viewSwitch === 'practice'">
+      <mat-card-content class="map-container">
+
+        <agm-map [latitude]="32.7460" [longitude]="-96.9978" [zoom]="8" [disableDefaultUI]="false" [zoomControl]="true"
+          [styles]="mapStyles">
+
+          <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label">
+
+
+          </agm-marker>
+
+
+        </agm-map>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div>

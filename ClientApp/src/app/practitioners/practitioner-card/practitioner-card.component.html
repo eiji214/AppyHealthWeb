@@ -1,0 +1,10 @@
+<div *ngIf="practitioner" [ngClass]="{ compact: compact }">
+  <figure style="background-image: url('{{ practitioner.PhotoUrl }}')">
+  </figure>
+  <h1>{{practitioner.FullName}}</h1>
+  <h2>{{practitioner.PracticeName}}</h2>
+  <h3 *ngIf="practitioner.PractitionerLocation?.length > 1">
+    {{practitioner.PractitionerLocation[0].Location.Address.FullAddress}}
+  </h3>
+  <h4>{{ practitioner.Specialty }}</h4>
+</div>

@@ -1,0 +1,49 @@
+<div mat-dialog-title>
+  <i class="float-right fa fa-times" (click)="close()"></i>
+  {{headerText}} Appointment
+</div>
+<div mat-dialog-content>
+  <div *ngIf="showError" class="alert alert-danger">An error occurred while searching for your NPI. Please try again.</div>
+  <div *ngIf="showWarning" class="alert alert-warning">Your NPI could not be found. Please try again.</div>
+
+  <div class="search">
+    <div class="search-text">
+      <h4>Search for Patient</h4>
+      <input type="text" name="npi" id="npi" class="form-control" [(ngModel)]="name" />
+    </div>
+    <div class="search-button">
+      <div>
+        <mat-checkbox (click)="enterManually()">Add New Patient</mat-checkbox>
+      </div>
+      <button type="button" class="btn btn-search" (click)="search()">Search</button>
+    </div>
+  </div>
+
+
+  <div class="mt-4">
+    <h4 class="form-header">Patient Information</h4>
+
+    <div class="form-row mt-4">
+      <div class="col">
+        <mat-form-field>
+          <input matInput type="text" name="name" [(ngModel)]="referral.PatientId" placeholder="Patient Id" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="referral.AppointmentDate" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <!--<mat-form-field>
+          <input matInput type="text" name="date" [(ngModel)]="referral.AppointmentDate" placeholder="Appointment Date"/>
+        </mat-form-field>-->
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div mat-dialog-actions class="mt-3">
+  <button type="button" class="btn-main" *ngIf="referral.PatientId" (click)="add()">{{buttonText}}</button>
+</div>

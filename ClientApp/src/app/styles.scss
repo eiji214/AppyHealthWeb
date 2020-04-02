@@ -1,0 +1,88 @@
+/* You can add global styles to this file, and also import other style files */
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+//angular material
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+//ng-select
+@import "~@ng-select/ng-select/themes/default.theme.css";
+/*@import "~@ng-select/ng-select/themes/material.theme.css";*/
+
+// reset
+@import '../scss/_reset';
+
+// variables
+@import '../scss/_variables';
+
+//components
+@import "../scss/components/action-items";
+@import "../scss/components/button";
+@import "../scss/components/card";
+@import "../scss/components/chat";
+@import "../scss/components/checkbox";
+@import "../scss/components/dropdown";
+@import "../scss/components/fileupload";
+@import "../scss/components/form";
+@import "../scss/components/header";
+@import "../scss/components/input";
+@import "../scss/components/label";
+@import "../scss/components/line";
+@import "../scss/components/modal";
+@import "../scss/components/panel";
+@import "../scss/components/select";
+@import "../scss/components/tab";
+@import "../scss/components/table";
+
+body {
+  font-family: 'Rubik';
+  background-color: #F8F8FC;
+}
+
+a {
+  text-decoration: none;
+}
+
+.material-icons.round-border {
+  border: 1px solid;
+  border-radius: 60px;
+  font-weight: 600;
+}
+
+.more-vert-menu {
+  position: relative;
+  display: inline-block;
+
+  > div {
+    display: none;
+    position: absolute;
+    background-color: white;
+    left: -150px;
+    box-shadow: 0px 7px 7px 0px rgba(0, 0, 0, 0.14);
+    z-index: 1;
+
+    > a {
+      width: 150px;
+      text-align: center;
+      padding: 15px;
+      display: block;
+      cursor: pointer;
+
+      &:hover {
+        color: #002685;
+      }
+    }
+  }
+
+  &:hover > div {
+    display: block;
+  }
+}
+
+.no-data {
+  font-weight: 400;
+  padding: 50px;
+  text-align: center;
+}

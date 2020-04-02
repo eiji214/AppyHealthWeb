@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "Shared/_Layout";
+}
+
+<aside class="sidebar">
+    <ul>
+        <li class="active"><a asp-page="/Physician/Dashboard"><img class="icon" src="~/images/icons/dashboard-icon.svg" />Dashboard</a></li>
+        <li><a asp-page="/Physician/Appointments"><img src="~/images/icons/appointments-icon.svg" />Appointments</a></li>
+        <li><a asp-page="/Physician/Referrals"><img src="~/images/icons/referrals-icon.svg" />Referrals</a></li>
+        <li><a asp-page="/Physician/Patients"><img src="~/images/icons/patients-icon.svg" />Patients</a></li>
+        <li>
+            <img src="~/images/icons/settings-icon.svg" />Settings <i class="fas fa-chevron-down"></i>
+            <ul>
+                <li><a asp-page="/Physician/Profile"><img src="~/images/icons/patients-icon.svg" />Profile</a></li>
+            </ul>
+        </li>
+        <li><img src="~/images/icons/help-center-icon.svg" />Help Center</li>
+        <li><img src="~/images/icons/analytics-icon.svg" />Analytics</li>
+        <li><img src="~/images/icons/analytics-icon.svg" />Promote</li>
+    </ul>
+</aside>
+@RenderBody()
+
+<div class="clearfix"></div>
+
+@section HeaderLeft {
+    <div class="searchbox">
+        <input type="text" class="form-control" placeholder="Find Patients, referrals, appointments and more..." />
+        <i class="fa fa-search"></i>
+    </div>
+}
+
+@section Styles {
+    <link href="~/css/physician-dashboard.css" rel="stylesheet" />
+    @RenderSection("Styles", required: false);
+}

@@ -1,0 +1,177 @@
+  <!--<form novalidate (ngSubmit)="onSubmit(patient)" #patientForm="ngForm" class="patient__new form--white" [formGroup]="biodataForm">-->
+  <form novalidate (ngSubmit)="onSubmit(patient)" class="patient__new form--white" [formGroup]="dataForm">
+    <div *ngIf="!patientCreated">
+
+      <!--<div *ngIf="data.specialistId">
+    <h1 class="patient__header">Create & Refer New Patient</h1>
+    <div class="patient__sub-header">
+      This referal process is for new patients not currently on Appy Health.
+      For patients with an account, you can book them in using their profile
+    </div>
+  </div>-->
+      <mat-tab-group>
+        <mat-tab label="Patient Info">
+          <div class="form__item">
+            <label class="label--grey">Name<span class="required">*</span></label>
+            <label class="help-text">First Name </label>
+            <mat-form-field class="text-input">
+              <input matInput [formControl]="firstNameFormControl" [errorStateMatcher]="matcher"
+                type="text" class="form-control input--grey" required [(ngModel)]="patient.FirstName" maxlength="150">
+              <mat-hint></mat-hint>
+              <mat-error *ngIf="firstNameFormControl.hasError('required')">
+                First Name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            
+            <label class="help-text">
+              Middle Name
+            </label>
+            <mat-form-field class="text-input">
+              <input matInput type="text" class="form-control input--grey" [(ngModel)]="patient.MiddleName" [formControl]="middleNameFormControl" maxlength="200" />
+            </mat-form-field>
+            
+            <label class="help-text">Last Name </label>
+            <mat-form-field class="text-input">
+              <input matInput [formControl]="lastNameFormControl" [errorStateMatcher]="matcher"
+                     type="text" class="form-control input--grey" required [(ngModel)]="patient.LastName" maxlength="150">
+              <mat-hint></mat-hint>
+              <mat-error *ngIf="lastNameFormControl.hasError('required')">
+                Last Name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+    
+          <div class="form__item">
+            <label class="label--grey">Phone Number<span class="required">*</span></label>
+            <!--<label class="help-text">(xxx) xxxx-xxx</label>-->
+            <mat-form-field class="">
+              <input matInput [formControl]="phoneNumberFormControl" [errorStateMatcher]="matcher"
+                     type="text" class="form-control input--grey" [(ngModel)]="patient.PrimaryPhoneNumber" mask="(000) 000-0000" required>
+              <mat-hint></mat-hint>
+              <mat-error *ngIf="phoneNumberFormControl.hasError('required')">
+                Phone Number is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+    
+          <div class="form__item">
+            <label class="label--grey">Work Number</label>
+            <!--<label class="help-text">(xxx) xxxx-xxx</label>-->
+            <mat-form-field class="">
+              <input matInput [formControl]="secondaryPhoneNumberFormControl" [errorStateMatcher]="matcher"
+                     type="text" class="form-control input--grey" [(ngModel)]="patient.SecondaryPhoneNumber" mask="(000) 000-0000">
+              <mat-hint></mat-hint>
+              <mat-error *ngIf="secondaryPhoneNumberFormControl.hasError('required')">
+                Phone Number is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+    
+    
+          <div class="form__item">
+            <label class="label--grey">Email Address <span class="required">*</span></label>
+            <label class="help-text">patient@email.com</label>
+            <mat-form-field class="">
+              <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                     class="form-control input--grey" [(ngModel)]="patient.PrimaryEmailAddress" maxlength="200">
+              <mat-hint></mat-hint>
+              <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="emailFormControl.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+    
+          <div class="form__item">
+            <label class="label--grey">Gender<span class="required">*</span> </label>
+    
+            <mat-form-field>
+              <mat-select [formControl]="genderFormControl" class="input--grey" [(ngModel)]="patient.Gender" required ngModel>
+                <mat-option>--</mat-option>
+                <mat-option value="M">
+                  Male
+                </mat-option>
+                <mat-option value="F">
+                  Female
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="genderFormControl.hasError('required')">Please choose a gender</mat-error>
+            </mat-form-field>
+          </div>
+    
+          <div class="form__item">
+            <label class="label--grey">D.O.B.<span class="required">*</span> </label>
+    
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" [formControl]="dobFormControl" [errorStateMatcher]="matcher" class="input--grey" [(ngModel)]="patient.BirthDate" required>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="dobFormControl.hasError('required')">Please choose a D.O.B.</mat-error>
+            </mat-form-field>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Insurance">
+          <div class="form__item">
+            <label class="label--grey">Insurance Plan </label>
+            <label class="help-text">Front Picture</label>
+            
+            <label class="file-upload">
+              <span>
+                <i class="material-icons">
+                  cloud_upload
+                </i>
+                Upload Picture
+              </span>
+              <input #fileInput type="file">
+            </label>
+    
+            <label class="help-text">Back Picture</label>
+            <input #fileInput2 type="file">
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Address (optional)">
+          <div class="form__item">
+            <label class="label--grey">Address</label>
+            <input type="text" placeholder="Ex. 456 Main St." class="form-control input--grey" [(ngModel)]="patient.Address.Line" [formControl]="addressLineFormControl" maxlength="200" />
+    
+            <input type="text" placeholder="Ex. #123" class="form-control input--grey" [(ngModel)]="patient.Address.Line2" [formControl]="addressLine2FormControl" maxlength="200" />
+          </div>
+    
+          <div class="form__item">
+            <label class="label--grey">City </label>
+            <input type="text" class="form-control input--grey" [(ngModel)]="patient.Address.City" [formControl]="addressCityFormControl" maxlength="200" />
+          </div>
+    
+          <div class="form__item">
+            <label class="label--grey">State </label>
+            <input type="text" class="form-control input--grey" [(ngModel)]="patient.Address.State" [formControl]="addressStateFormControl" maxlength="2" />
+          </div>
+    
+          <div class="form__item">
+            <label class="label--grey">Zip Code </label>
+            <input type="text" class="form-control input--grey" [(ngModel)]="patient.Address.ZipCode" [formControl]="addressZipCodeFormControl" maxlength="10" />
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+
+      <button type="submit" class="btn">Create Patient</button>
+    </div>
+
+    <div *ngIf="patientCreated" class="success-message">
+      <h2 class="title">
+        Success!
+      </h2>
+      <p>
+        The patient profile <a href="/physician/patients/{{patient.Id}}">{{patient.FirstName}} {{patient.LastName}}</a> has been created.
+        
+      </p>
+      <p style="color:red;" *ngIf="errorUnverifiedNumber">Warning: the phone number is unverified</p>
+      <p>
+        You can view their profile <a href="/physician/patients/{{patient.Id}}">here</a> to make any changes or updates.
+      </p>
+    </div>
+  </form>

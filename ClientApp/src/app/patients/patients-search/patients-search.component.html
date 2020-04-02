@@ -1,0 +1,4 @@
+<div class="patient-search">
+  <input class="patient-search__searchbar" placeholder="Search Patients" type="search" (keyup)="searchTerm$.next($event.target.value)" />
+  <div style="width:50px;" [ngClass]="{'loading':isLoading}"></div>
+</div>

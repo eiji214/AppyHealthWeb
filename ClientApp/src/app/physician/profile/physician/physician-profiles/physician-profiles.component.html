@@ -1,0 +1,24 @@
+<h2 class="profile-page-heading">Physician Profiles</h2>
+<div *ngIf="doctors.length > 0">
+
+  <mat-list>
+    <mat-list-item *ngFor="let doc of doctors; let i = index;">
+      <!--<img matListAvatar src="{{ photoUrl || doctor.PhotoUrl }}" alt="..." />-->
+      <img matListAvatar *ngIf="doc.PhotoUrl; else altImg" src="{{doc.PhotoUrl }}">
+      <ng-template #altImg><img matListAvatar src="assets/images/icons/ellipse-1@2x.png"></ng-template>
+      
+      
+      <h3 class="profile-list-heading" matLine> <a [routerLink]="['/physician/practitioners/' + doc.Id]">{{ doc.FullName }}</a> </h3>
+      
+      <p class="profile-list-specialty" matLine>
+        {{ doc.Specialty }}
+      </p>
+      <p *ngIf="doc.PracticeLocation?.length > 0" class="profile-list-location" matLine>
+        {{ doc.PracticeLocation?.length }} location(s)
+      </p>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+
+
+</div>

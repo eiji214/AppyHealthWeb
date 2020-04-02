@@ -1,0 +1,20 @@
+<div *ngIf="patient$ | async as patient">
+  <h1 class="heading--large">Select Provider for {{patient.FirstName}} {{patient.LastName}}</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>
+          Provider
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let specialist of practitioners$ | async">
+        <td (click)="createReferral(specialist.Id, patient.Id)">
+          {{specialist.FullName}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

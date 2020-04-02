@@ -1,0 +1,7 @@
+<div *ngIf="patient" [ngClass]="{ compact: compact }">
+  <figure></figure>
+  <h1>{{ patient.FirstName }} {{ patient.LastName }}</h1>
+  <h2>{{patient.BirthDate | date:'MMMM d, y'}}</h2>
+  <h2>{{ patient.PrimaryEmailAddress }}</h2>
+  <h2>{{ patient.PrimaryPhoneNumber | phone }}</h2>
+</div>

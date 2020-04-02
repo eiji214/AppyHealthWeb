@@ -1,0 +1,94 @@
+<table class="table">
+  <thead>
+    <tr>
+      <!--<th></th>-->
+      <th class="full-only">Patient</th>
+      <th>Provider</th>
+      <!-- <th>Office Contact</th> -->
+      <th>Referral From</th>
+      <th>Status</th>
+      <th>Appointment</th>
+      <th class="full-only">Referral Date</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let referral of referrals | async">
+      <!--<td></td>-->
+
+      <td class="full-only clickable" [routerLink]="['/physician/patients', referral.PatientId]">
+        <span>{{referral.PatientFirstName}} {{referral.PatientMiddleName}} {{ referral.PatientLastName}}</span>
+        <p style="font-size:12px;color:#9b9b9b">{{ referral.PatientLocation }}</p>
+</td>
+
+      <td class="clickable" [routerLink]="['/physician/profile/physicianprofile']" [queryParams]= "{id: referral.Practitioner.Id}">
+        <span *ngIf="referral.Practitioner">
+          {{ referral.Practitioner.FullName }}
+          <p style="font-size:12px;color:#9b9b9b">{{referral.Practitioner.PrimaryPhoneNumber | phone}}</p>
+        </span>
+      </td>
+      <td *ngIf="referral.FromPractitioner" class="clickable"  [routerLink]="['/physician/profile/physicianprofile']" [queryParams]= "{id: referral.FromPractitioner.Id}">
+          {{referral.FromPractitioner != null ? referral.FromPractitioner.FullName : '' }}
+          <p style="font-size:12px;color:#9b9b9b">{{referral.FromPractitioner != null ? (referral.FromPractitioner.PrimaryPhoneNumber | phone) : ''}}</p>
+      </td>
+      <td *ngIf="!referral.FromPractitioner" class="pad-blank">
+        &nbsp;
+      </td>
+      <td>
+        {{referral.Status}}
+        <div class="statuses">
+          <!-- Created -->
+          <div class="status"></div>
+          <!-- User Availability Set -->
+          <div [ngClass]="{'status': getStatusIndex(referral.Status) > 0, 'status--inactive': referral.Status == 'Created'}"></div>
+          <!-- Provider Availability Set -->
+          <div [ngClass]="{'status': getStatusIndex(referral.Status) > 1, 'status--inactive': getStatusIndex(referral.Status) < 2}"></div>
+          <!-- Patient Confirmed -->
+          <div [ngClass]="{'status': getStatusIndex(referral.Status) > 2, 'status--inactive': getStatusIndex(referral.Status) < 3}"></div>
+          <!-- Appointment Confirmed -->
+          <div [ngClass]="{'status': getStatusIndex(referral.Status) > 3, 'status--inactive': getStatusIndex(referral.Status) < 4}"></div>
+        </div>
+      </td>
+
+      <td>
+        <div *ngIf="referral.AppointmentDate">
+          {{ referral.AppointmentDate | date: 'MM/dd/yyyy' }}
+          <p style="font-size:12px;color:#9b9b9b">
+            {{ referral.AppointmentDate | date: 'shortTime' }} {{ referral.ConfirmedByPatient ? '' : '(Pending)'}}
+          </p>
+        </div>
+        <div *ngIf="!referral.AppointmentDate">
+          <div *ngIf="referral.PatientAvailability.length">{{ referral.PatientAvailability.length }} Patient Dates Set</div>
+          <div *ngIf="referral.PractitionerAvailability.length">{{ referral.PractitionerAvailability.length }} Provider Dates Set</div>
+        </div>
+        <p *ngIf="referral.Location">{{referral.Location.Address1}}, {{referral.Location.City}}, {{referral.Location.State}}</p>
+        <button class="btn btn-sparse" (click)="setAppointment(referral.Id, $event)">
+            {{ referral.AppointmentDate ? referral.ConfirmedByPatient ? 'View Appointment' : 'Confirm Appointment' : 'Set Provider Availability'
+            }}
+          </button>
+      </td>
+      <td class="full-only">{{ referral.ReferralDate | date }}</td>
+      <td class="action-items">
+        <!--<a class="full-only" href="tel:{{referral.PatientPrimaryPhoneNumber}}" (click)="$event.stopPropagation()">
+            <i class="material-icons full-only">chat_bubble_outline</i>
+        </a>-->
+        <i class="material-icons" (click)="setNextAppointment(referral.Id, referral.PatientId, referral.Practitioner)">add_circle_outline</i>
+        <div class="more-vert-menu">
+          <i class="material-icons " style="margin-right: -4px;">
+            more_vert
+          </i>
+          <div class="">
+            <a (click)="openDeactivateReferralDialog(referral.Id); $event.stopPropagation()"> Delete Referral </a>
+          </div>
+        </div>
+      </td>
+    </tr>
+
+    <!--<tr *ngIf="noReferrals">
+      <td colspan="7" class="no-data">
+        No pending referrals today! Inbound referrals will show up here whenever a provider sends them to you through Appy.Health.
+      </td>
+    </tr>-->
+  </tbody>
+</table>

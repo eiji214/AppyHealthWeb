@@ -1,0 +1,107 @@
+﻿@page
+@model AppyHealthWeb.Pages.HealthSystemClaimProfileModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+    <body>
+        <div class="card landingimage border-0">
+
+            <img class="card-img-top claimprofileimg" src="~/images/healthsystemlandingimg.png"
+                 srcset="~/images/healthsystemlandingimg@2x.png 2x,
+             ~/images/healthsystemlandingimg@3x.png 3x">
+            <div class="card-img-overlay ">
+                <p class="TagLine1">
+                    Appy.Health is the #1 Patient Recommended <span class="TagLine2">MobileHealth Platform</span>
+                </p>
+
+            </div>
+
+            @*<img class="card-img-top claimprofileimg" src="~/images/banner-sick-child-light-1.jpg" style="opacity:0.4;" />*@
+            @*<div class="card-img-overlay text-center ">
+            <h1>Welcome to Appy Health</h1>
+
+        </div>*@
+
+            @*<div class="card-img-overlay ">
+            <p class="Millions-of-patients">Millions of patients are searching for Medical Services & Practices like yours!</p>
+        </div>*@
+
+            <div class="container ClaimProfile-box auto-height">
+                <div>
+                    <span class="claimprof-text1">START ENGAGING</span>
+                </div>
+                <div>
+                    <span class="claimprof-text2">on your mobile health platform today.</span>
+                </div>
+                <div class="signup-box">
+                    <form method="post">
+                        <a asp-area="" asp-controller="Session" asp-action="SignIn" class="btn  SignUpButton"><b>Sign up</b></a>
+                    </form>
+                </div>
+                <div>
+                    <span class="claimprof-text1">FREE</span>
+                </div>
+
+            </div>
+            @*<partial name="_LandingPageSignup" />*@
+        </div>
+        @*<partial name="_CatchPhrasesPartial" />*@
+        <div class="container-fluid text-center text-md-center divCatchPhrases">
+            <div class="row">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="CatchHeaders">SOCIAL MISSION</li>
+                        <li class="CatchPhrases">
+                            Breaking Down Barriers that
+                            <br />
+                            Improve Access between
+                            <br />
+                            Patients and Medical Professionals
+                        </li>
+                    </ul>
+                </div>
+                <hr class="clearfix w-100 d-md-none">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="CatchHeaders">SERVICE MISSION</li>
+                        <li class="CatchPhrases">
+                            Delivering Experiences that
+                            <br />
+                            Improves Family and Community
+                            <br />
+                            Lives Across the Nation
+                        </li>
+                    </ul>
+                </div>
+                <hr class="clearfix w-100 d-md-none">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="CatchHeaders">SUPPORT</li>
+                        <li class="CatchPhrases">
+                            Creating an Environment
+                            <br />
+                            of Collaboration between Patients
+                            <br />
+                            and Specialists
+                        </li>
+
+                    </ul>
+                </div>
+                <hr class="clearfix w-100 d-md-none">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="CatchHeaders">COMMUNICATE</li>
+                        <li class="CatchPhrases">
+                            Deploy Technology that
+                            <br />
+                            Supports Outreach
+                            <br />
+                            and Community Spirit<span>&#33;</span>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </body>

@@ -1,0 +1,44 @@
+.card {
+    background-color: white;
+    border-radius: 5px;
+    padding: 21px;
+    margin-bottom: 17px;
+
+    &-header {
+      display: flex;
+
+      h3 {
+        margin: 0;
+        color: #FEC70A;
+        font-size: 14px;
+      }
+
+      .icons {
+        i {
+          font-size: 18px;
+          margin-left: 5px;
+        }
+      }
+    }
+
+    &-body {
+      &-title {
+        margin: 0;
+        color: #FEC70A;
+        font-size: 14px;
+      }
+    }
+
+    > h3 {
+      color: black;
+      margin: 0;
+      font-size: 24px;
+      font-weight: 100;
+    }
+
+    > p {
+      color: #B4B4B4;
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+  }

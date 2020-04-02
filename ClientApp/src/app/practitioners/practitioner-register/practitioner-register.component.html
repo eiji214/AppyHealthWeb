@@ -1,0 +1,114 @@
+<div class="landing">
+    <div class="landing__menu flex">
+      <div><img src="../../../assets/images/Footer Logo.png" class="logo" /></div>
+      <div class="nav_buttons flex">
+        <a class="white-btn" href="/Providers">For Providers</a>
+        <a href="/api/authorize" class="yellow-btn">Log In</a>
+      </div>
+    </div>
+    <div class="landing__content">
+      <div class="section">
+        <div class="left">
+            <div class="slogan">Get Started with Appy.Health</div>
+        </div>
+        <div class="form" *ngIf="!isSubscribed">
+          <aside *ngIf="!practitioner.FirstName">Welcome to Appy.Health! Enter your NPI number below to claim your profile.</aside>
+          <div class="item" *ngIf="!practitioner.FirstName">
+            <div class="label">NPI Number</div>
+            <input [(ngModel)]="npiNumber" />
+            <div (click)="npiLookup(npiNumber)" class="btn--lookup">Look Up My Profile</div>
+          </div>
+          <div class="searching" *ngIf="isSearching">Searching...</div>
+          <div *ngIf="practitioner.FirstName">
+            <aside>We found you! Please verify the details below, then add your email address and click the Claim Profile button an appy.health representative will be in touch soon to confirm your account.</aside>
+            <div class="row">
+            <div class="item">
+              <div class="label">First Name</div>
+              <input [(ngModel)]="practitioner.FirstName" />
+            </div>
+            <div class="item">
+              <div class="label">Last Name</div>
+              <input [(ngModel)]="practitioner.LastName" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="item">
+              <div class="label">Address Line</div>
+              <input [(ngModel)]="practitioner.Address.Line" />
+            </div>
+            <div class="item">
+              <div class="label">Address Line 2</div>
+              <input [(ngModel)]="practitioner.Address.Line2" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="item">
+              <div class="label">City</div>
+              <input [(ngModel)]="practitioner.Address.City" />
+            </div>
+            <div class="item">
+              <div class="label">State</div>
+              <input [(ngModel)]="practitioner.Address.State" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="item">
+              <div class="label">Zip Code</div>
+              <input [(ngModel)]="practitioner.Address.ZipCode" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="item">
+              <div class="label">Phone Number</div>
+              <input [(ngModel)]="practitioner.PrimaryPhoneNumber" />
+            </div>
+            <div class="item">
+              <div class="label">Specialty</div>
+              <input [(ngModel)]="practitioner.Specialty" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="item">
+              <div class="label">Email</div>
+              <input [(ngModel)]="practitioner.PrimaryEmailAddress" required />
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="yellow-btn" (click)="createPractitionerUser(practitioner)" [ngClass]="{'disabled': practitioner.PrimaryEmailAddress == null}">Claim Profile</div>
+        </div>
+        </div>
+        <div class="form" *ngIf="isSubscribed">
+          Thanks for claiming your profile! An Appy.Health representative will review your information shortly, and you'll receive an email with instructions for creating your account.
+        </div>
+      </div>
+      <div class="landing_footer flex">
+          <div>
+            <img src="../../../assets/images//Footer Logo.png" class="logo" />
+            <div>© 2018 Appy.Health</div>
+            <div>All rights reserved.</div>
+          </div>
+          <div class="footer-nav">
+            <div class="footer-head">Appy Health</div>
+            <a href=" ">About</a>
+            <a href=" ">Contact</a>
+            <a href="/privacy">Privacy Policy</a>
+            <a href=" ">Terms & Conditions</a>
+          </div>
+          <div class="footer-nav">
+            <div class="footer-head">For Patients</div>
+            <a href=" ">Download App</a>
+            <div class="footer-head">For Providers</div>
+            <a href="/register-provider">Claim Your Profile</a>
+          </div>
+          <div class="footer-nav">
+            <div class="footer-head">Social</div>
+            <a href=" ">Facebook</a>
+            <a href=" ">Twitter</a>
+            <a href=" ">Instagram</a>
+            <a href=" ">LinkedIn</a>
+            <a href=" ">YouTube</a>
+          </div>
+          <div class="get_app"><img src="../../assets/images/google-play-badge copy.png" /> <img src="../../assets/images/Bitmap Copy.png" /></div>
+        </div>
+    </div>
+</div>

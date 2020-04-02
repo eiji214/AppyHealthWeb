@@ -1,0 +1,119 @@
+﻿@page
+@model AppyHealthWeb.Pages.EmployersClaimProfileModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+    <body>
+        <div class="card landingimage border-0">
+
+            <img class="card-img-top claimprofileimg" src="~/images/employerslandingimg.png"
+                 srcset="~/images/employerslandingimg@2x.png 2x,
+             ~/images/employerslandingimg@3x.png 3x">
+            @*<partial name="_landingpagesignup" />*@
+
+            <div class="card-img-overlay ">
+                <p class="TagLine1">
+                    Appy.Health is the #1 Employee Recommended <span class="TagLine2">MobileHealth Platform</span>
+                </p>
+            </div>
+
+            <div class="container ClaimProfile-box auto-height">
+                <div>
+                    <span class="claimprof-text1">START ENGAGING</span>
+                </div>
+                <div>
+                    <span class="claimprof-text2">on your mobile health platform today.</span>
+                </div>
+                <div class="signup-box">
+                    <form method="post">
+                        <a asp-area="" asp-controller="Session" asp-action="SignIn" class="btn  SignUpButton"><b>Sign up</b></a>
+                    </form>
+                </div>
+                <div>
+                    <span class="claimprof-text1">FREE</span>
+                </div>
+
+            </div>
+
+            @* <div class="container ClaimProfile-box auto-height">
+                <div>
+                    <span class="claimprof-text1">COMPLETE YOUR CORPORATE PROFILE</span>
+                </div>
+                <div>
+                    <span class="claimprof-text2">Start your digital journey with Appy.Health</span>
+                </div>
+                <div class="signup-box">
+                    <form method="post">
+                        <a asp-area="" asp-controller="Session" asp-action="SignIn" class="btn  SignUpButton"><b>Sign up</b></a>
+                    </form>
+                </div>
+                <div>
+                    <span class="claimprof-text1">FREE</span>
+                </div>
+
+            </div>*@
+
+        </div>
+
+
+        @*<partial name="_CatchPhrasesPartial" />*@
+        <div class="container-fluid text-center text-md-center divCatchPhrases">
+            <div class="row">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="CatchHeaders">ACCESS</li>
+                        <li class="CatchPhrases">
+                            Schedule, Confirm, Communicate
+                            <br />
+                            all within a Secure and Private
+                            <br />
+                            mobile platform.
+                        </li>
+                    </ul>
+                </div>
+                <hr class="clearfix w-100 d-md-none">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="CatchHeaders">Employees</li>
+                        <li class="CatchPhrases">
+                            Professional Benefits
+                            <br />
+                            and Health Plan
+                            <br />
+                            Management
+                        </li>
+                    </ul>
+                </div>
+                <hr class="clearfix w-100 d-md-none">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="CatchHeaders">Customized Solution</li>
+                        <li class="CatchPhrases">
+                            Identify high quality,
+                            <br />
+                            in-network medical
+                            <br />
+                            professionals.
+                        </li>
+
+                    </ul>
+                </div>
+                <hr class="clearfix w-100 d-md-none">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="CatchHeaders">High Deductible Plans</li>
+                        <li class="CatchPhrases">
+                            Detailed Plan and
+                            <br />
+                            out-of-pocket cost
+                            <br />
+                            by Coverage Type
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </body>

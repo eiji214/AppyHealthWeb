@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+<html>
+@*@using Microsoft.AspNetCore.Authentication.AzureADB2C.UI
+@using Microsoft.Extensions.Options
+@inject IOptionsMonitor<AzureADB2COptions> AzureADB2COptions
+
+@{
+    var options = AzureADB2COptions.Get(AzureADB2CDefaults.AuthenticationScheme);
+}*@
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AppyHealthWeb</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+    </environment>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+
+    <link href="~/lib/fontawesome/css/all.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/fonts.css" rel="stylesheet" />
+    <link href="~/css/colors.css" rel="stylesheet" />
+
+
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white  mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">
+                    <img src="~/images/logo.png" srcset="~/images/logo@2x.png 2x,~/images/logo@3x.png 3x"
+                         class="Logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="nav navbar-nav navbar-right navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    @RenderSection("HeaderLeft", required: false)
+                </div>
+            </div>
+        </nav>
+    </header>
+
+   
+
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <partial name="_CookieConsentPartial" />
+    <footer class="footer font-small align-bottom">
+
+        <!-- Footer Links -->
+        <div class="container-fluid text-center text-md-left">
+            <div class="row">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="footer-head ">About Us</li>
+                        <li>
+                            <a href="/Contact">Contact</a>
+                        </li>
+                        <li>
+                            <a href="/OurCompany">Our Company</a>
+                        </li>
+                        <li>
+                            <a href="/FAQs">FAQs</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <hr class="clearfix w-100 d-md-none">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="footer-head ">Patients</li>
+                        <li>
+                            <a href="/app/coming-soon">Sign Up or Sign In</a>
+                        </li>
+                        <li>
+                            <a asp-page="/Terms">Terms & Conditions</a>
+                        </li>
+                        <li>
+                            <a asp-page="/Privacy">Privacy Policy</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <hr class="clearfix w-100 d-md-none">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="footer-head ">Employers</li>
+                        <li>
+                            <a asp-page="/EmployersClaimProfile">Health Plan Management</a>
+                        </li>
+                        <li>
+                            <a href="/Contact">Request a demo</a>
+                        </li>
+                        <li>
+                            <a href="#!">Sign In</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <hr class="clearfix w-100 d-md-none">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="footer-head ">Physicians</li>
+                        <li>
+                            <a href="/app/physicians-claim">Mobile Platform</a>
+                        </li>
+                        <li>
+                            <a href="/app/physician">Sign In</a>
+                        </li>
+                        <li>
+                            <a href="/BAA">BAA</a>
+                        </li>
+                        <li>
+                            <a href="/ProviderTerms">Terms & Conditions</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <hr class="clearfix w-100 d-md-none">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="footer-head ">Medical Services</li>
+                        <li>
+                            <a href="/app/medical-services-claim">Mobile Platform</a>
+                        </li>
+                        <li>
+                            <a href="#!">Sign In</a>
+                        </li>
+                        <li>
+                            <a href="/BAA">BAA</a>
+                        </li>
+                        <li>
+                            <a href="/ProviderTerms">Terms & Conditions</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <hr class="clearfix w-100 d-md-none">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="footer-head ">Health Systems</li>
+                        <li>
+                            <a asp-page="/HealthSystemClaimProfile">Mobile Platform</a>
+                        </li>
+                        <li>
+                            <a href="#!">Sign In</a>
+                        </li>
+                        <li>
+                            <a href="/BAA">BAA</a>
+                        </li>
+                        <li>
+                            <a href="/ProviderTerms">Terms & Conditions</a>
+                        </li>
+                    </ul>
+                </div>
+                <hr class="clearfix w-100 d-md-none">
+                <div class="col">
+                    <ul class="list-unstyled">
+
+                        <li class="py-1">
+                            <a href="https://apps.apple.com/us/app/appy-health/id1464947017?ls=1" target="_blank">
+                                <img src="~/images/appstorebadge.png"
+                                     srcset="~/images/appstorebadge@2x.png 2x,
+                            ~/images/appstorebadge@3x.png 3x"
+                                     class="AppleStore">
+                                </a>
+                        </li>
+
+                        <li class="py-1">
+                            <a href="https://play.google.com/store/apps/details?id=appy.health.mobile&hl=en" target="_blank">
+                                <img src="~/images/googleplaybadge.png"
+                                     srcset="~/images/googleplaybadge@2x.png 2x,
+                            ~/images/googleplaybadge@3x.png 3x"
+                                     class="GoogleStore">
+                                </a>
+                        </li>
+                        <li class="py-1">
+                            <a href="https://www.facebook.com/getappyhealth/" target="_blank">
+                                <img src="~/images/facebook.png"
+                                     srcset="~/images/facebook@2x.png 2x,
+             ~/images/facebook@3x.png 3x">
+                            </a>
+                            <a href="https://twitter.com/mobilehealth?lang=en" target="_blank">
+                                <img src="~/images/twitter.png"
+                                     srcset="~/images/twitter@2x.png 2x,
+            ~/images/twitter@3x.png 3x">
+                            </a>
+                            <a href="https://www.linkedin.com/company/appy-health" target="_blank">
+                                <img src="~/images/linkedin.png"
+                                     srcset="~/images/linkedin@2x.png 2x,
+             ~/images/linkedin@3x.png 3x">
+                            </a>
+                            <a href="https://www.youtube.com/channel/UCI9VS_DRLElZOIBhhy8ZNzg/featured" target="_blank">
+                                <img src="~/images/youtube.png"
+                                     srcset="~/images/youtube@2x.png 2x,
+             ~/images/youtube@3x.png 3x">
+                            </a>
+                            <a href="https://www.instagram.com/appyhealth/?hl=en" target="_blank">
+                                <img src="~/images/instagram.png"
+                                     srcset="~/images/instagram@2x.png 2x,
+             ~/images/3244027instagram@3x.png 3x">
+                            </a>
+                            <a href="https://www.pinterest.com/getappyhealth/"  target="_blank">
+                                <img src="~/images/pintrest.png"
+                                     srcset="~/images/pintrest@2x.png 2x,
+             ~/images/pintrest@3x.png 3x">
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <hr class="clearfix w-100 d-md-none">
+            </div>
+        </div>
+        @*<div class="footer-copyright text-right py-3 pr-5">
+                <a href="#">
+                    <img src="~/images/facebook.png"
+                         srcset="~/images/facebook@2x.png 2x,
+                 ~/images/facebook@3x.png 3x"
+                         class="footer-social">
+                </a>
+                <a href="#">
+                    <img src="~/images/twitter.png"
+                         srcset="~/images/twitter@2x.png 2x,
+                ~/images/twitter@3x.png 3x"
+                         class="footer-social">
+                </a>
+                <a href="#">
+                    <img src="~/images/linkedin.png"
+                         srcset="~/images/linkedin@2x.png 2x,
+                 ~/images/linkedin@3x.png 3x"
+                         class="footer-social">
+                </a>
+                <a href="#">
+                    <img src="~/images/youtube.png"
+                         srcset="~/images/youtube@2x.png 2x,
+                 ~/images/youtube@3x.png 3x"
+                         class="footer-social">
+                </a>
+                <a href="#">
+                    <img src="~/images/instagram.png"
+                         srcset="~/images/instagram@2x.png 2x,
+                 ~/images/3244027instagram@3x.png 3x"
+                         class="footer-social">
+                </a>
+                <a href="#">
+                    <img src="~/images/pintrest.png"
+                         srcset="~/images/pintrest@2x.png 2x,
+                 ~/images/pintrest@3x.png 3x"
+                         class="footer-social">
+                </a>
+            </div>*@
+        <!-- Footer Links -->
+        <!-- Copyright -->
+        <div class="footer-copyright text-center">
+            <img src="~/images/logoFooter.png"
+                 srcset="~/images/logoFooter@2x.png 2x
+                 ~/images/logoFooter@3x.png 3x"
+                 class="Logo-Footer">
+        </div>
+        <div class="footer-copyright text-center py-2">
+            Copyright © 2019 Appy.Health. All rights reserved. Patent pending.
+        </div>
+        <!-- Copyright -->
+    </footer>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

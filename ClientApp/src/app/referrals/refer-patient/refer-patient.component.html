@@ -1,0 +1,104 @@
+<h2 class="profile-page-heading">Patient Overview</h2>
+<div class="refer-patient-page" *ngIf="patient$ | async as patient">
+  <div class="table-with-filter">
+    <app-practitioners-search (filteredPractitionersChange)="setPractitioners($event)"></app-practitioners-search>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Physician Name</th>
+          <th>Practice Name</th>
+          <th>Phone Number</th>
+          <th>Practice Hours</th>
+          <th>
+            <label class="checkbox-container">
+              <input type="checkbox" [checked]="isChecked(selectedPractitioners, filteredPractitioners)" (click)="toggleAllPractitioners()">
+              <span class="checkmark"></span>
+            </label>
+          </th>
+
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let pract of filteredPractitioners; let i = index" (click)="toggle(pract, selectedPractitioners)">
+
+          <td>
+            {{pract.FullName}}
+            <aside>{{ pract.Specialty }}</aside>
+          </td>
+          <td>{{ pract.PracticeName }}</td>
+          <td>{{pract.PrimaryPhoneNumber | phone }}</td>
+          <td>{{pract.PracticeHours}}</td>
+          <td>
+            <label class="checkbox-container">
+              <input type="checkbox" [checked]="exists(pract, selectedPractitioners)" (click)="toggle(pract, selectedPractitioners)">
+              <span class="checkmark"></span>
+            </label>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="no-results-found" *ngIf="!filteredPractitioners || filteredPractitioners.length == 0">
+      Start Searching For A Provider
+    </div>
+  </div>
+  <div class="referral-box">
+    <h3>
+      Create New Referral
+    </h3>
+    <div class="line--gray"></div>
+    <div class="patient-info">
+      <h3>
+        Patient Information
+      </h3>
+      <p>
+        Patient
+      </p>
+      <div class="patient-card">
+        <div class="patient-card__picture">
+
+        </div>
+        <div class="patient-card__info">
+          <h1 class="name">
+            {{patient.FirstName}} {{patient.LastName}}
+          </h1>
+          <p>
+            DOB: <span>{{patient.BirthDate | date:'M/d/y' }}</span>
+          </p>
+          <p>
+            Gender:
+            <span *ngIf="patient.Gender == 'M'">Male</span>
+            <span *ngIf="patient.Gender == 'F'">Female</span>
+          </p>
+          <p>
+            Phone: <span><a href="tel:{{patient.PrimaryPhoneNumber}}">{{ patient.PrimaryPhoneNumber | phone }}</a></span>
+          </p>
+        </div>
+      </div>
+
+      <p>
+        Symptom
+      </p>
+      <input class="input--grey" [(ngModel)]="referral.Symptom" required maxlength="100" />
+    </div>
+
+    <div class="line--gray"></div>
+    <div class="selected-practitioners">
+      <h3>
+        Selected Providers
+      </h3>
+      <p *ngFor="let pract of selectedPractitioners; let i = index">
+        {{pract.FullName}}
+
+        <span class="specialty" *ngFor="let specialty of pract.Specialties; let i = index; let isLast=last">
+          {{ specialty.Name }}{{isLast ? '' : ', '}}
+        </span>
+
+        <i class="material-icons" (click)="toggle(pract, selectedPractitioners)">close</i>
+      </p>
+
+      <button class="button--yellow" [disabled]="!canCreateReferral()" (click)="createReferral(patient.Id)">Make Referral</button>
+    </div>
+  </div>
+</div>
+

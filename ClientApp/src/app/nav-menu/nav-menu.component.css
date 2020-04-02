@@ -1,0 +1,19 @@
+.navbar {
+  box-shadow: 0 1px 9px 0 rgba(36, 58, 127, 0.4);
+  margin-bottom: 0 !important;
+
+}
+
+.SignInButton {
+  width: 168px;
+  border-radius: 5px;
+  background-color: #253c80;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #fff;
+}

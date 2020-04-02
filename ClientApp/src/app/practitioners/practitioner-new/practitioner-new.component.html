@@ -1,0 +1,148 @@
+<form class="form--white" (ngSubmit)="onSubmit(practitioner)" novalidate [formGroup]="dataForm">
+
+  <div class="form__item">
+    <label class="label--grey">Title <span class="required">*</span></label>
+
+    <mat-form-field class="text-input">
+      <input matInput [formControl]="titleFormControl" [errorStateMatcher]="matcher" [(ngModel)]="practitioner.Title"
+             type="text" class="form-control input--grey" required maxlength="40">
+      <mat-hint></mat-hint>
+      <mat-error *ngIf="firstNameFormControl.hasError('required')">
+        First Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form__item">
+    <label class="label--grey">Name <span class="required">*</span> </label>
+    <label class="help-text">First Name </label>
+    <mat-form-field class="text-input">
+      <input matInput [formControl]="firstNameFormControl" [errorStateMatcher]="matcher"
+             type="text" class="form-control input--grey" required [(ngModel)]="practitioner.FirstName" maxlength="150">
+      <mat-hint></mat-hint>
+      <mat-error *ngIf="firstNameFormControl.hasError('required')">
+        First Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <label class="help-text">Last Name </label>
+    <mat-form-field class="text-input">
+      <input matInput [formControl]="lastNameFormControl" [errorStateMatcher]="matcher"
+             type="text" class="form-control input--grey" [(ngModel)]="practitioner.LastName" maxlength="150">
+      <mat-hint></mat-hint>
+      <mat-error *ngIf="lastNameFormControl.hasError('required')">
+        Last Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form__item">
+    <label class="label--grey">Gender<span class="required">*</span> </label>
+
+    <mat-form-field>
+      <mat-select [formControl]="genderFormControl" class="input--grey" [(ngModel)]="practitioner.Gender" ngModel>
+        <mat-option>--</mat-option>
+        <mat-option value="M">
+          Male
+        </mat-option>
+        <mat-option value="F">
+          Female
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="genderFormControl.hasError('required')">Please choose a gender</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form__item">
+    <label class="label--grey">Board Certified </label>
+    <input name="options" type="radio" [value]="true" [(ngModel)]="practitioner.BoardCertified" [formControl]="boardCertifiedFormControl">Yes
+
+    <input name="options" type="radio" [value]="false" [(ngModel)]="practitioner.BoardCertified" style="margin-left: 20px;" [formControl]="boardCertifiedFormControl">No
+  </div>
+
+  <div class="form__item">
+    <label class="label--grey">D.O.B.<span class="required">*</span> </label>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" [formControl]="dobFormControl" [errorStateMatcher]="matcher" class="input--grey" [(ngModel)]="practitioner.BirthDate" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="dobFormControl.hasError('required')">Please choose a D.O.B.</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form__item">
+    <label class="label--grey">Specialties </label>
+    <multiselect id="items" [header]="'&nbsp;'" name="specialties" #itemsFormElement="ngModel" [ngModelOptions]="{standalone: true}"
+                 [items]="specialties$" [(ngModel)]="_selectedSpecialties" (ngModelChange)="onChange($event)"
+                 *ngIf="specialties$"></multiselect>
+  </div>
+
+  <div class="form__item">
+    <label class="label--grey">Procedures </label>
+    <multiselect id="items2" [header]="'&nbsp;'" name="items" (createItem)="createProcedure($event)"
+                 #itemsFormElement="ngModel" [ngModelOptions]="{standalone: true}"
+                 [items]="procedures$" [(ngModel)]="_selectedProcedures" (ngModelChange)="onChange($event)"
+                 *ngIf="procedures$"></multiselect>
+  </div>
+
+  <div class="form__item">
+    <label class="label--grey">Insurance Plans </label>
+    <multiselect id="items3" [header]="'&nbsp;'" name="items"
+                 #itemsFormElement="ngModel" [ngModelOptions]="{standalone: true}"
+                 [items]="insurancePlans$" [(ngModel)]="_selectedInsurancePlans" (ngModelChange)="onChange($event)"
+                 *ngIf="insurancePlans$"></multiselect>
+  </div>
+
+  <div class="form__item">
+    <label class="label--grey">Phone Number<span class="required">*</span></label>
+    <!--<label class="help-text">(xxx) xxxx-xxx</label>-->
+    <mat-form-field class="">
+      <input matInput [formControl]="phoneNumberFormControl" [errorStateMatcher]="matcher"
+             type="text" class="form-control input--grey" [(ngModel)]="practitioner.PrimaryPhoneNumber" mask="(000) 0000-000" required>
+      <mat-hint></mat-hint>
+      <mat-error *ngIf="phoneNumberFormControl.hasError('required')">
+        Phone Number is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form__item">
+    <label class="label--grey">2nd Phone Number</label>
+    <!--<label class="help-text">(xxx) xxxx-xxx</label>-->
+    <mat-form-field class="">
+      <input matInput [formControl]="secondaryPhoneNumberFormControl" [errorStateMatcher]="matcher"
+             type="text" class="form-control input--grey" [(ngModel)]="practitioner.SecondaryPhoneNumber" mask="(000) 0000-000">
+    </mat-form-field>
+  </div>
+
+  <div class="form__item">
+    <label class="label--grey">Email Address </label>
+    <label class="help-text">practitioner@email.com</label>
+    <mat-form-field class="">
+      <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+             class="form-control input--grey" [(ngModel)]="practitioner.PrimaryEmailAddress" maxlength="200">
+      <mat-hint></mat-hint>
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form__item">
+    <label class="label--grey">Human Touch </label>
+    <label class="help-text">Favorite food / cookie / etc.</label>
+    <input type="text" class="input--grey" [(ngModel)]="practitioner.HumanTouch" [formControl]="humanTouchFormControl" maxlength="1000" />
+  </div>
+
+  <!--<div class="form__item">
+    <label class="label--grey">Insurance Plans </label>
+    <multiselect id="items" [header]="'Select Insurance Plans'" name="insurancePlans" #itemsFormElement="ngModel" [ngModelOptions]="{standalone: true}"
+                 [items]="insurancePlans" [(ngModel)]="_selectedInsurancePlans" (ngModelChange)="onChange($event)" ></multiselect>
+  </div>-->
+
+  <button type="submit" class="button--yellow">Create practitioner</button>
+</form>

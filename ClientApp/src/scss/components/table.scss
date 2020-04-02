@@ -1,0 +1,105 @@
+.table {
+  background-color: white;
+  width: 100%;
+
+  .star {
+    vertical-align: middle;
+    color: #FFEEB6;
+  }
+
+  th {
+    text-align: left;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.38px;
+    color: #9b9b9b;
+    border-bottom: 1px solid #f3f3f4;
+  }
+
+  td {
+    color: #0f162d;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.44px;
+    font-weight: 500;
+
+    aside {
+      font-size: 11px;
+      color: #9B9B9B;
+      letter-spacing: 0.34px;
+    }
+  }
+
+  tr:nth-child(odd) td {
+    background-color: rgba(0,38,133, 0.03);
+  }
+
+  &.clickable tr:hover td {
+    background-color: rgba(37, 58, 128, 0.1);
+    cursor: pointer;
+  }
+
+  td, th {
+    padding: 16px;
+    &.clickable:hover {
+      cursor: pointer;
+      color: #1BC1E3;
+    }
+  }
+
+  .action-items {
+    text-align: right;
+    white-space: nowrap;
+
+    > a {
+      margin: 0 15px;
+    }
+  }
+
+  .favorite{
+    width: 20px;
+    i {
+      vertical-align: middle;
+      color: #ffc70a;
+    }
+  }
+}
+
+.right-panel .full-only {
+  display: none;
+}
+
+.table-with-filter {
+  background-color: white;
+  padding-bottom: 40px;
+  border: 1px solid #D8D8D8;
+  border-radius: 4px;
+
+  p.add-entry {
+    font-size: 20px;
+    color: #9B9B9B;
+    letter-spacing: 0.62px;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  a.add-entry, button.add-entry {
+    text-align: center;
+    margin: auto;
+    display: block;
+    margin-top: 20px;
+  }
+
+  .table {
+    box-shadow: none;
+  }
+
+  .no-results-found {
+    font-size: 20px;
+    color: #9B9B9B;
+    letter-spacing: 0.62px;
+    text-align: center;
+    width: 100%;
+    padding-top: 50px;
+  }
+}

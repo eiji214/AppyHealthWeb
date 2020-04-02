@@ -1,0 +1,26 @@
+
+<div *ngIf="isLoggedIn">
+  <div class="user-widget">
+    <i class="far fa-bell"></i>
+    <i class="far fa-comment"></i>
+    <div class="avatar"></div>
+    <span class="menu-wrapper">
+      <div class="menu">
+        <div class="name">{{name}}</div>
+
+        <div class="dropdown">
+          <a class="btn SignInButton" href="/Session/SignOut">SIGN OUT</a>
+        </div>
+      </div>
+      <i class="fa fa-chevron-down arrow"></i>
+    </span>
+  </div>
+</div>
+<div *ngIf="!isLoggedIn">
+  <div *ngIf="loginContextText === 'PATIENT'; else elseBlock">
+    <a class="btn SignInButton" routerLink="coming-soon">PATIENT SIGN IN</a>
+  </div>
+  <ng-template #elseBlock>
+    <a class="btn SignInButton" href="/Session/SignIn">{{loginContextText}} SIGN IN</a>
+  </ng-template>
+</div>

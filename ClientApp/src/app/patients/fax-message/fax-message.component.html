@@ -1,0 +1,52 @@
+<h3>Fax Message</h3>
+<p>
+  Request patient details to another Provider
+</p>
+<div class="line--gray"></div>
+<div class="fax-form" *ngIf="patient$ | async as patient">
+  <div class="form-group">
+    <label class="control-label">Patient</label>
+    <div class="form-input">
+      <div class="recipient-card">
+        <div class="recipient-photo"></div>
+        <div class="recipient-info">
+          <h4>{{patient.FirstName}} {{patient.MiddleName}} {{patient.LastName}}</h4>
+          <p>DOB: {{ patient.BirthDate | date:'M/d/y' }}</p>
+          <p *ngIf="patient.Gender == 'M'">Male</p>
+          <p *ngIf="patient.Gender == 'F'">Female</p>
+          <p>Phone: <a href="tel:{{patient.PrimaryPhoneNumber}}">{{ patient.PrimaryPhoneNumber | phone }}</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label">Request Details From</label>
+    <div class="form-input">
+      <ng-select style="width: 350px;display: inline-block;"
+                 class="ng-input--grey"
+                 [items]="providers$ | async"
+                 bindLabel="FullName"
+                 bindValue="Id"
+                 [loading]="isLoadingProviders"
+                 [typeahead]="providersInput$"
+                 [(ngModel)]="provider2Id">
+      </ng-select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label">Notes <span>(If you have any)</span></label>
+    <div class="form-input">
+      <textarea [(ngModel)]="notes" name="notes">
+      </textarea>
+    </div>
+  </div>
+  <div class="line--gray"></div>
+  <div class="row">
+    <button class="button--yellow" mat-raised-button [disabled]="!provider2Id" (click)="sendFaxMessage()">
+      Send Message
+    </button>
+  </div>
+</div>
+

@@ -1,0 +1,347 @@
+.practitioner-details {
+  &.profile-detail-panel {
+    margin-top: 30px;
+    font-family: 'Rubik';
+
+    .left-panel {
+      border: 1px solid #D8D8D8;
+      border-radius: 4px;
+
+      .info-panel {
+        position: relative;
+        min-height: 70px;
+        h1 {
+          margin-top: 15px;
+        }
+
+        h2 {
+          margin-top: 10px;
+          height: 20px;
+        }
+
+        h3 {
+          margin-bottom: 20px;
+          margin-top: 10px;
+          font-size: 16px;
+          line-height: 26px;
+          color: #FFD40A;
+          letter-spacing: 0.21px;
+          font-weight: 500;
+        }
+
+        .action-items {
+          /*position: absolute;*/
+          top: 5px;
+          right: 5px;
+          font-size: 12px;
+          vertical-align: middle;
+          color: #c8c8c8;
+        }
+      }
+      .action-item {
+        font-size: 12px;
+        color: #c8c8c8;
+        i {
+          vertical-align: middle;
+          font-size: 18px;
+          color: #c8c8c8;
+        }
+      }
+    }
+
+    .right-panel {
+      background-color: white;
+      padding: 30px 20px;
+      border: 1px solid #D8D8D8;
+      border-radius: 4px;
+      position: relative;
+
+      &-plain {
+        border: 0;
+        padding: 0;
+        background-color: transparent;
+      }
+
+      input, textarea, .radio-group, mat-form-field, .button--save, .hidden  {
+        display: none;
+      }
+
+      input {
+        width: 50%;
+        padding: 7px;
+        font-size: 14px;
+      }
+
+      .radio-group { 
+        width: 50%;
+        text-align: left;
+        input {
+        padding: 0;
+        width: auto;
+      }
+    }
+
+      textarea {
+        width: 90%;
+        height: 200px;
+      }
+
+      &.editing {
+        input, textarea, .radio-group, mat-form-field, .button--save {
+          display: inline-block;
+        }
+        p, aside {
+          display: none;
+        }
+
+        .hidden {
+          display: block;
+        }
+      }
+
+      .action-items {
+        position: absolute;
+        top: 7px;
+        right: 7px;
+        font-size: 12px;
+        color: #c8c8c8;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+        width: 120px;
+
+        i{
+          margin: 3px 5px 6px 5px;
+          vertical-align: middle;
+          &:hover {
+            color: #002685;
+          }
+        }
+      }
+
+      > div {
+        margin-bottom: 25px;
+
+        &--large{
+          margin-left: 200px;
+        }
+      }
+        label {
+          display: block;
+          font: 400 14px/24px Poppins;
+          color: #0f162d;
+        }
+
+        p {
+          font-size: 12px;
+          color: #787887;
+          letter-spacing: 0.6px;
+          line-height: 19px;
+        }
+
+        aside {
+          font-size: 12px;
+          line-height: 16px;
+          color: #0f162d;
+        }
+    }
+
+    .patient-preference h4 {
+      color: #FFC70A;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.profile-detail-panel .practice-card {
+  border-radius: 4px;
+  border: 1px solid #d8d8d8;
+  padding: 0;
+  background-color: white;
+  margin-bottom: 16px;
+  position: relative;
+
+  header {
+    padding: 13px 24px;
+    border-bottom: 1px solid #d8d8d8;
+  }
+  .number {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+    background-color: #002685;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 600;
+    margin-right: 16px;
+  }
+  h1 {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 23px;
+    letter-spacing: 0.7px;
+    color: #030120;
+    font-weight: 600;
+  }
+  section {
+    padding: 24px;
+    &.flex {
+      display: flex;
+      justify-content: space-between;
+      > * {
+        flex: 1;
+      }
+    }
+
+    > div {
+      margin-bottom: 25px;
+    }
+
+    a {
+      color: #002685;
+      font-size: 12px;
+      text-decoration: underline;
+      line-height: 19px;
+      letter-spacing: 0.6px;
+      font-weight: 500;
+      display: inline-block;
+    }
+
+    h2 {
+      font-size: 14px;
+      line-height: 24px;
+      color: #0f162d;
+      font-weight: 400;
+      margin-bottom: 0;
+    }
+    p {
+      font-size: 12px;
+      line-height: 19px;
+      color: #787887;
+      letter-spacing: 0.6px;
+
+    }
+  }
+  &.editing {
+    input, textarea, .radio-group {
+      display: inline-block;
+    }
+    p, aside {
+      display: none;
+    }
+  }
+}
+
+.profile-picture {
+  position: relative;
+  overflow: hidden;
+  background-color: #f8f8f8;
+  #photo {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  label {
+    padding: 10px;
+    color: #444;
+    text-align: center;
+    display: block;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  span {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    background-color: rgba(255,255,255,0.5);
+    transition: bottom 0.3s ease-in-out;
+  }
+
+  &:hover span {
+    bottom: 0px;
+  }
+}
+
+.button--action {
+  position: absolute;
+  right: 0;
+  top: 5px;
+}
+
+.button--save {
+  display: inline;
+  padding-left: 20px;
+}
+
+.add-location {
+  color: #c8c8c8;
+  font-size: 14px;
+  .material-icons {
+    font-size: 18px;
+    vertical-align: middle;
+  }
+  &:hover {
+    color: #002685;
+    cursor: pointer;
+  }
+
+}
+
+.availability-wrapper {
+
+  span {
+    font-size: 12px;
+    line-height: 19px;
+    color: #787887;
+    letter-spacing: 0.6px;
+  }
+  
+  input {
+    width: auto !important;
+  }
+
+  .label {
+    display: inline-block;
+    width: 80px;
+    text-align: center;
+  }
+
+  #startlabel {
+    margin-top: 15px;
+    margin-left: 90px;
+  }
+
+  #endlabel {
+    margin-left: 30px;
+  }
+}
+
+#map {
+  width: 100%;
+  height: 490px;
+  border: 1px solid #d8d8d8;
+  border-radius: 4px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+
+  h2 {
+    margin-top: 30px;
+    flex: 1;
+  }
+
+  .header-button {
+    margin-right: 20px;
+  }
+}

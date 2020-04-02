@@ -1,0 +1,148 @@
+﻿@page
+@model AppyHealthWeb.Pages.Physician.DashboardModel
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "Layout/_PhysicianLayout";
+}
+
+
+
+
+<section>
+    <h2>Good Morning, @Model.FirstName!</h2>
+
+    <div class="notifications">
+        <h4>Notifications</h4>
+        <ul class="list-no-style">
+            <li><span class="warning-circle"></span>Elizabeth Parker has been sent as referral by David Metzger, D.O. <a href="#">View Details</a></li>
+            <li><span class="danger-circle"></span><a href="#">Jerry Palmer has sent a reschedule appointment request.</a></li>
+        </ul>
+    </div>
+
+    <section class="buffer-top">
+        <div class="column">
+            <div class="widget-container">
+                <div class="calendar">
+                    <h4 class="float-right">2019</h4>
+                    <h4>JUNE</h4>
+
+                    <div class="calendar-control">
+                        <i class="float-left fa fa-chevron-left"></i>
+                        <i class="float-right fa fa-chevron-right"></i>
+                        <ul>
+                            <li><div class="day">M</div><div class="date">24</div></li>
+                            <li><div class="day">T</div><div class="date">25</div></li>
+                            <li><div class="day">W</div><div class="date">26</div></li>
+                            <li><div class="day">T</div><div class="date">27</div></li>
+                            <li><div class="day">F</div><div class="date">28</div></li>
+                            <li><div class="day">S</div><div class="date">29</div></li>
+                            <li><div class="day">S</div><div class="date">30</div></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="today">June 24, Monday</div>
+                <div class="buffer-top">
+                    <h4 class="time">9:00</h4>
+
+                    <div class="calendar-widget">
+                        <div class="float-right"><i class="far fa-comment"></i></div>
+                        <div class="timespan">9:00 - 9:30</div>
+                        <div class="name">Elizabeth Parker</div>
+                        <div class="desc">Lower Back Pain</div>
+                    </div>
+                    <div class="calendar-widget">
+                        <div class="float-right"><i class="far fa-comment"></i></div>
+                        <div class="timespan">9:30 - 10:00</div>
+                        <div class="name">Karl Kalagin</div>
+                        <div class="desc">Lower Back Pain</div>
+                    </div>
+
+                    <h4 class="time">10:00</h4>
+
+                    <div class="calendar-widget free">
+                        <div class="timespan">10:00 - 10:30</div>
+                        <div class="center buffer-top">Slot Available.  Tap to <br />Schedule an Appointment</div>
+                    </div>
+
+                    <h4 class="time">11:00</h4>
+                    <div class="calendar-widget">
+                        <div class="float-right"><i class="far fa-comment"></i></div>
+                        <div class="timespan">11:00 - 11:30</div>
+                        <div class="name">Lubomír Dvořák</div>
+                        <div class="desc">Ankle Sprain</div>
+                    </div>
+
+                    <h4 class="time">12:00</h4>
+                    <div class="calendar-widget lunch">
+                        <div class="center">12:00 - 1:00<br />Lunch Break</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <h4><i class="fas fa-plus"></i>New Appointments</h4>
+            <div class="widget-container appointment">
+                <div class="float-right"><i class="far fa-comment"></i></div>
+                <div class="name">Elizabeth Parker</div>
+                <div class="timespan">9:00 - 9:30 AM</div>
+                <div class="date">Mon, Jun 24</div>
+                <div class="desc">Lower Back Pain</div>
+                <div class="actions">
+                    <button type="button" class="btn btn-outline-primary">Reschedule</button>
+                    <button type="button" class="btn btn-outline-secondary">Confirm</button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="widget-container appointment">
+                <div class="float-right"><i class="far fa-comment"></i></div>
+                <div class="name">Jerry Palmer</div>
+                <div class="timespan">3:00 - 3:30 PM</div>
+                <div class="date">Mon, Jun 24</div>
+                <div class="desc">Consultation</div>
+                <div class="actions">
+                    <button type="button" class="btn btn-outline-primary">Reschedule</button>
+                    <button type="button" class="btn btn-outline-secondary">Confirm</button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="widget-container appointment">
+                <div class="float-right"><i class="far fa-comment"></i></div>
+                <div class="name">Anje Keizer</div>
+                <div class="timespan">3:00 - 3:30 PM</div>
+                <div class="date">Tue, Jun 25</div>
+                <div class="desc">Physical Therapy</div>
+                <div class="actions">
+                    <button type="button" class="btn btn-outline-primary">Reschedule</button>
+                    <button type="button" class="btn btn-outline-secondary">Confirm</button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="column">
+            <h4><i class="fas fa-plus"></i>New Patients</h4>
+            <div class="widget-container">
+                <ul class="dashboard-list">
+                    <li>Elizabeth Parker <i class="fas fa-chevron-right"></i> <span class="green-badge">Care Team</span></li>
+                    <li>Karl Kalagin <i class="fas fa-chevron-right"></i></li>
+                    <li>Roman Kutepov <i class="fas fa-chevron-right"></i></li>
+                    <li>Beatriz Brito <i class="fas fa-chevron-right"></i></li>
+                    <li>Isaac Hunt <i class="fas fa-chevron-right"></i></li>
+                </ul>
+            </div>
+            <h4 class="buffer-top"><i class="fas fa-plus"></i>Referrals</h4>
+            <div class="widget-container">
+                <ul class="dashboard-list">
+                    <li>Out-Bound <i class="fas fa-chevron-right"></i></li>
+                    <li>In-Bound <i class="fas fa-chevron-right"></i></li>
+                    <li>Patient Recommendations <i class="fas fa-chevron-right"></i></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</section>
+
+
+<div class="clearfix"></div>
+

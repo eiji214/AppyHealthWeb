@@ -1,0 +1,336 @@
+.patient-details {
+  &.profile-detail-panel {
+    margin-top: 30px;
+    font-family: 'Rubik';
+
+    .line--gray {
+      background: #D8D8D8;
+    }
+
+    .left-panel {
+      /*height: 820px;*/
+      border: 1px solid #D8D8D8;
+      border-radius: 4px;
+
+      .info-panel {
+        h1 {
+          margin-top: 15px;
+        }
+
+        h2 {
+          margin-top: 10px;
+        }
+
+        h3 {
+          margin-bottom: 20px;
+          font: 16px;
+          cursor: pointer;
+          padding: 8px 16px;
+        }
+
+        .action-items {
+          margin-top: 25px;
+
+          > a {
+
+            i {
+              color: #253A80;
+              font-size: 24px;
+              margin-right: 24px !important;
+            }
+          }
+        }
+
+        .location {
+          font-family: 'Poppins';
+          font-size: 15px;
+          color: #9B9B9B;
+          letter-spacing: 0.2px;
+          padding-top: 8px;
+        }
+      }
+
+      .selected {
+        background-color: #00E2FF;
+        color: #FFFFFF;
+        padding: 8px 16px;
+        border-radius: 4px;
+      }
+    }
+
+    .right-panel {
+      border: 1px solid #D8D8D8;
+      border-radius: 4px;
+      position: relative;
+      background: #FFFFFF;
+      margin-bottom: 30px;
+
+      input, textarea, .radio-group {
+        display: none;
+      }
+
+      &.editing {
+        input, textarea {
+          display: block;
+          margin: 6px 0;
+        }
+
+        input[type=radio], .radio-group {
+          display: inline-block;
+        }
+
+        p, aside {
+          display: none;
+        }
+      }
+
+      .upload {
+        &__file {
+          padding: 10px 0;
+          display: flex;
+
+          &__container {
+            span {
+              display: block;
+              padding-bottom: 8px;
+            }
+          }
+        }
+      }
+
+      .photos {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .chat-container {
+        padding: 20px;
+        max-width: 550px;
+        width: 100% !important;
+        box-sizing: border-box;
+        min-width: 400px;
+
+        .send-message {
+          > textarea {
+            display: block;
+            width: 100% !important;
+            box-sizing: border-box;
+            max-width: 100%;
+            min-width: 100%;
+            margin: 0px;
+            margin-bottom: 20px;
+          }
+        }
+
+        .left-side {
+          .message {
+            background-color: #C6C6C6;
+            color: white;
+
+            .user {
+              color: white;
+            }
+          }
+        }
+      }
+
+      &__header {
+        border-bottom: 1px solid #D8D8D8;
+        display: flex;
+
+        .title {
+          font-family: 'Poppins';
+          font-weight: 600;
+          font-size: 16px;
+          color: #030120;
+          letter-spacing: 0.7px;
+          padding: 15px 24px;
+        }
+
+        .action-items {
+          margin-left: auto;
+          margin-right: 10px;
+          margin-top: 2px;
+
+          a {
+            /*position: absolute;*/
+            top: 12px;
+            right: 24px;
+            height: 24px;
+            color: #9B9B9B;
+            margin-left: 12px;
+
+            img {
+              max-height: 100%;
+              height: 24px;
+            }
+          }
+        }
+
+        .action-items {
+          text-align: right;
+          position: absolute;
+          top: 8px;
+          right: 8px;
+        }
+      }
+
+      &__content {
+        padding: 12px 20px;
+
+        .no-picture {
+          padding: 10px 0 15px 0;
+        }
+
+        .show-insurance {
+          input {
+            display: block;
+          }
+        }
+      }
+
+      .info {
+        padding: 5px 30px 10px 0;
+        min-width: 50px;
+
+        &-row {
+          display: flex;
+        }
+
+        p {
+          padding-top: 6px;
+        }
+
+        label {
+          display: block;
+          font: 400 12px/16px Poppins;
+          color: #787887;
+          letter-spacing: 0.6px;
+        }
+
+        input {
+          font-size: 16px;
+          color: #0F162D;
+          letter-spacing: 0.5px;
+          background: rgba(37, 58, 128, 0.03);
+          border: 1px solid #F3F3F4;
+          border-radius: 4px;
+          height: 32px;
+          outline: none;
+          padding: 0 10px;
+        }
+
+        .item {
+          font-size: 16px;
+          color: #0F162D;
+          letter-spacing: 0.5px;
+          padding-top: 4px;
+        }
+      }
+
+      .photos {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .upload {
+        input {
+          display: inline;
+        }
+
+        &__file {
+          padding: 10px 0;
+          display: flex;
+
+          &__container {
+            span {
+              display: block;
+              padding-bottom: 8px;
+            }
+          }
+        }
+      }
+    }
+
+    .patient-preference h4 {
+      color: #FFC70A;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.button--action {
+  position: absolute;
+  right: 0;
+  top: 5px;
+}
+
+.btn--insurance{
+  margin: 20px 0;
+  width: 210px;
+  transition: unset;
+  transform: none;
+  text-align: center;
+}
+
+.btn--save {
+  margin: 20px 0;
+  width: 37px;
+  transition: unset;
+  transform: none;
+  color: #FFFFFF;
+  background-color: #00E2FF;
+
+  &--medium {
+    width: 100px;
+    text-align: center;
+    margin-left: -44px;
+    margin-top: 0px;
+  }
+}
+
+mat-form-field {
+  .mat-form-field-infix {
+    border: none;
+    padding: 0;
+
+    > input {
+      margin: 0;
+      background: rgba(37, 58, 128, 0.03);
+      border: 1px solid #F3F3F4;
+      border-radius: 4px;
+      height: 32px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .mat-form-field-underline{
+      display: none;
+    }
+  }
+}
+
+.input--grey {
+  background: rgba(37, 58, 128, 0.03) !important;
+  border: 1px solid #F3F3F4 !important;
+  border-radius: 4px;
+  height: 32px;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+i {
+  font-family: 'Material Icons' !important;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  h2 {
+    margin-top: 30px;
+    flex: 1;
+  }
+  .header-button {
+    margin-right: 20px;
+  }
+}
